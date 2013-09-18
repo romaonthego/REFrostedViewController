@@ -31,12 +31,6 @@
     [self.menuViewController presentFromViewController:self animated:YES completion:nil];
 }
 
-- (void)viewDidDisappear:(BOOL)animated
-{
-    [super viewDidDisappear:animated];
-    NSLog(@"here");
-}
-
 #pragma mark -
 #pragma mark Rotation handling
 
