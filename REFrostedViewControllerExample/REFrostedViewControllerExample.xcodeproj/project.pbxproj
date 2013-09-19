@@ -25,6 +25,8 @@
 		3010B58117E9FB34006791FB /* REFrostedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3010B57C17E9FB34006791FB /* REFrostedViewController.m */; };
 		3010B58217E9FB34006791FB /* UIImage+REFrostedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3010B57E17E9FB34006791FB /* UIImage+REFrostedViewController.m */; };
 		3010B58317E9FB34006791FB /* UIView+REFrostedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3010B58017E9FB34006791FB /* UIView+REFrostedViewController.m */; };
+		307EEC5C17EB27F00050EE33 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 307EEC5B17EB27F00050EE33 /* Accelerate.framework */; };
+		307EEC5E17EB27F50050EE33 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 307EEC5D17EB27F50050EE33 /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +68,8 @@
 		3010B57E17E9FB34006791FB /* UIImage+REFrostedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+REFrostedViewController.m"; sourceTree = "<group>"; };
 		3010B57F17E9FB34006791FB /* UIView+REFrostedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+REFrostedViewController.h"; sourceTree = "<group>"; };
 		3010B58017E9FB34006791FB /* UIView+REFrostedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+REFrostedViewController.m"; sourceTree = "<group>"; };
+		307EEC5B17EB27F00050EE33 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		307EEC5D17EB27F50050EE33 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +77,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				307EEC5E17EB27F50050EE33 /* QuartzCore.framework in Frameworks */,
+				307EEC5C17EB27F00050EE33 /* Accelerate.framework in Frameworks */,
 				3010B53F17E9FA67006791FB /* CoreGraphics.framework in Frameworks */,
 				3010B54117E9FA67006791FB /* UIKit.framework in Frameworks */,
 				3010B53D17E9FA67006791FB /* Foundation.framework in Frameworks */,
@@ -114,6 +120,8 @@
 		3010B53B17E9FA67006791FB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				307EEC5D17EB27F50050EE33 /* QuartzCore.framework */,
+				307EEC5B17EB27F00050EE33 /* Accelerate.framework */,
 				3010B53C17E9FA67006791FB /* Foundation.framework */,
 				3010B53E17E9FA67006791FB /* CoreGraphics.framework */,
 				3010B54017E9FA67006791FB /* UIKit.framework */,
@@ -473,6 +481,7 @@
 				3010B56717E9FA67006791FB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3010B56817E9FA67006791FB /* Build configuration list for PBXNativeTarget "REFrostedViewControllerExampleTests" */ = {
 			isa = XCConfigurationList;
@@ -481,6 +490,7 @@
 				3010B56A17E9FA67006791FB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
