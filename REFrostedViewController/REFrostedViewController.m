@@ -172,11 +172,6 @@
     if (recognizer.state == UIGestureRecognizerStateBegan) {
         [self presentFromViewController:controller];
     } else {
-        if (self.fadedView.alpha != 1) {
-            [UIView animateWithDuration:self.animationDuration animations:^{
-                self.fadedView.alpha = 1;
-            } completion:nil];
-        }
         [self panGestureRecognizerDidRecognize:recognizer];
     }
 }
@@ -241,6 +236,7 @@
             continue;
         CGFloat width = self.imageView.frame.size.width < self.minimumChildViewWidth ? self.minimumChildViewWidth : self.imageView.frame.size.width;
         CGFloat x = self.imageView.frame.size.width < self.minimumChildViewWidth ? self.imageView.frame.size.width - self.minimumChildViewWidth : 0;
+        
         CGRect frame = CGRectMake(x, 0, width, self.view.frame.size.height);
         view.frame = frame;
     }
@@ -266,9 +262,13 @@
     }
     
     if (recognizer.state == UIGestureRecognizerStateChanged) {
+        
         CGFloat offset = self.imageViewWidth + point.x;
         if (offset > self.view.frame.size.width)
             offset = self.view.frame.size.width;
+        
+        if (offset < 0)
+            return;
         
         CGRect frame = self.imageView.frame;
         frame.size.width = offset;
@@ -289,6 +289,12 @@
             [UIView animateWithDuration:0.2f animations:^{
                 [self updateViewsWithThreshold:self.threshold];
             }];
+            
+            if (self.fadedView.alpha != 1) {
+                [UIView animateWithDuration:self.animationDuration animations:^{
+                    self.fadedView.alpha = 1;
+                } completion:nil];
+            }
         }
     }
 }
