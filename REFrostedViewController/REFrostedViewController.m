@@ -44,33 +44,55 @@
 {
     self = [super init];
     if (self) {
-        self.view.clipsToBounds = YES;
-        self.view.hidden = NO;
-        self.animationDuration = 0.35f;
-        self.blurTintColor = [UIColor colorWithWhite:1 alpha:0.75f];
-        self.blurSaturationDeltaFactor = 1.8f;
-        self.threshold = 50.0f;
-        self.blurRadius = 10.0f;
-        self.imageView = ({
-            UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectNull];
-            imageView.contentMode = UIViewContentModeLeft;
-            imageView.clipsToBounds = YES;
-            imageView;
-        });
-        [self.view addSubview:self.imageView];
-        
-        self.fadedView = ({
-            UIButton *button = [[UIButton alloc] initWithFrame:self.view.bounds];
-            button.backgroundColor = [UIColor colorWithWhite:0 alpha:0.3f];
-            button.alpha = 0;
-            [button addTarget:self action:@selector(fadedViewPressed:) forControlEvents:UIControlEventTouchUpInside];
-            button;
-        });
-        [self.view addSubview:self.fadedView];
-
-        [self.view addGestureRecognizer:[[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panGestureRecognizerDidRecognize:)]];
+        [self commonInit];
     }
     return self;
+}
+
+- (id)initWithCoder:(NSCoder*)coder
+{
+    if ((self = [super initWithCoder:coder])) {
+        [self commonInit];
+    }
+    return self;
+}
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        [self commonInit];
+    }
+    return self;
+}
+
+- (void)commonInit
+{
+    self.view.clipsToBounds = YES;
+    self.view.hidden = NO;
+    self.animationDuration = 0.35f;
+    self.blurTintColor = [UIColor colorWithWhite:1 alpha:0.75f];
+    self.blurSaturationDeltaFactor = 1.8f;
+    self.threshold = 50.0f;
+    self.blurRadius = 10.0f;
+    self.imageView = ({
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectNull];
+        imageView.contentMode = UIViewContentModeLeft;
+        imageView.clipsToBounds = YES;
+        imageView;
+    });
+    [self.view addSubview:self.imageView];
+    
+    self.fadedView = ({
+        UIButton *button = [[UIButton alloc] initWithFrame:self.view.bounds];
+        button.backgroundColor = [UIColor colorWithWhite:0 alpha:0.3f];
+        button.alpha = 0;
+        [button addTarget:self action:@selector(fadedViewPressed:) forControlEvents:UIControlEventTouchUpInside];
+        button;
+    });
+    [self.view addSubview:self.fadedView];
+    
+    [self.view addGestureRecognizer:[[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panGestureRecognizerDidRecognize:)]];
 }
 
 - (BOOL)isHidden
