@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>FD3386CB-7755-45D4-9A7E-507245F01032</string>
+	<key>IDESourceControlProjectName</key>
+	<string>REFrostedViewControllerExample</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>86E9C540-26C6-4935-81F1-E78C0C7D2E68</key>
+		<string>ssh://github.com/romaonthego/REFrostedViewController.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>REFrostedViewControllerExample/REFrostedViewControllerExample.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>86E9C540-26C6-4935-81F1-E78C0C7D2E68</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>ssh://github.com/romaonthego/REFrostedViewController.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>86E9C540-26C6-4935-81F1-E78C0C7D2E68</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>86E9C540-26C6-4935-81F1-E78C0C7D2E68</string>
+			<key>IDESourceControlWCCName</key>
+			<string>REFrostedViewController</string>
+		</dict>
+	</array>
+</dict>
+</plist>
