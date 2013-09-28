@@ -66,15 +66,18 @@
     return self;
 }
 
-- (void)commonInit
-{
-    self.view.clipsToBounds = YES;
-    self.view.hidden = NO;
+-(void)commonInit {
     self.animationDuration = 0.35f;
     self.blurTintColor = [UIColor colorWithWhite:1 alpha:0.75f];
     self.blurSaturationDeltaFactor = 1.8f;
     self.threshold = 50.0f;
     self.blurRadius = 10.0f;
+}
+
+- (void)loadView {
+    [super loadView];
+    self.view.clipsToBounds = YES;
+    self.view.hidden = NO;
     self.imageView = ({
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectNull];
         imageView.contentMode = UIViewContentModeLeft;
@@ -148,6 +151,7 @@
 
 - (void)presentFromViewController:(UIViewController *)controller animated:(BOOL)animated completion:(void(^)(void))completionHandler
 {
+    [self view];
     [self presentFromViewController:controller];
     
     void (^completionHandlerBlock)(BOOL finished) = ^(BOOL finished) {
@@ -169,6 +173,7 @@
 
 - (void)presentFromViewController:(UIViewController *)controller panGestureRecognizer:(UIPanGestureRecognizer *)recognizer
 {
+    [self view];
     if (recognizer.state == UIGestureRecognizerStateBegan) {
         [self presentFromViewController:controller];
     } else {
