@@ -66,7 +66,8 @@
     return self;
 }
 
--(void)commonInit {
+-(void)commonInit
+{
     self.animationDuration = 0.35f;
     self.blurTintColor = [UIColor colorWithWhite:1 alpha:0.75f];
     self.blurSaturationDeltaFactor = 1.8f;
@@ -74,7 +75,8 @@
     self.blurRadius = 10.0f;
 }
 
-- (void)loadView {
+- (void)loadView
+{
     [super loadView];
     self.view.clipsToBounds = YES;
     self.view.hidden = NO;
