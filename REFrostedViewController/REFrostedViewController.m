@@ -36,9 +36,13 @@
 @property (assign, readwrite, nonatomic) BOOL visible;
 @property (assign, readwrite, nonatomic) CGFloat minimumChildViewWidth;
 
+
+
 @end
 
 @implementation REFrostedViewController
+
+@synthesize rightSlide;
 
 - (id)init
 {
@@ -71,7 +75,7 @@
     self.animationDuration = 0.35f;
     self.blurTintColor = [UIColor colorWithWhite:1 alpha:0.75f];
     self.blurSaturationDeltaFactor = 1.8f;
-    self.threshold = 50.0f;
+    self.threshold = 200.0f;
     self.blurRadius = 10.0f;
 }
 
@@ -82,7 +86,12 @@
     self.view.hidden = NO;
     self.imageView = ({
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectNull];
-        imageView.contentMode = UIViewContentModeLeft;
+        if (self.rightSlide) {
+            imageView.contentMode = UIViewContentModeRight;
+        }
+        else {
+            imageView.contentMode = UIViewContentModeLeft;
+        }
         imageView.clipsToBounds = YES;
         imageView;
     });
@@ -139,7 +148,14 @@
     self.view.frame = controller.view.bounds;
     [self addToParentViewController:controller callingAppearanceMethods:YES];
     
-    self.imageView.frame = CGRectMake(0, 0, 0, self.imageView.image.size.height);
+    CGFloat slideStartingPoint;
+    if (self.rightSlide) {
+        slideStartingPoint = 480.0;
+    }
+    else {
+        slideStartingPoint = 0.0;
+    }
+    self.imageView.frame = CGRectMake(slideStartingPoint, 0, 0, self.imageView.image.size.height);
     self.fadedView.frame = CGRectMake(0, 0, self.imageView.image.size.width, self.imageView.image.size.height);
     
     self.minimumChildViewWidth = self.view.frame.size.width - self.threshold;
@@ -196,7 +212,13 @@
     self.visible = NO;
     void (^hideBlock)(void) = ^{
         self.fadedView.alpha = 0;
-        [self updateViewsWithThreshold:self.view.frame.size.width];
+        if (self.rightSlide) {
+            [self updateViewsWithThreshold:0.0];
+        }
+        else {
+            [self updateViewsWithThreshold:self.view.frame.size.width];
+        }
+        
     };
     void (^completionHandlerBlock)(BOOL finished) = ^(BOOL finished) {
         [self removeFromParentViewControllerCallingAppearanceMethods:YES];
@@ -222,15 +244,29 @@
 
 - (void)updateViewsWithThreshold:(CGFloat)threshold
 {
-    CGFloat offset = self.view.frame.size.width - threshold;
+    CGFloat offset;
+    
+    if (self.rightSlide) {
+        offset = threshold;
+    }
+    else {
+        offset = self.view.frame.size.width - threshold;
+    }
     
     CGRect frame = self.imageView.frame;
     frame.size.width = offset;
+    if (self.rightSlide) frame.origin.x = self.view.frame.size.width - offset;
     self.imageView.frame = frame;
     
     frame = self.fadedView.frame;
     frame.size.width = self.view.frame.size.width - offset;
-    frame.origin.x = offset;
+    if (self.rightSlide) {
+        frame.origin.x = 0.0;
+    }
+    else {
+        frame.origin.x = offset;
+    }
+
     self.fadedView.frame = frame;
     
     [self updateChildViewLayout];
@@ -243,7 +279,7 @@
             continue;
         CGFloat width = self.imageView.frame.size.width < self.minimumChildViewWidth ? self.minimumChildViewWidth : self.imageView.frame.size.width;
         CGFloat x = self.imageView.frame.size.width < self.minimumChildViewWidth ? self.imageView.frame.size.width - self.minimumChildViewWidth : 0;
-        
+        NSLog(@"width = %f and x = %f", width,x);
         CGRect frame = CGRectMake(x, 0, width, self.view.frame.size.height);
         view.frame = frame;
     }
@@ -269,8 +305,14 @@
     }
     
     if (recognizer.state == UIGestureRecognizerStateChanged) {
-        
-        CGFloat offset = self.imageViewWidth + point.x;
+        CGFloat offset = 0.0;
+        if (self.rightSlide) {
+            offset = self.imageViewWidth - point.x;
+        }
+        else {
+            offset = self.imageViewWidth + point.x;
+        }
+
         if (offset > self.view.frame.size.width)
             offset = self.view.frame.size.width;
         
@@ -279,18 +321,26 @@
         
         CGRect frame = self.imageView.frame;
         frame.size.width = offset;
+        if (self.rightSlide) frame.origin.x = 320 - offset;
         self.imageView.frame = frame;
         
         frame = self.fadedView.frame;
-        frame.size.width = self.view.frame.size.width - offset;
-        frame.origin.x = offset;
+        if (self.rightSlide) {
+            frame.size.width = self.view.frame.size.width - offset;
+            frame.origin.x = 0.0;
+        }
+        else {
+            frame.size.width = self.view.frame.size.width - offset;
+            frame.origin.x = offset;
+        }
+
         self.fadedView.frame = frame;
         
         [self updateChildViewLayout];
     }
     
     if (recognizer.state == UIGestureRecognizerStateEnded) {
-        if ([recognizer velocityInView:self.view].x < 0) {
+        if (self.rightSlide ? [recognizer velocityInView:self.view].x > 0 : [recognizer velocityInView:self.view].x < 0){
             [self dismissAnimated:YES animationDuration:0.2f completion:nil];
         } else {
             [UIView animateWithDuration:0.2f animations:^{
