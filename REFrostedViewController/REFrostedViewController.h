@@ -34,6 +34,8 @@
 @property (assign, readwrite, nonatomic) NSTimeInterval animationDuration;
 @property (assign, readonly, nonatomic, getter = isHidden) BOOL hidden;
 
+@property (assign, readwrite, nonatomic) BOOL rightSlide;
+
 - (void)presentFromViewController:(UIViewController *)controller animated:(BOOL)animated completion:(void(^)(void))completionHandler;
 - (void)presentFromViewController:(UIViewController *)controller panGestureRecognizer:(UIPanGestureRecognizer *)recognizer;
 - (void)dismissViewControllerAnimated:(BOOL)flag completion:(void (^)(void))completion;
