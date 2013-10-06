@@ -274,6 +274,9 @@
         if (offset > self.view.frame.size.width)
             offset = self.view.frame.size.width;
         
+        if (offset > self.minimumChildViewWidth)
+            offset = self.minimumChildViewWidth;
+        
         if (offset < 0)
             return;
         
