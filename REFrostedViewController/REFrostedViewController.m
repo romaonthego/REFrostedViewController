@@ -106,14 +106,15 @@
     self.containerViewController.animateApperance = animateApperance;
     if (CGSizeEqualToSize(self.minimumMenuViewSize, CGSizeZero)) {
         if (self.direction == REFrostedViewControllerDirectionLeft || self.direction == REFrostedViewControllerDirectionRight)
-            self.minimumMenuViewSize = CGSizeMake(self.view.frame.size.width - 50.0f, self.view.frame.size.height);
+            self.minimumMenuViewSize = CGSizeMake(self.contentViewController.view.frame.size.width - 50.0f, self.contentViewController.view.frame.size.height);
         
         if (self.direction == REFrostedViewControllerDirectionTop || self.direction == REFrostedViewControllerDirectionBottom)
-            self.minimumMenuViewSize = CGSizeMake(self.view.frame.size.width, self.view.frame.size.height - 50.0f);
+            self.minimumMenuViewSize = CGSizeMake(self.contentViewController.view.frame.size.width, self.contentViewController.view.frame.size.height - 50.0f);
     }
     
     self.containerViewController.screenshotImage = [[self.contentViewController.view re_screenshot] re_applyBlurWithRadius:self.blurRadius tintColor:self.blurTintColor saturationDeltaFactor:self.blurSaturationDeltaFactor maskImage:nil];
-    [self re_displayController:self.containerViewController frame:self.view.frame];
+    self.containerViewController.view.frame = self.contentViewController.view.bounds;
+    [self re_displayController:self.containerViewController frame:self.contentViewController.view.frame];
     self.visible = YES;
 }
 
