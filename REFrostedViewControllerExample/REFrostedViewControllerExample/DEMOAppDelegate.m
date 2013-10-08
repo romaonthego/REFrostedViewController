@@ -7,15 +7,30 @@
 //
 
 #import "DEMOAppDelegate.h"
+#import "REFrostedViewController.h"
 #import "DEMONavigationController.h"
 #import "DEMOHomeViewController.h"
+#import "DEMOMenuViewController.h"
 
 @implementation DEMOAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.rootViewController = [[DEMONavigationController alloc] initWithRootViewController:[[DEMOHomeViewController alloc] init]];
+    
+    // Create content and menu controllers
+    //
+    DEMONavigationController *navigationController = [[DEMONavigationController alloc] initWithRootViewController:[[DEMOHomeViewController alloc] init]];
+    DEMOMenuViewController *menuController = [[DEMOMenuViewController alloc] initWithStyle:UITableViewStylePlain];
+    
+    // Create frosted view controller
+    //
+    REFrostedViewController *frostedViewController = [[REFrostedViewController alloc] initWithContentViewController:navigationController menuViewController:menuController];
+    frostedViewController.direction = REFrostedViewControllerDirectionLeft;
+    
+    // Make it a root controller
+    //
+    self.window.rootViewController = frostedViewController;
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;

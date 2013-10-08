@@ -8,6 +8,7 @@
 
 #import "DEMONavigationController.h"
 #import "DEMOMenuViewController.h"
+#import "UIViewController+REFrostedViewController.h"
 
 @interface DEMONavigationController ()
 
@@ -20,23 +21,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.menuViewController = [[DEMOMenuViewController alloc] init];
-    self.menuViewController.navigationController = self;
-    
     [self.view addGestureRecognizer:[[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panGestureRecognized:)]];
 }
 
 - (void)showMenu
 {
-    [self.menuViewController presentFromViewController:self animated:YES completion:nil];
-}
-
-#pragma mark -
-#pragma mark Rotation handling
-
-- (BOOL)shouldAutorotate
-{
-    return self.menuViewController.hidden;
+    [self.frostedViewController presentMenuViewController];
 }
 
 #pragma mark -
@@ -44,7 +34,7 @@
 
 - (void)panGestureRecognized:(UIPanGestureRecognizer *)sender
 {
-    [self.menuViewController presentFromViewController:self panGestureRecognizer:sender];
+    [self.frostedViewController panGestureRecognized:sender];
 }
 
 @end

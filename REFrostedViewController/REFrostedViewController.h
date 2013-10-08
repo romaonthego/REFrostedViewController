@@ -25,17 +25,29 @@
 
 #import <UIKit/UIKit.h>
 
+typedef NS_ENUM(NSInteger, REFrostedViewControllerDirection) {
+    REFrostedViewControllerDirectionLeft,
+    REFrostedViewControllerDirectionRight,
+    REFrostedViewControllerDirectionTop,
+    REFrostedViewControllerDirectionBottom
+};
+
 @interface REFrostedViewController : UIViewController
 
+@property (assign, readwrite, nonatomic) REFrostedViewControllerDirection direction;
 @property (strong, readwrite, nonatomic) UIColor *blurTintColor;
 @property (assign, readwrite, nonatomic) CGFloat blurRadius;
 @property (assign, readwrite, nonatomic) CGFloat blurSaturationDeltaFactor;
-@property (assign, readwrite, nonatomic) CGFloat threshold;
 @property (assign, readwrite, nonatomic) NSTimeInterval animationDuration;
-@property (assign, readonly, nonatomic, getter = isHidden) BOOL hidden;
+@property (assign, readwrite, nonatomic) BOOL limitMenuViewSize;
+@property (assign, readwrite, nonatomic) CGSize minimumMenuViewSize;
 
-- (void)presentFromViewController:(UIViewController *)controller animated:(BOOL)animated completion:(void(^)(void))completionHandler;
-- (void)presentFromViewController:(UIViewController *)controller panGestureRecognizer:(UIPanGestureRecognizer *)recognizer;
-- (void)dismissViewControllerAnimated:(BOOL)flag completion:(void (^)(void))completion;
+@property (strong, readonly, nonatomic) UIViewController *contentViewController;
+@property (strong, readonly, nonatomic) UIViewController *menuViewController;
+
+- (id)initWithContentViewController:(UIViewController *)contentViewController menuViewController:(UIViewController *)menuViewController;
+- (void)presentMenuViewController;
+- (void)hideMenuViewController;
+- (void)panGestureRecognized:(UIPanGestureRecognizer *)recognizer;
 
 @end

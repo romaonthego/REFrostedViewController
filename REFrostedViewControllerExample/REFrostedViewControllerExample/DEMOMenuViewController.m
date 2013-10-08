@@ -9,12 +9,7 @@
 #import "DEMOMenuViewController.h"
 #import "DEMOHomeViewController.h"
 #import "DEMOSecondViewController.h"
-
-@interface DEMOMenuViewController ()
-
-@property (strong, readwrite, nonatomic) UITableView *tableView;
-
-@end
+#import "UIViewController+REFrostedViewController.h"
 
 @implementation DEMOMenuViewController
 
@@ -22,7 +17,6 @@
 {
     [super viewDidLoad];
     
-    self.tableView = [[UITableView alloc] init]; // Frame will be automatically set
     self.tableView.separatorColor = [UIColor colorWithRed:150/255.0f green:161/255.0f blue:177/255.0f alpha:1.0f];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -53,7 +47,6 @@
         [view addSubview:label];
         view;
     });
-    [self.view addSubview:self.tableView];
 }
 
 #pragma mark -
@@ -96,15 +89,17 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    UINavigationController *navigationController = (UINavigationController *)self.frostedViewController.contentViewController;
+    
     if (indexPath.section == 0 && indexPath.row == 0) {
         DEMOHomeViewController *homeViewController = [[DEMOHomeViewController alloc] init];
-        self.navigationController.viewControllers = @[homeViewController];
+        navigationController.viewControllers = @[homeViewController];
     } else {
         DEMOSecondViewController *secondViewController = [[DEMOSecondViewController alloc] init];
-        self.navigationController.viewControllers = @[secondViewController];
+        navigationController.viewControllers = @[secondViewController];
     }
     
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self.frostedViewController hideMenuViewController];
 }
 
 #pragma mark -

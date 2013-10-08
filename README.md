@@ -20,7 +20,7 @@ Build and run the `REFrostedViewControllerExample` project in Xcode to see `REFr
 ### CocoaPods
 
 The recommended approach for installating `REFrostedViewController` is via the [CocoaPods](http://cocoapods.org/) package manager, as it provides flexible dependency management and dead simple installation.
-For best results, it is recommended that you install via CocoaPods >= **0.23.0** using Git >= **1.8.0** installed via Homebrew.
+For best results, it is recommended that you install via CocoaPods >= **0.25.0** using Git >= **1.8.0** installed via Homebrew.
 
 Install CocoaPods if not already available:
 
@@ -41,7 +41,7 @@ Edit your Podfile and add REFrostedViewController:
 
 ``` bash
 platform :ios, '6.0'
-pod 'REFrostedViewController', '~> 1.0.1'
+pod 'REFrostedViewController', '~> 2.0'
 ```
 
 Install into your Xcode project:
@@ -64,9 +64,42 @@ All you need to do is drop `REFrostedViewController` files into your project, an
 
 ## Example Usage
 
+In your AppDelegate's `- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions` create the view controller and assign content and menu view controllers.
+
 ``` objective-c
-self.menuViewController = [[REFrostedViewController alloc] init];
-[self.menuViewController presentFromViewController:self animated:YES completion:nil];
+// Create content and menu controllers
+//
+DEMONavigationController *navigationController = [[DEMONavigationController alloc] initWithRootViewController:[[DEMOHomeViewController alloc] init]];
+DEMOMenuViewController *menuController = [[DEMOMenuViewController alloc] initWithStyle:UITableViewStylePlain];
+
+// Create frosted view controller
+//
+REFrostedViewController *frostedViewController = [[REFrostedViewController alloc] initWithContentViewController:navigationController menuViewController:menuController];
+frostedViewController.direction = REFrostedViewControllerDirectionLeft;
+
+// Make it a root controller
+//
+self.window.rootViewController = frostedViewController;
+```
+
+You can present it manually:
+
+```objective-c
+[self.frostedViewController presentMenuViewController];
+
+- (void)panGestureRecognized:(UIPanGestureRecognizer *)sender
+{
+    [self.frostedViewController panGestureRecognized:sender];
+}
+```
+
+or using a pan gesture recognizer:
+
+```objective-c
+- (void)panGestureRecognized:(UIPanGestureRecognizer *)sender
+{
+    [self.frostedViewController panGestureRecognized:sender];
+}
 ```
 
 ## Customization
@@ -74,11 +107,13 @@ self.menuViewController = [[REFrostedViewController alloc] init];
 You can customize the following properties of `REFrostedViewController`:
 
 ``` objective-c
+@property (assign, readwrite, nonatomic) REFrostedViewControllerDirection direction;
 @property (strong, readwrite, nonatomic) UIColor *blurTintColor;
 @property (assign, readwrite, nonatomic) CGFloat blurRadius;
 @property (assign, readwrite, nonatomic) CGFloat blurSaturationDeltaFactor;
-@property (assign, readwrite, nonatomic) CGFloat threshold;
 @property (assign, readwrite, nonatomic) NSTimeInterval animationDuration;
+@property (assign, readwrite, nonatomic) BOOL limitMenuViewSize;
+@property (assign, readwrite, nonatomic) CGSize minimumMenuViewSize;
 ```
 
 ## Credits

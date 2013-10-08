@@ -27,6 +27,8 @@
 		3010B58317E9FB34006791FB /* UIView+REFrostedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3010B58017E9FB34006791FB /* UIView+REFrostedViewController.m */; };
 		307EEC5C17EB27F00050EE33 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 307EEC5B17EB27F00050EE33 /* Accelerate.framework */; };
 		307EEC5E17EB27F50050EE33 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 307EEC5D17EB27F50050EE33 /* QuartzCore.framework */; };
+		30DB8C6518045B9000D30886 /* REFrostedContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30DB8C6418045B9000D30886 /* REFrostedContainerViewController.m */; };
+		30DB8C6818045C4200D30886 /* UIViewController+REFrostedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30DB8C6718045C4200D30886 /* UIViewController+REFrostedViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +72,10 @@
 		3010B58017E9FB34006791FB /* UIView+REFrostedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+REFrostedViewController.m"; sourceTree = "<group>"; };
 		307EEC5B17EB27F00050EE33 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		307EEC5D17EB27F50050EE33 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		30DB8C6318045B9000D30886 /* REFrostedContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = REFrostedContainerViewController.h; sourceTree = "<group>"; };
+		30DB8C6418045B9000D30886 /* REFrostedContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = REFrostedContainerViewController.m; sourceTree = "<group>"; };
+		30DB8C6618045C4200D30886 /* UIViewController+REFrostedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+REFrostedViewController.h"; sourceTree = "<group>"; };
+		30DB8C6718045C4200D30886 /* UIViewController+REFrostedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+REFrostedViewController.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,6 +184,10 @@
 				3010B57E17E9FB34006791FB /* UIImage+REFrostedViewController.m */,
 				3010B57F17E9FB34006791FB /* UIView+REFrostedViewController.h */,
 				3010B58017E9FB34006791FB /* UIView+REFrostedViewController.m */,
+				30DB8C6318045B9000D30886 /* REFrostedContainerViewController.h */,
+				30DB8C6418045B9000D30886 /* REFrostedContainerViewController.m */,
+				30DB8C6618045C4200D30886 /* UIViewController+REFrostedViewController.h */,
+				30DB8C6718045C4200D30886 /* UIViewController+REFrostedViewController.m */,
 			);
 			name = REFrostedViewController;
 			path = ../REFrostedViewController;
@@ -284,8 +294,10 @@
 				3010B54917E9FA67006791FB /* main.m in Sources */,
 				3010B57317E9FA96006791FB /* DEMOSecondViewController.m in Sources */,
 				3010B54D17E9FA67006791FB /* DEMOAppDelegate.m in Sources */,
+				30DB8C6518045B9000D30886 /* REFrostedContainerViewController.m in Sources */,
 				3010B56D17E9FA7C006791FB /* DEMOMenuViewController.m in Sources */,
 				3010B58117E9FB34006791FB /* REFrostedViewController.m in Sources */,
+				30DB8C6818045C4200D30886 /* UIViewController+REFrostedViewController.m in Sources */,
 				3010B58217E9FB34006791FB /* UIImage+REFrostedViewController.m in Sources */,
 				3010B58317E9FB34006791FB /* UIView+REFrostedViewController.m in Sources */,
 			);
