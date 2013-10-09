@@ -37,11 +37,12 @@ typedef NS_ENUM(NSInteger, REFrostedViewControllerDirection) {
 
 @property (assign, readwrite, nonatomic) REFrostedViewControllerDirection direction;
 @property (strong, readwrite, nonatomic) UIColor *blurTintColor;
-@property (assign, readwrite, nonatomic) CGFloat blurRadius;
-@property (assign, readwrite, nonatomic) CGFloat blurSaturationDeltaFactor;
+@property (assign, readwrite, nonatomic) CGFloat blurRadius; // Used only when live blur is off
+@property (assign, readwrite, nonatomic) CGFloat blurSaturationDeltaFactor; // Used only when live blur is off
 @property (assign, readwrite, nonatomic) NSTimeInterval animationDuration;
 @property (assign, readwrite, nonatomic) BOOL limitMenuViewSize;
 @property (assign, readwrite, nonatomic) CGSize minimumMenuViewSize;
+@property (assign, readwrite, nonatomic) BOOL liveBlur;
 
 @property (strong, readwrite, nonatomic) UIViewController *contentViewController;
 @property (strong, readwrite, nonatomic) UIViewController *menuViewController;

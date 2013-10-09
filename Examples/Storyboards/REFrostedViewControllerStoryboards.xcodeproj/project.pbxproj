@@ -31,6 +31,7 @@
 		3032B8E71805A26500064F85 /* DEMONavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3032B8E61805A26500064F85 /* DEMONavigationController.m */; };
 		3032B8EA1805A4BF00064F85 /* DEMOSecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3032B8E91805A4BF00064F85 /* DEMOSecondViewController.m */; };
 		3032B8FD1805AB5600064F85 /* avatar@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3032B8FC1805AB5600064F85 /* avatar@2x.jpg */; };
+		3032B9001805BC8E00064F85 /* RECommonFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3032B8FF1805BC8E00064F85 /* RECommonFunctions.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +83,8 @@
 		3032B8E81805A4BF00064F85 /* DEMOSecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEMOSecondViewController.h; sourceTree = "<group>"; };
 		3032B8E91805A4BF00064F85 /* DEMOSecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEMOSecondViewController.m; sourceTree = "<group>"; };
 		3032B8FC1805AB5600064F85 /* avatar@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "avatar@2x.jpg"; sourceTree = "<group>"; };
+		3032B8FE1805BC8E00064F85 /* RECommonFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RECommonFunctions.h; sourceTree = "<group>"; };
+		3032B8FF1805BC8E00064F85 /* RECommonFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RECommonFunctions.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,6 +188,8 @@
 		3032B8D51805A21600064F85 /* REFrostedViewController */ = {
 			isa = PBXGroup;
 			children = (
+				3032B8FE1805BC8E00064F85 /* RECommonFunctions.h */,
+				3032B8FF1805BC8E00064F85 /* RECommonFunctions.m */,
 				3032B8D61805A21600064F85 /* REFrostedContainerViewController.h */,
 				3032B8D71805A21600064F85 /* REFrostedContainerViewController.m */,
 				3032B8D81805A21600064F85 /* REFrostedViewController.h */,
@@ -318,6 +323,7 @@
 			files = (
 				3032B8CE1805A1BC00064F85 /* DEMOHomeViewController.m in Sources */,
 				3032B8E11805A21600064F85 /* REFrostedViewController.m in Sources */,
+				3032B9001805BC8E00064F85 /* RECommonFunctions.m in Sources */,
 				3032B8E31805A21600064F85 /* UIView+REFrostedViewController.m in Sources */,
 				3032B89F1805A10100064F85 /* main.m in Sources */,
 				3032B8A91805A10100064F85 /* DEMORootViewController.m in Sources */,
@@ -457,6 +463,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "REFrostedViewControllerStoryboards/REFrostedViewControllerStoryboards-Prefix.pch";
 				INFOPLIST_FILE = "REFrostedViewControllerStoryboards/REFrostedViewControllerStoryboards-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -470,6 +477,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "REFrostedViewControllerStoryboards/REFrostedViewControllerStoryboards-Prefix.pch";
 				INFOPLIST_FILE = "REFrostedViewControllerStoryboards/REFrostedViewControllerStoryboards-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
