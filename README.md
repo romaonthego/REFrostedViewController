@@ -102,6 +102,24 @@ or using a pan gesture recognizer:
 }
 ```
 
+## Storyboards Example
+
+1. Create a subclass of `REFrostedViewController`. In this example we call it `DEMORootViewController`.
+2. In the Storyboard designate the root view's owner as `DEMORootViewController`.
+3. Make sure to `#import "REFrostedViewController.h"` in `DEMORootViewController.h`.
+4. Add more view controllers to your Storyboard, and give them identifiers "menuViewController" and "contentViewController". Note that in the new XCode the identifier is called "Storyboard ID" and can be found in the Identity inspector.
+5. Add a method `awakeFromNib` to `DEMORootViewController.m` with the following code:
+
+```objective-c
+
+- (void)awakeFromNib
+{
+    self.contentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"contentController"];
+    self.menuViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"menuController"];
+}
+
+```
+
 ## Customization
 
 You can customize the following properties of `REFrostedViewController`:
