@@ -36,8 +36,6 @@
 @property (strong, readwrite, nonatomic) UIImageView *imageView;
 @property (assign, readwrite, nonatomic) BOOL visible;
 @property (strong, readwrite, nonatomic) REFrostedContainerViewController *containerViewController;
-@property (strong, readwrite, nonatomic) UIViewController *contentViewController;
-@property (strong, readwrite, nonatomic) UIViewController *menuViewController;
 
 @end
 
@@ -47,15 +45,29 @@
 {
     self = [super init];
     if (self) {
-        _animationDuration = 0.35f;
-        _blurTintColor = [UIColor colorWithWhite:1 alpha:0.75f];
-        _blurSaturationDeltaFactor = 1.8f;
-        _blurRadius = 10.0f;
-        _containerViewController = [[REFrostedContainerViewController alloc] init];
-        _containerViewController.frostedViewController = self;
-        _minimumMenuViewSize = CGSizeZero;
+        [self commonInit];
     }
     return self;
+}
+
+- (id)initWithCoder:(NSCoder *)decoder
+{
+    self = [super initWithCoder:decoder];
+    if (self) {
+        [self commonInit];
+    }
+    return self;
+}
+
+- (void)commonInit
+{
+    _animationDuration = 0.35f;
+    _blurTintColor = [UIColor colorWithWhite:1 alpha:0.75f];
+    _blurSaturationDeltaFactor = 1.8f;
+    _blurRadius = 10.0f;
+    _containerViewController = [[REFrostedContainerViewController alloc] init];
+    _containerViewController.frostedViewController = self;
+    _minimumMenuViewSize = CGSizeZero;
 }
 
 - (id)initWithContentViewController:(UIViewController *)contentViewController menuViewController:(UIViewController *)menuViewController
@@ -113,7 +125,7 @@
     }
     
     self.containerViewController.screenshotImage = [[self.contentViewController.view re_screenshot] re_applyBlurWithRadius:self.blurRadius tintColor:self.blurTintColor saturationDeltaFactor:self.blurSaturationDeltaFactor maskImage:nil];
-    self.containerViewController.view.frame = self.contentViewController.view.bounds;
+
     [self re_displayController:self.containerViewController frame:self.contentViewController.view.frame];
     self.visible = YES;
 }

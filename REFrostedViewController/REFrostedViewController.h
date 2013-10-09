@@ -24,6 +24,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UIViewController+REFrostedViewController.h"
 
 typedef NS_ENUM(NSInteger, REFrostedViewControllerDirection) {
     REFrostedViewControllerDirectionLeft,
@@ -42,8 +43,8 @@ typedef NS_ENUM(NSInteger, REFrostedViewControllerDirection) {
 @property (assign, readwrite, nonatomic) BOOL limitMenuViewSize;
 @property (assign, readwrite, nonatomic) CGSize minimumMenuViewSize;
 
-@property (strong, readonly, nonatomic) UIViewController *contentViewController;
-@property (strong, readonly, nonatomic) UIViewController *menuViewController;
+@property (strong, readwrite, nonatomic) UIViewController *contentViewController;
+@property (strong, readwrite, nonatomic) UIViewController *menuViewController;
 
 - (id)initWithContentViewController:(UIViewController *)contentViewController menuViewController:(UIViewController *)menuViewController;
 - (void)presentMenuViewController;
