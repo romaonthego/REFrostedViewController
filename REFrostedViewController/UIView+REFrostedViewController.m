@@ -32,7 +32,17 @@
     UIGraphicsBeginImageContextWithOptions(self.bounds.size, NO, [UIScreen mainScreen].scale);
     
     if ([self respondsToSelector:@selector(drawViewHierarchyInRect:afterScreenUpdates:)]) {
-        [self drawViewHierarchyInRect:self.bounds afterScreenUpdates:YES];
+       
+        NSInvocation* invoc = [NSInvocation invocationWithMethodSignature:
+                              [self methodSignatureForSelector:
+                               @selector(drawViewHierarchyInRect:afterScreenUpdates:)]];
+        [invoc setTarget:self];
+        [invoc setSelector:@selector(drawViewHierarchyInRect:afterScreenUpdates:)];
+        CGRect arg2 = self.bounds;
+        BOOL arg3 = YES;
+        [invoc setArgument:&arg2 atIndex:2];
+        [invoc setArgument:&arg3 atIndex:3];
+        [invoc invoke];
     } else {
         [self.layer renderInContext:UIGraphicsGetCurrentContext()];
     }
