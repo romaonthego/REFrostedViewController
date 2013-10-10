@@ -121,10 +121,10 @@
     self.containerViewController.animateApperance = animateApperance;
     if (CGSizeEqualToSize(self.minimumMenuViewSize, CGSizeZero)) {
         if (self.direction == REFrostedViewControllerDirectionLeft || self.direction == REFrostedViewControllerDirectionRight)
-            self.minimumMenuViewSize = CGSizeMake(self.contentViewController.view.frame.size.width - 50.0f, self.contentViewController.view.frame.size.height);
+            self.minimumMenuViewSize = CGSizeMake(self.view.frame.size.width - 50.0f, self.view.frame.size.height);
         
         if (self.direction == REFrostedViewControllerDirectionTop || self.direction == REFrostedViewControllerDirectionBottom)
-            self.minimumMenuViewSize = CGSizeMake(self.contentViewController.view.frame.size.width, self.contentViewController.view.frame.size.height - 50.0f);
+            self.minimumMenuViewSize = CGSizeMake(self.view.frame.size.width, self.view.frame.size.height - 50.0f);
     }
     
     if (!self.liveBlur) {

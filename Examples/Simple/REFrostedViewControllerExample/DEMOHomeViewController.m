@@ -26,6 +26,8 @@
     
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
     imageView.image = [UIImage imageNamed:@"Balloon"];
+    imageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    imageView.contentMode = UIViewContentModeScaleAspectFill;
     [self.view addSubview:imageView];
 }
 

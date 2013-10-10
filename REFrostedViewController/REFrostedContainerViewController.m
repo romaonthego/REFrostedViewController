@@ -51,10 +51,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    NSLog(@"did load");
     self.backgroundViews = [NSMutableArray array];
     for (NSInteger i = 0; i < 4; i++) {
         UIView *backgroundView = [[UIView alloc] initWithFrame:CGRectNull];
-        backgroundView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         backgroundView.backgroundColor = [UIColor blackColor];
         backgroundView.alpha = 0.0f;
         [self.view addSubview:backgroundView];
@@ -70,6 +70,7 @@
     
     if (self.frostedViewController.liveBlur) {
         UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:self.view.bounds];
+        toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         toolbar.barStyle = (UIBarStyle)self.frostedViewController.liveBlurBackgroundStyle;
         if ([toolbar respondsToSelector:@selector(setBarTintColor:)])
             [toolbar performSelector:@selector(setBarTintColor:) withObject:self.frostedViewController.blurTintColor];
@@ -77,7 +78,6 @@
 
     } else {
         self.backgroundImageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
-        self.backgroundImageView.image = self.screenshotImage;
         [self.containerView addSubview:self.backgroundImageView];
     }
     
@@ -93,6 +93,10 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [self.frostedViewController.menuViewController beginAppearanceTransition:YES animated:animated];
+    
+    self.backgroundImageView.image = self.screenshotImage;
+    self.backgroundImageView.frame = self.view.bounds;
+    self.frostedViewController.menuViewController.view.frame = self.containerView.bounds;
     
     if (self.frostedViewController.direction == REFrostedViewControllerDirectionLeft) {
         [self setContainerFrame:CGRectMake(- self.frostedViewController.minimumMenuViewSize.width, 0, self.frostedViewController.minimumMenuViewSize.width, self.frostedViewController.minimumMenuViewSize.height)];
