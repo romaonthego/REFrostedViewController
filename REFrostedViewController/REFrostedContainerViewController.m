@@ -51,7 +51,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    NSLog(@"did load");
     self.backgroundViews = [NSMutableArray array];
     for (NSInteger i = 0; i < 4; i++) {
         UIView *backgroundView = [[UIView alloc] initWithFrame:CGRectNull];
