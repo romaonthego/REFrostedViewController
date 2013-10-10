@@ -41,7 +41,7 @@ Edit your Podfile and add REFrostedViewController:
 
 ``` bash
 platform :ios, '6.0'
-pod 'REFrostedViewController', '~> 2.0.2'
+pod 'REFrostedViewController', '~> 2.1'
 ```
 
 Install into your Xcode project:
@@ -127,11 +127,13 @@ You can customize the following properties of `REFrostedViewController`:
 ``` objective-c
 @property (assign, readwrite, nonatomic) REFrostedViewControllerDirection direction;
 @property (strong, readwrite, nonatomic) UIColor *blurTintColor;
-@property (assign, readwrite, nonatomic) CGFloat blurRadius;
-@property (assign, readwrite, nonatomic) CGFloat blurSaturationDeltaFactor;
+@property (assign, readwrite, nonatomic) CGFloat blurRadius; // Used only when live blur is off
+@property (assign, readwrite, nonatomic) CGFloat blurSaturationDeltaFactor; // Used only when live blur is off
 @property (assign, readwrite, nonatomic) NSTimeInterval animationDuration;
 @property (assign, readwrite, nonatomic) BOOL limitMenuViewSize;
 @property (assign, readwrite, nonatomic) CGSize minimumMenuViewSize;
+@property (assign, readwrite, nonatomic) BOOL liveBlur;
+@property (assign, readwrite, nonatomic) REFrostedViewControllerLiveBackgroundStyle liveBlurBackgroundStyle;
 ```
 
 ## Credits
