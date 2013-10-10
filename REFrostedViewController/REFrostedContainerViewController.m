@@ -70,6 +70,7 @@
     
     if (self.frostedViewController.liveBlur) {
         UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:self.view.bounds];
+        toolbar.barStyle = (UIBarStyle)self.frostedViewController.liveBlurBackgroundStyle;
         if ([toolbar respondsToSelector:@selector(setBarTintColor:)])
             [toolbar performSelector:@selector(setBarTintColor:) withObject:self.frostedViewController.blurTintColor];
         [self.containerView addSubview:toolbar];

@@ -33,6 +33,11 @@ typedef NS_ENUM(NSInteger, REFrostedViewControllerDirection) {
     REFrostedViewControllerDirectionBottom
 };
 
+typedef NS_ENUM(NSInteger, REFrostedViewControllerLiveBackgroundStyle) {
+    REFrostedViewControllerLiveBackgroundStyleLight,
+    REFrostedViewControllerLiveBackgroundStyleDark
+};
+
 @interface REFrostedViewController : UIViewController
 
 @property (assign, readwrite, nonatomic) REFrostedViewControllerDirection direction;
@@ -43,6 +48,7 @@ typedef NS_ENUM(NSInteger, REFrostedViewControllerDirection) {
 @property (assign, readwrite, nonatomic) BOOL limitMenuViewSize;
 @property (assign, readwrite, nonatomic) CGSize minimumMenuViewSize;
 @property (assign, readwrite, nonatomic) BOOL liveBlur;
+@property (assign, readwrite, nonatomic) REFrostedViewControllerLiveBackgroundStyle liveBlurBackgroundStyle;
 
 @property (strong, readwrite, nonatomic) UIViewController *contentViewController;
 @property (strong, readwrite, nonatomic) UIViewController *menuViewController;
