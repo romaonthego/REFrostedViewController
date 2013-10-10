@@ -33,7 +33,8 @@
 @interface REFrostedContainerViewController ()
 
 @property (strong, readwrite, nonatomic) UIImageView *backgroundImageView;
-@property (strong, readwrite, nonatomic) UIView *backgroundView;
+//@property (strong, readwrite, nonatomic) UIView *backgroundView;
+@property (strong, readwrite, nonatomic) NSMutableArray *backgroundViews;
 @property (strong, readwrite, nonatomic) UIView *containerView;
 @property (assign, readwrite, nonatomic) CGPoint containerOrigin;
 
@@ -50,11 +51,18 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.backgroundView = [[UIView alloc] initWithFrame:self.view.bounds];
-    self.backgroundView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    self.backgroundView.backgroundColor = [UIColor blackColor];
-    self.backgroundView.alpha = 0.0f;
-    [self.view addSubview:self.backgroundView];
+    self.backgroundViews = [NSMutableArray array];
+    for (NSInteger i = 0; i < 4; i++) {
+        UIView *backgroundView = [[UIView alloc] initWithFrame:CGRectNull];
+        backgroundView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        backgroundView.backgroundColor = [UIColor blackColor];
+        backgroundView.alpha = 0.0f;
+        [self.view addSubview:backgroundView];
+        [self.backgroundViews addObject:backgroundView];
+        
+        UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGestureRecognized:)];
+        [backgroundView addGestureRecognizer:tapRecognizer];
+    }
     
     self.containerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 250, self.view.frame.size.height)];
     self.containerView.clipsToBounds = YES;
@@ -76,9 +84,6 @@
     self.frostedViewController.menuViewController.view.frame = self.containerView.bounds;
     [self.containerView addSubview:self.frostedViewController.menuViewController.view];
     [self.frostedViewController.menuViewController didMoveToParentViewController:self];
-    
-    UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGestureRecognized:)];
-    [self.backgroundView addGestureRecognizer:tapRecognizer];
     
     UIPanGestureRecognizer *recognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panGestureRecognized:)];
     [self.view addGestureRecognizer:recognizer];
@@ -125,8 +130,26 @@
 
 - (void)setContainerFrame:(CGRect)frame
 {
+    UIView *leftBackgroundView = self.backgroundViews[0];
+    UIView *topBackgroundView = self.backgroundViews[1];
+    UIView *bottomBackgroundView = self.backgroundViews[2];
+    UIView *rightBackgroundView = self.backgroundViews[3];
+    
+    leftBackgroundView.frame = CGRectMake(0, 0, frame.origin.x, self.view.frame.size.height);
+    rightBackgroundView.frame = CGRectMake(frame.size.width + frame.origin.x, 0, self.view.frame.size.width - frame.size.width - frame.origin.x, self.view.frame.size.height);
+    
+    topBackgroundView.frame = CGRectMake(frame.origin.x, 0, frame.size.width, frame.origin.y);
+    bottomBackgroundView.frame = CGRectMake(frame.origin.x, frame.size.height + frame.origin.y, frame.size.width, self.view.frame.size.height);
+    
     self.containerView.frame = frame;
     self.backgroundImageView.frame = CGRectMake(- frame.origin.x, - frame.origin.y, self.view.bounds.size.width, self.view.bounds.size.height);
+}
+
+- (void)setBackgroundViewsAlpha:(CGFloat)alpha
+{
+    for (UIView *view in self.backgroundViews) {
+        view.alpha = alpha;
+    }
 }
 
 - (void)show
@@ -134,28 +157,28 @@
     if (self.frostedViewController.direction == REFrostedViewControllerDirectionLeft) {
         [UIView animateWithDuration:self.frostedViewController.animationDuration animations:^{
             [self setContainerFrame:CGRectMake(0, 0, self.frostedViewController.minimumMenuViewSize.width, self.frostedViewController.minimumMenuViewSize.height)];
-            self.backgroundView.alpha = 0.2f;
+            [self setBackgroundViewsAlpha:0.3f];
         }];
     }
     
     if (self.frostedViewController.direction == REFrostedViewControllerDirectionRight) {
         [UIView animateWithDuration:self.frostedViewController.animationDuration animations:^{
             [self setContainerFrame:CGRectMake(self.view.frame.size.width - self.frostedViewController.minimumMenuViewSize.width, 0, self.frostedViewController.minimumMenuViewSize.width, self.frostedViewController.minimumMenuViewSize.height)];
-            self.backgroundView.alpha = 0.2f;
+            [self setBackgroundViewsAlpha:0.3f];
         }];
     }
     
     if (self.frostedViewController.direction == REFrostedViewControllerDirectionTop) {
         [UIView animateWithDuration:self.frostedViewController.animationDuration animations:^{
             [self setContainerFrame:CGRectMake(0, 0, self.frostedViewController.minimumMenuViewSize.width, self.frostedViewController.minimumMenuViewSize.height)];
-            self.backgroundView.alpha = 0.2f;
+            [self setBackgroundViewsAlpha:0.3f];
         }];
     }
     
     if (self.frostedViewController.direction == REFrostedViewControllerDirectionBottom) {
         [UIView animateWithDuration:self.frostedViewController.animationDuration animations:^{
             [self setContainerFrame:CGRectMake(0, self.view.frame.size.height - self.frostedViewController.minimumMenuViewSize.height, self.frostedViewController.minimumMenuViewSize.width, self.frostedViewController.minimumMenuViewSize.height)];
-            self.backgroundView.alpha = 0.2f;
+            [self setBackgroundViewsAlpha:0.3f];
         }];
     }
 }
@@ -165,7 +188,7 @@
     if (self.frostedViewController.direction == REFrostedViewControllerDirectionLeft) {
         [UIView animateWithDuration:self.frostedViewController.animationDuration animations:^{
             [self setContainerFrame:CGRectMake(- self.frostedViewController.minimumMenuViewSize.width, 0, self.frostedViewController.minimumMenuViewSize.width, self.frostedViewController.minimumMenuViewSize.height)];
-            self.backgroundView.alpha = 0;
+            [self setBackgroundViewsAlpha:0];
         } completion:^(BOOL finished) {
             self.frostedViewController.visible = NO;
             [self.frostedViewController re_hideController:self];
@@ -175,7 +198,7 @@
     if (self.frostedViewController.direction == REFrostedViewControllerDirectionRight) {
         [UIView animateWithDuration:self.frostedViewController.animationDuration animations:^{
             [self setContainerFrame:CGRectMake(self.view.frame.size.width, 0, self.frostedViewController.minimumMenuViewSize.width, self.frostedViewController.minimumMenuViewSize.height)];
-            self.backgroundView.alpha = 0;
+            [self setBackgroundViewsAlpha:0];
         } completion:^(BOOL finished) {
             self.frostedViewController.visible = NO;
             [self.frostedViewController re_hideController:self];
@@ -185,7 +208,7 @@
     if (self.frostedViewController.direction == REFrostedViewControllerDirectionTop) {
         [UIView animateWithDuration:self.frostedViewController.animationDuration animations:^{
             [self setContainerFrame:CGRectMake(0, -self.frostedViewController.minimumMenuViewSize.height, self.frostedViewController.minimumMenuViewSize.width, self.frostedViewController.minimumMenuViewSize.height)];
-            self.backgroundView.alpha = 0;
+            [self setBackgroundViewsAlpha:0];
         } completion:^(BOOL finished) {
             self.frostedViewController.visible = NO;
             [self.frostedViewController re_hideController:self];
@@ -195,7 +218,7 @@
     if (self.frostedViewController.direction == REFrostedViewControllerDirectionBottom) {
         [UIView animateWithDuration:self.frostedViewController.animationDuration animations:^{
             [self setContainerFrame:CGRectMake(0, self.view.frame.size.height, self.frostedViewController.minimumMenuViewSize.width, self.frostedViewController.minimumMenuViewSize.height)];
-            self.backgroundView.alpha = 0;
+            [self setBackgroundViewsAlpha:0];
         } completion:^(BOOL finished) {
             self.frostedViewController.visible = NO;
             [self.frostedViewController re_hideController:self];
