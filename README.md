@@ -86,11 +86,6 @@ You can present it manually:
 
 ```objective-c
 [self.frostedViewController presentMenuViewController];
-
-- (void)panGestureRecognized:(UIPanGestureRecognizer *)sender
-{
-    [self.frostedViewController panGestureRecognized:sender];
-}
 ```
 
 or using a pan gesture recognizer:
