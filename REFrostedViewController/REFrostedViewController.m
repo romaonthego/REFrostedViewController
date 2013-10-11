@@ -41,6 +41,7 @@
 @end
 
 @implementation REFrostedViewController
+@synthesize isPanGestureDisabled;
 
 - (id)init
 {
