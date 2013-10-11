@@ -50,6 +50,7 @@ typedef NS_ENUM(NSInteger, REFrostedViewControllerLiveBackgroundStyle) {
 @property (assign, readwrite, nonatomic) BOOL liveBlur;
 @property (assign, readwrite, nonatomic) REFrostedViewControllerLiveBackgroundStyle liveBlurBackgroundStyle;
 
+@property (assign, readwrite, nonatomic) BOOL isPanGestureDisabled;
 @property (strong, readwrite, nonatomic) UIViewController *contentViewController;
 @property (strong, readwrite, nonatomic) UIViewController *menuViewController;
 

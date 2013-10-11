@@ -246,6 +246,9 @@
 
 - (void)panGestureRecognized:(UIPanGestureRecognizer *)recognizer
 {
+    if (self.frostedViewController.isPanGestureDisabled) {
+        return;
+    }
     CGPoint point = [recognizer translationInView:self.view];
     
     if (recognizer.state == UIGestureRecognizerStateBegan) {
