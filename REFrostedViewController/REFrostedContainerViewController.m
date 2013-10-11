@@ -29,6 +29,7 @@
 #import "UIViewController+REFrostedViewController.h"
 #import "REFrostedViewController.h"
 #import "RECommonFunctions.h"
+#import "REFrostedToolbar.h"
 
 @interface REFrostedContainerViewController ()
 
@@ -68,7 +69,7 @@
     [self.view addSubview:self.containerView];
     
     if (self.frostedViewController.liveBlur) {
-        UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:self.view.bounds];
+        REFrostedToolbar *toolbar = [[REFrostedToolbar alloc] initWithFrame:self.view.bounds];
         toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         toolbar.barStyle = (UIBarStyle)self.frostedViewController.liveBlurBackgroundStyle;
         if ([toolbar respondsToSelector:@selector(setBarTintColor:)])
