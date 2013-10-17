@@ -1,11 +1,11 @@
 Pod::Spec.new do |s|
   s.name        = 'REFrostedViewController'
-  s.version     = '2.1.1'
+  s.version     = '2.1.2'
   s.authors     = { 'Roman Efimov' => 'romefimov@gmail.com' }
   s.homepage    = 'https://github.com/romaonthego/REFrostedViewController'
   s.summary     = 'iOS 7 style blurred view controller that appears on top of your view controller.'
   s.source      = { :git => 'https://github.com/romaonthego/REFrostedViewController.git',
-                    :tag => '2.1.1' }
+                    :tag => '2.1.2' }
   s.license     = { :type => "MIT", :file => "LICENSE" }
 
   s.platform = :ios, '6.0'
