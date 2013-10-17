@@ -109,19 +109,21 @@
     [self.contentViewController endAppearanceTransition];
 }
 
-- (UIViewController *)childViewControllerForStatusBarStyle {
+- (UIViewController *)childViewControllerForStatusBarStyle
+{
     return self.contentViewController;
 }
 
-- (UIViewController *)childViewControllerForStatusBarHidden {
+- (UIViewController *)childViewControllerForStatusBarHidden
+{
     return self.contentViewController;
 }
 
-- (void)setContentViewController:(UIViewController *)contentViewController {
+- (void)setContentViewController:(UIViewController *)contentViewController
+{
     _contentViewController = contentViewController;
-    // iOS 7 check
     if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]) {
-        [self setNeedsStatusBarAppearanceUpdate];
+        [self performSelector:@selector(setNeedsStatusBarAppearanceUpdate)];
     }
 }
 
