@@ -345,4 +345,39 @@
     }
 }
 
+- (void)fixLayoutWithDuration:(NSTimeInterval)duration {
+    if (self.frostedViewController.direction == REFrostedViewControllerDirectionLeft) {
+        [UIView animateWithDuration:duration animations:^{
+            [self setContainerFrame:CGRectMake(0, 0, self.frostedViewController.minimumMenuViewSize.width, self.frostedViewController.minimumMenuViewSize.height)];
+            [self setBackgroundViewsAlpha:0.3f];
+        }];
+    }
+    
+    if (self.frostedViewController.direction == REFrostedViewControllerDirectionRight) {
+        [UIView animateWithDuration:duration animations:^{
+            [self setContainerFrame:CGRectMake(self.view.frame.size.width - self.frostedViewController.minimumMenuViewSize.width, 0, self.frostedViewController.minimumMenuViewSize.width, self.frostedViewController.minimumMenuViewSize.height)];
+            [self setBackgroundViewsAlpha:0.3f];
+        }];
+    }
+    
+    if (self.frostedViewController.direction == REFrostedViewControllerDirectionTop) {
+        [UIView animateWithDuration:duration animations:^{
+            [self setContainerFrame:CGRectMake(0, 0, self.frostedViewController.minimumMenuViewSize.width, self.frostedViewController.minimumMenuViewSize.height)];
+            [self setBackgroundViewsAlpha:0.3f];
+        }];
+    }
+    
+    if (self.frostedViewController.direction == REFrostedViewControllerDirectionBottom) {
+        [UIView animateWithDuration:duration animations:^{
+            [self setContainerFrame:CGRectMake(0, self.view.frame.size.height - self.frostedViewController.minimumMenuViewSize.height, self.frostedViewController.minimumMenuViewSize.width, self.frostedViewController.minimumMenuViewSize.height)];
+            [self setBackgroundViewsAlpha:0.3f];
+        }];
+    }
+}
+
+- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+    [super willAnimateRotationToInterfaceOrientation:toInterfaceOrientation duration:duration];
+    [self fixLayoutWithDuration:duration];
+}
+
 @end
