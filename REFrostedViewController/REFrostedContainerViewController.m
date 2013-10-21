@@ -345,7 +345,8 @@
     }
 }
 
-- (void)fixLayoutWithDuration:(NSTimeInterval)duration {
+- (void)fixLayoutWithDuration:(NSTimeInterval)duration
+{
     if (self.frostedViewController.direction == REFrostedViewControllerDirectionLeft) {
         [self setContainerFrame:CGRectMake(0, 0, self.frostedViewController.minimumMenuViewSize.width, self.frostedViewController.minimumMenuViewSize.height)];
         [self setBackgroundViewsAlpha:0.3f];
@@ -367,7 +368,8 @@
     }
 }
 
-- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+{
     [super willAnimateRotationToInterfaceOrientation:toInterfaceOrientation duration:duration];
     [self fixLayoutWithDuration:duration];
 }
