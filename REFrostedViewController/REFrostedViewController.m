@@ -180,7 +180,7 @@
 
 - (BOOL)shouldAutorotate
 {
-    return YES;
+    return self.contentViewController.shouldAutorotate;
 }
 
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
