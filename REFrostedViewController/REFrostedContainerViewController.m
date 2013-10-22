@@ -33,7 +33,6 @@
 @interface REFrostedContainerViewController ()
 
 @property (strong, readwrite, nonatomic) UIImageView *backgroundImageView;
-//@property (strong, readwrite, nonatomic) UIView *backgroundView;
 @property (strong, readwrite, nonatomic) NSMutableArray *backgroundViews;
 @property (strong, readwrite, nonatomic) UIView *containerView;
 @property (assign, readwrite, nonatomic) CGPoint containerOrigin;

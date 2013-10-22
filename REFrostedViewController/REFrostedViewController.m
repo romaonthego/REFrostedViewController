@@ -127,6 +127,21 @@
     }
 }
 
+- (void)setMenuViewController:(UIViewController *)menuViewController
+{
+    if (!_menuViewController) {
+        _menuViewController = menuViewController;
+        return;
+    }
+    CGRect frame = _menuViewController.view.frame;
+    [_menuViewController willMoveToParentViewController:nil];
+    [_menuViewController removeFromParentViewController];
+    _menuViewController = menuViewController;
+    [self.containerViewController addChildViewController:menuViewController];
+    menuViewController.view.frame = frame;
+    [self.containerViewController.containerView addSubview:menuViewController.view];
+    [menuViewController didMoveToParentViewController:self];
+}
 
 #pragma mark -
 
