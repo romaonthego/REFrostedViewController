@@ -32,6 +32,7 @@
 		3032B8EA1805A4BF00064F85 /* DEMOSecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3032B8E91805A4BF00064F85 /* DEMOSecondViewController.m */; };
 		3032B8FD1805AB5600064F85 /* avatar@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3032B8FC1805AB5600064F85 /* avatar@2x.jpg */; };
 		3032B9001805BC8E00064F85 /* RECommonFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3032B8FF1805BC8E00064F85 /* RECommonFunctions.m */; };
+		309F5CD61817201B00502935 /* Main-iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 309F5CD41817201B00502935 /* Main-iPad.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +86,7 @@
 		3032B8FC1805AB5600064F85 /* avatar@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "avatar@2x.jpg"; sourceTree = "<group>"; };
 		3032B8FE1805BC8E00064F85 /* RECommonFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RECommonFunctions.h; sourceTree = "<group>"; };
 		3032B8FF1805BC8E00064F85 /* RECommonFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RECommonFunctions.m; sourceTree = "<group>"; };
+		309F5CD51817201B00502935 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "Base.lproj/Main-iPad.storyboard"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +152,7 @@
 				3032B8A21805A10100064F85 /* DEMOAppDelegate.m */,
 				3032B8FC1805AB5600064F85 /* avatar@2x.jpg */,
 				3032B8A41805A10100064F85 /* Main.storyboard */,
+				309F5CD41817201B00502935 /* Main-iPad.storyboard */,
 				3032B8AA1805A10100064F85 /* Images.xcassets */,
 				3032B8991805A10100064F85 /* Supporting Files */,
 			);
@@ -301,6 +304,7 @@
 			files = (
 				3032B8AB1805A10100064F85 /* Images.xcassets in Resources */,
 				3032B8FD1805AB5600064F85 /* avatar@2x.jpg in Resources */,
+				309F5CD61817201B00502935 /* Main-iPad.storyboard in Resources */,
 				3032B89D1805A10100064F85 /* InfoPlist.strings in Resources */,
 				3032B8A61805A10100064F85 /* Main.storyboard in Resources */,
 			);
@@ -378,6 +382,14 @@
 				3032B8BB1805A10100064F85 /* en */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		309F5CD41817201B00502935 /* Main-iPad.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				309F5CD51817201B00502935 /* Base */,
+			);
+			name = "Main-iPad.storyboard";
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -463,8 +475,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "REFrostedViewControllerStoryboards/REFrostedViewControllerStoryboards-Prefix.pch";
 				INFOPLIST_FILE = "REFrostedViewControllerStoryboards/REFrostedViewControllerStoryboards-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -477,8 +490,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "REFrostedViewControllerStoryboards/REFrostedViewControllerStoryboards-Prefix.pch";
 				INFOPLIST_FILE = "REFrostedViewControllerStoryboards/REFrostedViewControllerStoryboards-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
