@@ -135,8 +135,6 @@ You can customize the following properties of `REFrostedViewController`:
 
 Inspired by a [Dribbble shot](http://dribbble.com/shots/1173945-Menu-Concept-1), author [Jackie Tran](http://dribbble.com/jackietrananh).
 
-UI Control structure and View Controller containment practices adopted from [Ryan Nystrom](https://github.com/rnystrom) and [Matthias Tretter](https://github.com/myell0w).
-
 The blur algorithm comes from WWDC 2013's session 208, "What's New in iOS User Interface Design".
 
 ## Contact
