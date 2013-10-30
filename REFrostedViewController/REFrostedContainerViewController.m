@@ -79,10 +79,12 @@
         [self.containerView addSubview:self.backgroundImageView];
     }
     
-    [self addChildViewController:self.frostedViewController.menuViewController];
-    self.frostedViewController.menuViewController.view.frame = self.containerView.bounds;
-    [self.containerView addSubview:self.frostedViewController.menuViewController.view];
-    [self.frostedViewController.menuViewController didMoveToParentViewController:self];
+    if (self.frostedViewController.menuViewController) {
+        [self addChildViewController:self.frostedViewController.menuViewController];
+        self.frostedViewController.menuViewController.view.frame = self.containerView.bounds;
+        [self.containerView addSubview:self.frostedViewController.menuViewController.view];
+        [self.frostedViewController.menuViewController didMoveToParentViewController:self];
+    }
     
     UIPanGestureRecognizer *recognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panGestureRecognized:)];
     [self.view addGestureRecognizer:recognizer];
