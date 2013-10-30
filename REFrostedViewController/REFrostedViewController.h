@@ -42,6 +42,7 @@ typedef NS_ENUM(NSInteger, REFrostedViewControllerLiveBackgroundStyle) {
 
 @interface REFrostedViewController : UIViewController
 
+@property (assign, readwrite, nonatomic) BOOL panGestureEnabled;
 @property (assign, readwrite, nonatomic) REFrostedViewControllerDirection direction;
 @property (strong, readwrite, nonatomic) UIColor *blurTintColor;
 @property (assign, readwrite, nonatomic) CGFloat blurRadius; // Used only when live blur is off
