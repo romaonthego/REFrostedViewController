@@ -136,7 +136,11 @@
     CGRect frame = _menuViewController.view.frame;
     [_menuViewController willMoveToParentViewController:nil];
     [_menuViewController removeFromParentViewController];
+     [_menuViewController.view removeFromSuperview];
     _menuViewController = menuViewController;
+    if (!_menuViewController)
+        return;
+    
     [self.containerViewController addChildViewController:menuViewController];
     menuViewController.view.frame = frame;
     [self.containerViewController.containerView addSubview:menuViewController.view];
