@@ -50,7 +50,7 @@ typedef NS_ENUM(NSInteger, REFrostedViewControllerLiveBackgroundStyle) {
 @property (assign, readwrite, nonatomic) CGFloat blurSaturationDeltaFactor; // Used only when live blur is off
 @property (assign, readwrite, nonatomic) NSTimeInterval animationDuration;
 @property (assign, readwrite, nonatomic) BOOL limitMenuViewSize;
-@property (assign, readwrite, nonatomic) CGSize minimumMenuViewSize;
+@property (assign, readwrite, nonatomic) CGSize menuViewSize;
 @property (assign, readwrite, nonatomic) BOOL liveBlur; // iOS 7 only
 @property (assign, readwrite, nonatomic) REFrostedViewControllerLiveBackgroundStyle liveBlurBackgroundStyle; // iOS 7 only
 

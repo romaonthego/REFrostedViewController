@@ -38,6 +38,8 @@
 @property (assign, readwrite, nonatomic) BOOL visible;
 @property (strong, readwrite, nonatomic) REFrostedContainerViewController *containerViewController;
 @property (strong, readwrite, nonatomic) UIPanGestureRecognizer *panGestureRecognizer;
+@property (assign, readwrite, nonatomic) BOOL automaticSize;
+@property (assign, readwrite, nonatomic) CGSize calculatedMenuViewSize;
 
 @end
 
@@ -74,9 +76,10 @@
     _blurRadius = 10.0f;
     _containerViewController = [[REFrostedContainerViewController alloc] init];
     _containerViewController.frostedViewController = self;
-    _minimumMenuViewSize = CGSizeZero;
+    _menuViewSize = CGSizeZero;
     _liveBlur = REUIKitIsFlatMode();
     _panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:_containerViewController action:@selector(panGestureRecognized:)];
+    _automaticSize = YES;
 }
 
 - (id)initWithContentViewController:(UIViewController *)contentViewController menuViewController:(UIViewController *)menuViewController
@@ -125,6 +128,9 @@
     return self.contentViewController;
 }
 
+#pragma mark -
+#pragma mark Setters
+
 - (void)setContentViewController:(UIViewController *)contentViewController
 {
     _contentViewController = contentViewController;
@@ -153,6 +159,12 @@
     [menuViewController didMoveToParentViewController:self];
 }
 
+- (void)setMenuViewSize:(CGSize)menuViewSize
+{
+    _menuViewSize = menuViewSize;
+    self.automaticSize = NO;
+}
+
 #pragma mark -
 
 - (void)presentMenuViewController
@@ -167,12 +179,15 @@
     }
     
     self.containerViewController.animateApperance = animateApperance;
-    if (CGSizeEqualToSize(self.minimumMenuViewSize, CGSizeZero)) {
+    if (self.automaticSize) {
         if (self.direction == REFrostedViewControllerDirectionLeft || self.direction == REFrostedViewControllerDirectionRight)
-            self.minimumMenuViewSize = CGSizeMake(self.contentViewController.view.frame.size.width - 50.0f, self.contentViewController.view.frame.size.height);
+            self.calculatedMenuViewSize = CGSizeMake(self.contentViewController.view.frame.size.width - 50.0f, self.contentViewController.view.frame.size.height);
         
         if (self.direction == REFrostedViewControllerDirectionTop || self.direction == REFrostedViewControllerDirectionBottom)
-            self.minimumMenuViewSize = CGSizeMake(self.contentViewController.view.frame.size.width, self.contentViewController.view.frame.size.height - 50.0f);
+            self.calculatedMenuViewSize = CGSizeMake(self.contentViewController.view.frame.size.width, self.contentViewController.view.frame.size.height - 50.0f);
+    } else {
+        self.calculatedMenuViewSize = CGSizeMake(_menuViewSize.width > 0 ? _menuViewSize.width : self.contentViewController.view.frame.size.width,
+                                                 _menuViewSize.height > 0 ? _menuViewSize.height : self.contentViewController.view.frame.size.height);
     }
     
     if (!self.liveBlur) {
@@ -222,11 +237,16 @@
 {
     [super willAnimateRotationToInterfaceOrientation:toInterfaceOrientation duration:duration];
     if (self.visible) {
-        if (self.direction == REFrostedViewControllerDirectionLeft || self.direction == REFrostedViewControllerDirectionRight)
-            self.minimumMenuViewSize = CGSizeMake(self.view.bounds.size.width - 50.0f, self.view.bounds.size.height);
-        
-        if (self.direction == REFrostedViewControllerDirectionTop || self.direction == REFrostedViewControllerDirectionBottom)
-            self.minimumMenuViewSize = CGSizeMake(self.view.bounds.size.width, self.view.bounds.size.height - 50.0f);
+        if (self.automaticSize) {
+            if (self.direction == REFrostedViewControllerDirectionLeft || self.direction == REFrostedViewControllerDirectionRight)
+                self.calculatedMenuViewSize = CGSizeMake(self.view.bounds.size.width - 50.0f, self.view.bounds.size.height);
+            
+            if (self.direction == REFrostedViewControllerDirectionTop || self.direction == REFrostedViewControllerDirectionBottom)
+                self.calculatedMenuViewSize = CGSizeMake(self.view.bounds.size.width, self.view.bounds.size.height - 50.0f);
+        } else {
+            self.calculatedMenuViewSize = CGSizeMake(_menuViewSize.width > 0 ? _menuViewSize.width : self.view.bounds.size.width,
+                                                     _menuViewSize.height > 0 ? _menuViewSize.height : self.view.bounds.size.height);
+        }
     }
 }
 
@@ -234,7 +254,7 @@
 {
     [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
     if (!self.visible) {
-        self.minimumMenuViewSize = CGSizeZero;
+        self.calculatedMenuViewSize = CGSizeZero;
     }
 }
 
