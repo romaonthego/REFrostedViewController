@@ -86,8 +86,7 @@
         [self.frostedViewController.menuViewController didMoveToParentViewController:self];
     }
     
-    UIPanGestureRecognizer *recognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panGestureRecognized:)];
-    [self.view addGestureRecognizer:recognizer];
+    [self.view addGestureRecognizer:self.frostedViewController.panGestureRecognizer];
 }
 
 - (void)viewWillAppear:(BOOL)animated

@@ -37,6 +37,7 @@
 @property (strong, readwrite, nonatomic) UIImageView *imageView;
 @property (assign, readwrite, nonatomic) BOOL visible;
 @property (strong, readwrite, nonatomic) REFrostedContainerViewController *containerViewController;
+@property (strong, readwrite, nonatomic) UIPanGestureRecognizer *panGestureRecognizer;
 
 @end
 
@@ -72,6 +73,7 @@
     _containerViewController.frostedViewController = self;
     _minimumMenuViewSize = CGSizeZero;
     _liveBlur = REUIKitIsFlatMode();
+    _panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:_containerViewController action:@selector(panGestureRecognized:)];
 }
 
 - (id)initWithContentViewController:(UIViewController *)contentViewController menuViewController:(UIViewController *)menuViewController
