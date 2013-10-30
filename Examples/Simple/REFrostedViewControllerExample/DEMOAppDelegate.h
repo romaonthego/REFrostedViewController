@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "REFrostedViewController.h"
 
-@interface DEMOAppDelegate : UIResponder <UIApplicationDelegate>
+@interface DEMOAppDelegate : UIResponder <UIApplicationDelegate, REFrostedViewControllerDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 

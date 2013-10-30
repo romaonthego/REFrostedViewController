@@ -159,37 +159,53 @@
 
 - (void)show
 {
+    void (^completionHandler)(BOOL finished) = ^(BOOL finished) {
+        if ([self.frostedViewController.delegate conformsToProtocol:@protocol(REFrostedViewControllerDelegate)] && [self.frostedViewController.delegate respondsToSelector:@selector(frostedViewController:didShowMenuViewController:)]) {
+            [self.frostedViewController.delegate frostedViewController:self.frostedViewController didShowMenuViewController:self.frostedViewController.menuViewController];
+        }
+    };
+    
     if (self.frostedViewController.direction == REFrostedViewControllerDirectionLeft) {
         [UIView animateWithDuration:self.frostedViewController.animationDuration animations:^{
             [self setContainerFrame:CGRectMake(0, 0, self.frostedViewController.minimumMenuViewSize.width, self.frostedViewController.minimumMenuViewSize.height)];
             [self setBackgroundViewsAlpha:0.3f];
-        }];
+        } completion:completionHandler];
     }
     
     if (self.frostedViewController.direction == REFrostedViewControllerDirectionRight) {
         [UIView animateWithDuration:self.frostedViewController.animationDuration animations:^{
             [self setContainerFrame:CGRectMake(self.view.frame.size.width - self.frostedViewController.minimumMenuViewSize.width, 0, self.frostedViewController.minimumMenuViewSize.width, self.frostedViewController.minimumMenuViewSize.height)];
             [self setBackgroundViewsAlpha:0.3f];
-        }];
+        } completion:completionHandler];
     }
     
     if (self.frostedViewController.direction == REFrostedViewControllerDirectionTop) {
         [UIView animateWithDuration:self.frostedViewController.animationDuration animations:^{
             [self setContainerFrame:CGRectMake(0, 0, self.frostedViewController.minimumMenuViewSize.width, self.frostedViewController.minimumMenuViewSize.height)];
             [self setBackgroundViewsAlpha:0.3f];
-        }];
+        } completion:completionHandler];
     }
     
     if (self.frostedViewController.direction == REFrostedViewControllerDirectionBottom) {
         [UIView animateWithDuration:self.frostedViewController.animationDuration animations:^{
             [self setContainerFrame:CGRectMake(0, self.view.frame.size.height - self.frostedViewController.minimumMenuViewSize.height, self.frostedViewController.minimumMenuViewSize.width, self.frostedViewController.minimumMenuViewSize.height)];
             [self setBackgroundViewsAlpha:0.3f];
-        }];
+        } completion:completionHandler];
     }
 }
 
 - (void)hide
 {
+    void (^completionHandler)(void) = ^{
+        if ([self.frostedViewController.delegate conformsToProtocol:@protocol(REFrostedViewControllerDelegate)] && [self.frostedViewController.delegate respondsToSelector:@selector(frostedViewController:didHideMenuViewController:)]) {
+            [self.frostedViewController.delegate frostedViewController:self.frostedViewController didHideMenuViewController:self.frostedViewController.menuViewController];
+        }
+    };
+    
+    if ([self.frostedViewController.delegate conformsToProtocol:@protocol(REFrostedViewControllerDelegate)] && [self.frostedViewController.delegate respondsToSelector:@selector(frostedViewController:willHideMenuViewController:)]) {
+        [self.frostedViewController.delegate frostedViewController:self.frostedViewController willHideMenuViewController:self.frostedViewController.menuViewController];
+    }
+    
     if (self.frostedViewController.direction == REFrostedViewControllerDirectionLeft) {
         [UIView animateWithDuration:self.frostedViewController.animationDuration animations:^{
             [self setContainerFrame:CGRectMake(- self.frostedViewController.minimumMenuViewSize.width, 0, self.frostedViewController.minimumMenuViewSize.width, self.frostedViewController.minimumMenuViewSize.height)];
@@ -197,6 +213,7 @@
         } completion:^(BOOL finished) {
             self.frostedViewController.visible = NO;
             [self.frostedViewController re_hideController:self];
+            completionHandler();
         }];
     }
     
@@ -207,6 +224,7 @@
         } completion:^(BOOL finished) {
             self.frostedViewController.visible = NO;
             [self.frostedViewController re_hideController:self];
+            completionHandler();
         }];
     }
     
@@ -217,6 +235,7 @@
         } completion:^(BOOL finished) {
             self.frostedViewController.visible = NO;
             [self.frostedViewController re_hideController:self];
+            completionHandler();
         }];
     }
     
@@ -227,6 +246,7 @@
         } completion:^(BOOL finished) {
             self.frostedViewController.visible = NO;
             [self.frostedViewController re_hideController:self];
+            completionHandler();
         }];
     }
 }
@@ -246,6 +266,9 @@
 
 - (void)panGestureRecognized:(UIPanGestureRecognizer *)recognizer
 {
+    if ([self.frostedViewController.delegate conformsToProtocol:@protocol(REFrostedViewControllerDelegate)] && [self.frostedViewController.delegate respondsToSelector:@selector(frostedViewController:didRecognizePanGesture:)])
+        [self.frostedViewController.delegate frostedViewController:self.frostedViewController didRecognizePanGesture:recognizer];
+    
     CGPoint point = [recognizer translationInView:self.view];
     
     if (recognizer.state == UIGestureRecognizerStateBegan) {

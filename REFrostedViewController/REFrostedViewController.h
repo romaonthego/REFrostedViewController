@@ -38,6 +38,8 @@ typedef NS_ENUM(NSInteger, REFrostedViewControllerLiveBackgroundStyle) {
     REFrostedViewControllerLiveBackgroundStyleDark
 };
 
+@protocol REFrostedViewControllerDelegate;
+
 @interface REFrostedViewController : UIViewController
 
 @property (assign, readwrite, nonatomic) REFrostedViewControllerDirection direction;
@@ -50,6 +52,7 @@ typedef NS_ENUM(NSInteger, REFrostedViewControllerLiveBackgroundStyle) {
 @property (assign, readwrite, nonatomic) BOOL liveBlur;
 @property (assign, readwrite, nonatomic) REFrostedViewControllerLiveBackgroundStyle liveBlurBackgroundStyle;
 
+@property (weak, readwrite, nonatomic) id<REFrostedViewControllerDelegate> delegate;
 @property (strong, readwrite, nonatomic) UIViewController *contentViewController;
 @property (strong, readwrite, nonatomic) UIViewController *menuViewController;
 
@@ -57,5 +60,16 @@ typedef NS_ENUM(NSInteger, REFrostedViewControllerLiveBackgroundStyle) {
 - (void)presentMenuViewController;
 - (void)hideMenuViewController;
 - (void)panGestureRecognized:(UIPanGestureRecognizer *)recognizer;
+
+@end
+
+@protocol REFrostedViewControllerDelegate <NSObject>
+
+@optional
+- (void)frostedViewController:(REFrostedViewController *)frostedViewController didRecognizePanGesture:(UIPanGestureRecognizer *)recognizer;
+- (void)frostedViewController:(REFrostedViewController *)frostedViewController willShowMenuViewController:(UIViewController *)menuViewController;
+- (void)frostedViewController:(REFrostedViewController *)frostedViewController didShowMenuViewController:(UIViewController *)menuViewController;
+- (void)frostedViewController:(REFrostedViewController *)frostedViewController willHideMenuViewController:(UIViewController *)menuViewController;
+- (void)frostedViewController:(REFrostedViewController *)frostedViewController didHideMenuViewController:(UIViewController *)menuViewController;
 
 @end

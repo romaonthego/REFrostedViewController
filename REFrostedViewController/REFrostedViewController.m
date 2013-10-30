@@ -156,6 +156,10 @@
 
 - (void)presentMenuViewControllerWithAnimatedApperance:(BOOL)animateApperance
 {
+    if ([self.delegate conformsToProtocol:@protocol(REFrostedViewControllerDelegate)] && [self.delegate respondsToSelector:@selector(frostedViewController:willShowMenuViewController:)]) {
+        [self.delegate frostedViewController:self willShowMenuViewController:self.menuViewController];
+    }
+    
     self.containerViewController.animateApperance = animateApperance;
     if (CGSizeEqualToSize(self.minimumMenuViewSize, CGSizeZero)) {
         if (self.direction == REFrostedViewControllerDirectionLeft || self.direction == REFrostedViewControllerDirectionRight)
@@ -187,6 +191,9 @@
 
 - (void)panGestureRecognized:(UIPanGestureRecognizer *)recognizer
 {
+    if ([self.delegate conformsToProtocol:@protocol(REFrostedViewControllerDelegate)] && [self.delegate respondsToSelector:@selector(frostedViewController:didRecognizePanGesture:)])
+        [self.delegate frostedViewController:self didRecognizePanGesture:recognizer];
+    
     if (recognizer.state == UIGestureRecognizerStateBegan) {
         [self presentMenuViewControllerWithAnimatedApperance:NO];
     }
