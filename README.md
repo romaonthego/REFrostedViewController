@@ -41,7 +41,7 @@ Edit your Podfile and add REFrostedViewController:
 
 ``` bash
 platform :ios, '6.0'
-pod 'REFrostedViewController', '~> 2.2.1'
+pod 'REFrostedViewController', '~> 2.3'
 ```
 
 Install into your Xcode project:
