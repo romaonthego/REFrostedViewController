@@ -62,6 +62,8 @@ Please note that if your installation fails, it may be because you are installin
 
 All you need to do is drop `REFrostedViewController` files into your project, and add `#include "REFrostedViewController.h"` to the top of classes that will use it.
 
+Your project must be linked against `Accelerate` framework.
+
 ## Example Usage
 
 In your AppDelegate's `- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions` create the view controller and assign content and menu view controllers.
