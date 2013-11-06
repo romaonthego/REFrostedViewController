@@ -62,7 +62,7 @@ Please note that if your installation fails, it may be because you are installin
 
 All you need to do is drop `REFrostedViewController` files into your project, and add `#include "REFrostedViewController.h"` to the top of classes that will use it.
 
-Your project must be linked against `Accelerate` framework.
+Your project must be linked against the `Accelerate` framework.
 
 ## Example Usage
 
