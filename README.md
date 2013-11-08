@@ -99,6 +99,8 @@ or using a pan gesture recognizer:
 }
 ```
 
+### Live Blur
+
 By default, live blurring is enabled under iOS 7. The live blurring is performed by using a `UIToolbar` as a background view, that means when you change its tint color, it becomes desaturated. That's the way it works on iOS 7.
 To disable live blurring, set `liveBlur` property to `NO`.
 
