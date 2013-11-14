@@ -25,7 +25,8 @@
 
 #import <Foundation/Foundation.h>
 
-#ifndef REUIKitIsFlatModeFunction
-#define REUIKitIsFlatModeFunction
-BOOL REUIKitIsFlatMode();
+#ifndef REUIKitIsFlatMode
+#define REUIKitIsFlatMode() REFrostedViewControllerUIKitIsFlatMode()
 #endif
+
+BOOL REFrostedViewControllerUIKitIsFlatMode();
