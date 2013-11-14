@@ -144,7 +144,7 @@ You can customize the following properties of `REFrostedViewController`:
 
 Inspired by a [Dribbble shot](http://dribbble.com/shots/1173945-Menu-Concept-1), author [Jackie Tran](http://dribbble.com/jackietrananh).
 
-The blur algorithm comes from WWDC 2013's session 208, "What's New in iOS User Interface Design".
+The blur algorithm that is used for static blur comes from WWDC 2013's session 208, "What's New in iOS User Interface Design".
 
 ## Contact
 
