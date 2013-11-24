@@ -45,6 +45,15 @@ typedef NS_ENUM(NSInteger, REFrostedViewControllerLiveBackgroundStyle) {
 @property (strong, readonly, nonatomic) UIPanGestureRecognizer *panGestureRecognizer;
 @property (assign, readwrite, nonatomic) BOOL panGestureEnabled;
 @property (assign, readwrite, nonatomic) REFrostedViewControllerDirection direction;
+
+/**
+ * The backgroundFadeAmount is how much the backgound view fades when the menu
+ * view is presented.
+ *
+ * 1.0 is completely black. 0.0 means the background does not dim at all.
+ * The default value is 0.3.
+ */
+@property (assign, readwrite, nonatomic) CGFloat backgroundFadeAmount;
 @property (strong, readwrite, nonatomic) UIColor *blurTintColor;
 @property (assign, readwrite, nonatomic) CGFloat blurRadius; // Used only when live blur is off
 @property (assign, readwrite, nonatomic) CGFloat blurSaturationDeltaFactor; // Used only when live blur is off
