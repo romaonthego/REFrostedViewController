@@ -194,12 +194,19 @@
     }
 }
 
+
 - (void)hide
+{
+	[self hideWithCompletitionHandler:^{}];
+}
+
+- (void)hideWithCompletitionHandler:(void(^)(void))completition
 {
     void (^completionHandler)(void) = ^{
         if ([self.frostedViewController.delegate conformsToProtocol:@protocol(REFrostedViewControllerDelegate)] && [self.frostedViewController.delegate respondsToSelector:@selector(frostedViewController:didHideMenuViewController:)]) {
             [self.frostedViewController.delegate frostedViewController:self.frostedViewController didHideMenuViewController:self.frostedViewController.menuViewController];
         }
+		completition();		
     };
     
     if ([self.frostedViewController.delegate conformsToProtocol:@protocol(REFrostedViewControllerDelegate)] && [self.frostedViewController.delegate respondsToSelector:@selector(frostedViewController:willHideMenuViewController:)]) {
