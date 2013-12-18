@@ -36,7 +36,7 @@
 
 - (void)panGestureRecognized:(UIPanGestureRecognizer *)recognizer;
 - (void)hide;
-- (void)hideWithCompletitionHandler:(void(^)(void))completition;
+- (void)hideWithCompletionHandler:(void(^)(void))completion;
 - (void)refreshBackgroundImage;
 
 @end

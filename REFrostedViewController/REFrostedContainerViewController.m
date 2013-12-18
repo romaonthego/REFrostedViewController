@@ -197,16 +197,16 @@
 
 - (void)hide
 {
-	[self hideWithCompletitionHandler:^{}];
+	[self hideWithCompletionHandler:^{}];
 }
 
-- (void)hideWithCompletitionHandler:(void(^)(void))completition
+- (void)hideWithCompletionHandler:(void(^)(void))completion
 {
     void (^completionHandler)(void) = ^{
         if ([self.frostedViewController.delegate conformsToProtocol:@protocol(REFrostedViewControllerDelegate)] && [self.frostedViewController.delegate respondsToSelector:@selector(frostedViewController:didHideMenuViewController:)]) {
             [self.frostedViewController.delegate frostedViewController:self.frostedViewController didHideMenuViewController:self.frostedViewController.menuViewController];
         }
-		completition();		
+		completion();		
     };
     
     if ([self.frostedViewController.delegate conformsToProtocol:@protocol(REFrostedViewControllerDelegate)] && [self.frostedViewController.delegate respondsToSelector:@selector(frostedViewController:willHideMenuViewController:)]) {
