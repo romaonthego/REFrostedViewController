@@ -141,7 +141,6 @@
     
     [_contentViewController removeFromParentViewController];
     [_contentViewController.view removeFromSuperview];
-    _contentViewController = contentViewController;
     
     if (contentViewController) {
         [self addChildViewController:contentViewController];
