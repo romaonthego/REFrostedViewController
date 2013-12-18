@@ -197,16 +197,17 @@
 
 - (void)hide
 {
-	[self hideWithCompletionHandler:^{}];
+	[self hideWithCompletionHandler:nil];
 }
 
-- (void)hideWithCompletionHandler:(void(^)(void))completion
+- (void)hideWithCompletionHandler:(void(^)(void))completionHandler
 {
-    void (^completionHandler)(void) = ^{
+    void (^completionHandlerBlock)(void) = ^{
         if ([self.frostedViewController.delegate conformsToProtocol:@protocol(REFrostedViewControllerDelegate)] && [self.frostedViewController.delegate respondsToSelector:@selector(frostedViewController:didHideMenuViewController:)]) {
             [self.frostedViewController.delegate frostedViewController:self.frostedViewController didHideMenuViewController:self.frostedViewController.menuViewController];
         }
-		completion();		
+        if (completionHandler)
+            completionHandler();
     };
     
     if ([self.frostedViewController.delegate conformsToProtocol:@protocol(REFrostedViewControllerDelegate)] && [self.frostedViewController.delegate respondsToSelector:@selector(frostedViewController:willHideMenuViewController:)]) {
@@ -220,7 +221,7 @@
         } completion:^(BOOL finished) {
             self.frostedViewController.visible = NO;
             [self.frostedViewController re_hideController:self];
-            completionHandler();
+            completionHandlerBlock();
         }];
     }
     
@@ -231,7 +232,7 @@
         } completion:^(BOOL finished) {
             self.frostedViewController.visible = NO;
             [self.frostedViewController re_hideController:self];
-            completionHandler();
+            completionHandlerBlock();
         }];
     }
     
@@ -242,7 +243,7 @@
         } completion:^(BOOL finished) {
             self.frostedViewController.visible = NO;
             [self.frostedViewController re_hideController:self];
-            completionHandler();
+            completionHandlerBlock();
         }];
     }
     
@@ -253,7 +254,7 @@
         } completion:^(BOOL finished) {
             self.frostedViewController.visible = NO;
             [self.frostedViewController re_hideController:self];
-            completionHandler();
+            completionHandlerBlock();
         }];
     }
 }

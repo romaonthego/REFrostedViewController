@@ -217,13 +217,13 @@
     self.visible = YES;
 }
 
-- (void)hideMenuViewControllerWithCompletionHandler:(void(^)(void))completion
+- (void)hideMenuViewControllerWithCompletionHandler:(void(^)(void))completionHandler
 {
     if (!self.liveBlur) {
         self.containerViewController.screenshotImage = [[self.contentViewController.view re_screenshot] re_applyBlurWithRadius:self.blurRadius tintColor:self.blurTintColor saturationDeltaFactor:self.blurSaturationDeltaFactor maskImage:nil];
         [self.containerViewController refreshBackgroundImage];
     }
-    [self.containerViewController hideWithCompletionHandler:completion];
+    [self.containerViewController hideWithCompletionHandler:completionHandler];
 }
 
 - (void)hideMenuViewController
