@@ -134,7 +134,23 @@
 
 - (void)setContentViewController:(UIViewController *)contentViewController
 {
+    if (!_contentViewController) {
+        _contentViewController = contentViewController;
+        return;
+    }
+    
+    [_contentViewController removeFromParentViewController];
+    [_contentViewController.view removeFromSuperview];
     _contentViewController = contentViewController;
+    
+    if (contentViewController) {
+        [self addChildViewController:contentViewController];
+        contentViewController.view.frame = self.view.frame;
+        [self.view insertSubview:contentViewController.view atIndex:0];
+        [contentViewController didMoveToParentViewController:self];
+    }
+    _contentViewController = contentViewController;
+    
     if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]) {
         [self performSelector:@selector(setNeedsStatusBarAppearanceUpdate)];
     }

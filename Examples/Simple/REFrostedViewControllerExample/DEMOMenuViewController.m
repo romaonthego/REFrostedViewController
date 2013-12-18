@@ -9,6 +9,7 @@
 #import "DEMOMenuViewController.h"
 #import "DEMOHomeViewController.h"
 #import "DEMOSecondViewController.h"
+#import "DEMONavigationController.h"
 #import "UIViewController+REFrostedViewController.h"
 
 @implementation DEMOMenuViewController
@@ -89,14 +90,14 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    UINavigationController *navigationController = (UINavigationController *)self.frostedViewController.contentViewController;
-    
     if (indexPath.section == 0 && indexPath.row == 0) {
         DEMOHomeViewController *homeViewController = [[DEMOHomeViewController alloc] init];
-        navigationController.viewControllers = @[homeViewController];
+        DEMONavigationController *navigationController = [[DEMONavigationController alloc] initWithRootViewController:homeViewController];
+        self.frostedViewController.contentViewController = navigationController;
     } else {
         DEMOSecondViewController *secondViewController = [[DEMOSecondViewController alloc] init];
-        navigationController.viewControllers = @[secondViewController];
+        DEMONavigationController *navigationController = [[DEMONavigationController alloc] initWithRootViewController:secondViewController];
+        self.frostedViewController.contentViewController = navigationController;
     }
     
     [self.frostedViewController hideMenuViewController];
