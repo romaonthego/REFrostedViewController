@@ -228,7 +228,7 @@
 
 - (void)hideMenuViewController
 {
-	[self hideMenuViewControllerWithCompletitionHandler:^{}];
+	[self hideMenuViewControllerWithCompletitionHandler:nil];
 }
 
 - (void)panGestureRecognized:(UIPanGestureRecognizer *)recognizer
