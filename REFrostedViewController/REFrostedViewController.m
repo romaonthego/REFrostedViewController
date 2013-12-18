@@ -145,7 +145,7 @@
     
     if (contentViewController) {
         [self addChildViewController:contentViewController];
-        contentViewController.view.frame = self.view.frame;
+        contentViewController.view.frame = self.containerViewController.view.frame;
         [self.view insertSubview:contentViewController.view atIndex:0];
         [contentViewController didMoveToParentViewController:self];
     }
@@ -165,7 +165,7 @@
     CGRect frame = _menuViewController.view.frame;
     [_menuViewController willMoveToParentViewController:nil];
     [_menuViewController removeFromParentViewController];
-     [_menuViewController.view removeFromSuperview];
+    [_menuViewController.view removeFromSuperview];
     _menuViewController = menuViewController;
     if (!_menuViewController)
         return;
