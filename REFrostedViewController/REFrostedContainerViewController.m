@@ -157,7 +157,8 @@
     }
 }
 
-- (void) resize:(CGSize)size {
+- (void) resize:(CGSize)size
+{
     
     if (self.frostedViewController.direction == REFrostedViewControllerDirectionLeft) {
         [UIView animateWithDuration:self.frostedViewController.animationDuration animations:^{
