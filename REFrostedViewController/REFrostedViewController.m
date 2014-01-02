@@ -226,6 +226,15 @@
     [self.containerViewController hideWithCompletionHandler:completionHandler];
 }
 
+- (void)resizeMenuViewControllerToSize:(CGSize)size
+{
+    if (!self.liveBlur) {
+        self.containerViewController.screenshotImage = [[self.contentViewController.view re_screenshot] re_applyBlurWithRadius:self.blurRadius tintColor:self.blurTintColor saturationDeltaFactor:self.blurSaturationDeltaFactor maskImage:nil];
+        [self.containerViewController refreshBackgroundImage];
+    }
+    [self.containerViewController resize:size];
+}
+
 - (void)hideMenuViewController
 {
 	[self hideMenuViewControllerWithCompletionHandler:nil];
