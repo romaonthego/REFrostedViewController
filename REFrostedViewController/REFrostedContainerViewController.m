@@ -157,7 +157,7 @@
     }
 }
 
-- (void) resize:(CGSize)size
+- (void)resizeToSize:(CGSize)size
 {
     
     if (self.frostedViewController.direction == REFrostedViewControllerDirectionLeft) {
