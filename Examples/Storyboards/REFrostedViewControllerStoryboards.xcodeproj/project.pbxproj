@@ -33,6 +33,7 @@
 		3032B8FD1805AB5600064F85 /* avatar@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3032B8FC1805AB5600064F85 /* avatar@2x.jpg */; };
 		3032B9001805BC8E00064F85 /* RECommonFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3032B8FF1805BC8E00064F85 /* RECommonFunctions.m */; };
 		309F5CD61817201B00502935 /* Main-iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 309F5CD41817201B00502935 /* Main-iPad.storyboard */; };
+		766C48A9187D77A900AF7B3C /* DEMOModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 766C48A7187D77A900AF7B3C /* DEMOModalViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +88,8 @@
 		3032B8FE1805BC8E00064F85 /* RECommonFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RECommonFunctions.h; sourceTree = "<group>"; };
 		3032B8FF1805BC8E00064F85 /* RECommonFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RECommonFunctions.m; sourceTree = "<group>"; };
 		309F5CD51817201B00502935 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "Base.lproj/Main-iPad.storyboard"; sourceTree = "<group>"; };
+		766C48A7187D77A900AF7B3C /* DEMOModalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEMOModalViewController.m; sourceTree = "<group>"; };
+		766C48A8187D77A900AF7B3C /* DEMOModalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEMOModalViewController.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -211,6 +214,8 @@
 		3032B8FB1805AB4600064F85 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				766C48A8187D77A900AF7B3C /* DEMOModalViewController.h */,
+				766C48A7187D77A900AF7B3C /* DEMOModalViewController.m */,
 				3032B8A71805A10100064F85 /* DEMORootViewController.h */,
 				3032B8A81805A10100064F85 /* DEMORootViewController.m */,
 				3032B8CC1805A1BC00064F85 /* DEMOHomeViewController.h */,
@@ -330,6 +335,7 @@
 				3032B9001805BC8E00064F85 /* RECommonFunctions.m in Sources */,
 				3032B8E31805A21600064F85 /* UIView+REFrostedViewController.m in Sources */,
 				3032B89F1805A10100064F85 /* main.m in Sources */,
+				766C48A9187D77A900AF7B3C /* DEMOModalViewController.m in Sources */,
 				3032B8A91805A10100064F85 /* DEMORootViewController.m in Sources */,
 				3032B8EA1805A4BF00064F85 /* DEMOSecondViewController.m in Sources */,
 				3032B8E21805A21600064F85 /* UIImage+REFrostedViewController.m in Sources */,
