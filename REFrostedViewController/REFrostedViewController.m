@@ -99,26 +99,6 @@
     [self re_displayController:self.contentViewController frame:self.view.frame];
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [self.contentViewController beginAppearanceTransition:YES animated:animated];
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [self.contentViewController endAppearanceTransition];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [self.contentViewController beginAppearanceTransition:NO animated:animated];
-}
-
-- (void)viewDidDisappear:(BOOL)animated
-{
-    [self.contentViewController endAppearanceTransition];
-}
-
 - (UIViewController *)childViewControllerForStatusBarStyle
 {
     return self.contentViewController;
