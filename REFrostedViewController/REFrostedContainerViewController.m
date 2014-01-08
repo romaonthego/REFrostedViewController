@@ -169,7 +169,7 @@
     
     if (self.frostedViewController.direction == REFrostedViewControllerDirectionRight) {
         [UIView animateWithDuration:self.frostedViewController.animationDuration animations:^{
-            [self setContainerFrame:CGRectMake(self.view.frame.size.width - self.frostedViewController.calculatedMenuViewSize.width, 0, size.width, size.height)];
+            [self setContainerFrame:CGRectMake(self.view.frame.size.width - size.width, 0, size.width, size.height)];
             [self setBackgroundViewsAlpha:self.frostedViewController.backgroundFadeAmount];
         } completion:nil];
     }
@@ -183,7 +183,7 @@
     
     if (self.frostedViewController.direction == REFrostedViewControllerDirectionBottom) {
         [UIView animateWithDuration:self.frostedViewController.animationDuration animations:^{
-            [self setContainerFrame:CGRectMake(0, self.view.frame.size.height - self.frostedViewController.calculatedMenuViewSize.height, size.width, size.height)];
+            [self setContainerFrame:CGRectMake(0, self.view.frame.size.height - size.height, size.width, size.height)];
             [self setBackgroundViewsAlpha:self.frostedViewController.backgroundFadeAmount];
         } completion:nil];
     }
