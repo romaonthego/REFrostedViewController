@@ -92,8 +92,6 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [self.frostedViewController.menuViewController beginAppearanceTransition:YES animated:animated];
-    
     self.backgroundImageView.image = self.screenshotImage;
     self.backgroundImageView.frame = self.view.bounds;
     self.frostedViewController.menuViewController.view.frame = self.containerView.bounds;
@@ -116,21 +114,6 @@
     
     if (self.animateApperance)
         [self show];
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [self.frostedViewController.menuViewController endAppearanceTransition];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [self.frostedViewController.menuViewController beginAppearanceTransition:NO animated:animated];
-}
-
-- (void)viewDidDisappear:(BOOL)animated
-{
-    [self.frostedViewController.menuViewController endAppearanceTransition];
 }
 
 - (void)setContainerFrame:(CGRect)frame
