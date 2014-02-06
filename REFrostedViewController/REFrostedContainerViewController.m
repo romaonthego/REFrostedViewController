@@ -96,22 +96,25 @@
     self.backgroundImageView.frame = self.view.bounds;
     self.frostedViewController.menuViewController.view.frame = self.containerView.bounds;
     
-    if (self.frostedViewController.direction == REFrostedViewControllerDirectionLeft) {
-        [self setContainerFrame:CGRectMake(- self.frostedViewController.calculatedMenuViewSize.width, 0, self.frostedViewController.calculatedMenuViewSize.width, self.frostedViewController.calculatedMenuViewSize.height)];
+    CGRect frame = CGRectZero;
+    switch (self.frostedViewController.direction) {
+        case REFrostedViewControllerDirectionLeft:
+            frame = CGRectMake(- self.frostedViewController.calculatedMenuViewSize.width, 0, self.frostedViewController.calculatedMenuViewSize.width, self.frostedViewController.calculatedMenuViewSize.height);
+            break;
+        case REFrostedViewControllerDirectionRight:
+            frame = CGRectMake(self.view.frame.size.width, 0, self.frostedViewController.calculatedMenuViewSize.width, self.frostedViewController.calculatedMenuViewSize.height);
+            break;
+        case REFrostedViewControllerDirectionTop:
+            frame = CGRectMake(0, -self.frostedViewController.calculatedMenuViewSize.height, self.frostedViewController.calculatedMenuViewSize.width, self.frostedViewController.calculatedMenuViewSize.height);
+            break;
+        case REFrostedViewControllerDirectionBottom:
+            frame = CGRectMake(0, self.view.frame.size.height, self.frostedViewController.calculatedMenuViewSize.width, self.frostedViewController.calculatedMenuViewSize.height);
+            break;
+        default:
+            break;
     }
-    
-    if (self.frostedViewController.direction == REFrostedViewControllerDirectionRight) {
-        [self setContainerFrame:CGRectMake(self.view.frame.size.width, 0, self.frostedViewController.calculatedMenuViewSize.width, self.frostedViewController.calculatedMenuViewSize.height)];
-    }
-    
-    if (self.frostedViewController.direction == REFrostedViewControllerDirectionTop) {
-        [self setContainerFrame:CGRectMake(0, -self.frostedViewController.calculatedMenuViewSize.height, self.frostedViewController.calculatedMenuViewSize.width, self.frostedViewController.calculatedMenuViewSize.height)];
-    }
-    
-    if (self.frostedViewController.direction == REFrostedViewControllerDirectionBottom) {
-        [self setContainerFrame:CGRectMake(0, self.view.frame.size.height, self.frostedViewController.calculatedMenuViewSize.width, self.frostedViewController.calculatedMenuViewSize.height)];
-    }
-    
+    [self setContainerFrame:frame];
+
     if (self.animateApperance)
         [self show];
 }
@@ -142,37 +145,38 @@
 
 - (void)resizeToSize:(CGSize)size
 {
-    
-    if (self.frostedViewController.direction == REFrostedViewControllerDirectionLeft) {
-        [UIView animateWithDuration:self.frostedViewController.animationDuration animations:^{
-            [self setContainerFrame:CGRectMake(0, 0, size.width, size.height)];
-            [self setBackgroundViewsAlpha:self.frostedViewController.backgroundFadeAmount];
-        } completion:nil];
+    CGRect frame = CGRectZero;
+    switch (self.frostedViewController.direction) {
+        case REFrostedViewControllerDirectionLeft:
+            frame = CGRectMake(0, 0, size.width, size.height);
+            break;
+        case REFrostedViewControllerDirectionRight:
+            frame = CGRectMake(self.view.frame.size.width - size.width, 0, size.width, size.height);
+            break;
+        case REFrostedViewControllerDirectionTop:
+            frame = CGRectMake(0, 0, size.width, size.height);
+            break;
+        case REFrostedViewControllerDirectionBottom:
+            frame = CGRectMake(0, self.view.frame.size.height - size.height, size.width, size.height);
+            break;
+        default:
+            break;
     }
     
-    if (self.frostedViewController.direction == REFrostedViewControllerDirectionRight) {
-        [UIView animateWithDuration:self.frostedViewController.animationDuration animations:^{
-            [self setContainerFrame:CGRectMake(self.view.frame.size.width - size.width, 0, size.width, size.height)];
-            [self setBackgroundViewsAlpha:self.frostedViewController.backgroundFadeAmount];
-        } completion:nil];
-    }
-    
-    if (self.frostedViewController.direction == REFrostedViewControllerDirectionTop) {
-        [UIView animateWithDuration:self.frostedViewController.animationDuration animations:^{
-            [self setContainerFrame:CGRectMake(0, 0, size.width, size.height)];
-            [self setBackgroundViewsAlpha:self.frostedViewController.backgroundFadeAmount];
-        } completion:nil];
-    }
-    
-    if (self.frostedViewController.direction == REFrostedViewControllerDirectionBottom) {
-        [UIView animateWithDuration:self.frostedViewController.animationDuration animations:^{
-            [self setContainerFrame:CGRectMake(0, self.view.frame.size.height - size.height, size.width, size.height)];
-            [self setBackgroundViewsAlpha:self.frostedViewController.backgroundFadeAmount];
-        } completion:nil];
-    }
+    [UIView animateWithDuration:self.frostedViewController.animationDuration
+                     animations:^{
+                         [self setContainerFrame:frame];
+                         [self setBackgroundViewsAlpha:self.frostedViewController.backgroundFadeAmount];
+                     }
+                     completion:nil];
 }
 
 - (void)show
+{
+    [self showWithVelocity:self.frostedViewController.menuVelocity];
+}
+
+- (void)showWithVelocity:(CGFloat)velocity
 {
     void (^completionHandler)(BOOL finished) = ^(BOOL finished) {
         if ([self.frostedViewController.delegate conformsToProtocol:@protocol(REFrostedViewControllerDelegate)] && [self.frostedViewController.delegate respondsToSelector:@selector(frostedViewController:didShowMenuViewController:)]) {
@@ -180,42 +184,59 @@
         }
     };
     
-    if (self.frostedViewController.direction == REFrostedViewControllerDirectionLeft) {
-        [UIView animateWithDuration:self.frostedViewController.animationDuration animations:^{
-            [self setContainerFrame:CGRectMake(0, 0, self.frostedViewController.calculatedMenuViewSize.width, self.frostedViewController.calculatedMenuViewSize.height)];
-            [self setBackgroundViewsAlpha:self.frostedViewController.backgroundFadeAmount];
-        } completion:completionHandler];
+    CGRect oldFrame = self.containerView.frame;
+    CGRect newFrame = CGRectZero;
+    CGFloat distance = 0;
+    switch (self.frostedViewController.direction) {
+        case REFrostedViewControllerDirectionLeft:
+            newFrame = CGRectMake(0, 0, self.frostedViewController.calculatedMenuViewSize.width, self.frostedViewController.calculatedMenuViewSize.height);
+            distance = ABS(CGRectGetMinX(oldFrame)-newFrame.origin.x);
+            break;
+        case REFrostedViewControllerDirectionRight:
+            newFrame = CGRectMake(self.view.frame.size.width - self.frostedViewController.calculatedMenuViewSize.width, 0, self.frostedViewController.calculatedMenuViewSize.width, self.frostedViewController.calculatedMenuViewSize.height);
+            distance = ABS(CGRectGetMinX(oldFrame)-newFrame.origin.x);
+            break;
+        case REFrostedViewControllerDirectionTop:
+            newFrame = CGRectMake(0, 0, self.frostedViewController.calculatedMenuViewSize.width, self.frostedViewController.calculatedMenuViewSize.height);
+            distance = ABS(CGRectGetMinX(oldFrame)-newFrame.origin.y);
+            break;
+        case REFrostedViewControllerDirectionBottom:
+            newFrame = CGRectMake(0, self.view.frame.size.height - self.frostedViewController.calculatedMenuViewSize.height, self.frostedViewController.calculatedMenuViewSize.width, self.frostedViewController.calculatedMenuViewSize.height);
+            distance = ABS(CGRectGetMinX(oldFrame)-newFrame.origin.y);
+            break;
+        default:
+            break;
     }
     
-    if (self.frostedViewController.direction == REFrostedViewControllerDirectionRight) {
-        [UIView animateWithDuration:self.frostedViewController.animationDuration animations:^{
-            [self setContainerFrame:CGRectMake(self.view.frame.size.width - self.frostedViewController.calculatedMenuViewSize.width, 0, self.frostedViewController.calculatedMenuViewSize.width, self.frostedViewController.calculatedMenuViewSize.height)];
-            [self setBackgroundViewsAlpha:self.frostedViewController.backgroundFadeAmount];
-        } completion:completionHandler];
-    }
+    NSTimeInterval animationDuration = MAX(distance/ABS(velocity), 0.05);
     
-    if (self.frostedViewController.direction == REFrostedViewControllerDirectionTop) {
-        [UIView animateWithDuration:self.frostedViewController.animationDuration animations:^{
-            [self setContainerFrame:CGRectMake(0, 0, self.frostedViewController.calculatedMenuViewSize.width, self.frostedViewController.calculatedMenuViewSize.height)];
-            [self setBackgroundViewsAlpha:self.frostedViewController.backgroundFadeAmount];
-        } completion:completionHandler];
-    }
-    
-    if (self.frostedViewController.direction == REFrostedViewControllerDirectionBottom) {
-        [UIView animateWithDuration:self.frostedViewController.animationDuration animations:^{
-            [self setContainerFrame:CGRectMake(0, self.view.frame.size.height - self.frostedViewController.calculatedMenuViewSize.height, self.frostedViewController.calculatedMenuViewSize.width, self.frostedViewController.calculatedMenuViewSize.height)];
-            [self setBackgroundViewsAlpha:self.frostedViewController.backgroundFadeAmount];
-        } completion:completionHandler];
-    }
+    [UIView animateWithDuration:animationDuration
+                          delay:0
+                        options:UIViewAnimationOptionCurveEaseOut
+                     animations:^{
+                         [self setContainerFrame:newFrame];
+                         [self setBackgroundViewsAlpha:self.frostedViewController.backgroundFadeAmount];
+                     }
+                     completion:completionHandler];
 }
-
 
 - (void)hide
 {
-	[self hideWithCompletionHandler:nil];
+    [self hideWithVelocity:self.frostedViewController.menuVelocity];
+}
+
+
+- (void)hideWithVelocity:(CGFloat)velocity
+{
+	[self hideWithVelocity:velocity completionHandler:nil];
 }
 
 - (void)hideWithCompletionHandler:(void(^)(void))completionHandler
+{
+    [self hideWithVelocity:self.frostedViewController.menuVelocity completionHandler:completionHandler];
+}
+
+- (void)hideWithVelocity:(CGFloat)velocity completionHandler:(void(^)(void))completionHandler
 {
     void (^completionHandlerBlock)(void) = ^{
         if ([self.frostedViewController.delegate conformsToProtocol:@protocol(REFrostedViewControllerDelegate)] && [self.frostedViewController.delegate respondsToSelector:@selector(frostedViewController:didHideMenuViewController:)]) {
@@ -229,49 +250,43 @@
         [self.frostedViewController.delegate frostedViewController:self.frostedViewController willHideMenuViewController:self.frostedViewController.menuViewController];
     }
     
-    if (self.frostedViewController.direction == REFrostedViewControllerDirectionLeft) {
-        [UIView animateWithDuration:self.frostedViewController.animationDuration animations:^{
-            [self setContainerFrame:CGRectMake(- self.frostedViewController.calculatedMenuViewSize.width, 0, self.frostedViewController.calculatedMenuViewSize.width, self.frostedViewController.calculatedMenuViewSize.height)];
-            [self setBackgroundViewsAlpha:0];
-        } completion:^(BOOL finished) {
-            self.frostedViewController.visible = NO;
-            [self.frostedViewController re_hideController:self];
-            completionHandlerBlock();
-        }];
+    CGRect oldFrame = self.containerView.frame;
+    CGRect newFrame = CGRectZero;
+    CGFloat distance = 0;
+    switch (self.frostedViewController.direction) {
+        case REFrostedViewControllerDirectionLeft:
+            newFrame = CGRectMake(- self.frostedViewController.calculatedMenuViewSize.width, 0, self.frostedViewController.calculatedMenuViewSize.width, self.frostedViewController.calculatedMenuViewSize.height);
+            distance = ABS(CGRectGetMinX(oldFrame)-newFrame.origin.x);
+            break;
+        case REFrostedViewControllerDirectionRight:
+            newFrame = CGRectMake(self.view.frame.size.width, 0, self.frostedViewController.calculatedMenuViewSize.width, self.frostedViewController.calculatedMenuViewSize.height);
+            distance = ABS(CGRectGetMinX(oldFrame)-newFrame.origin.x);
+            break;
+        case REFrostedViewControllerDirectionTop:
+            newFrame = CGRectMake(0, -self.frostedViewController.calculatedMenuViewSize.height, self.frostedViewController.calculatedMenuViewSize.width, self.frostedViewController.calculatedMenuViewSize.height);
+            distance = ABS(CGRectGetMinX(oldFrame)-newFrame.origin.y);
+            break;
+        case REFrostedViewControllerDirectionBottom:
+            newFrame = CGRectMake(0, self.view.frame.size.height, self.frostedViewController.calculatedMenuViewSize.width, self.frostedViewController.calculatedMenuViewSize.height);
+            distance = ABS(CGRectGetMinX(oldFrame)-newFrame.origin.y);
+            break;
+        default:
+            break;
     }
     
-    if (self.frostedViewController.direction == REFrostedViewControllerDirectionRight) {
-        [UIView animateWithDuration:self.frostedViewController.animationDuration animations:^{
-            [self setContainerFrame:CGRectMake(self.view.frame.size.width, 0, self.frostedViewController.calculatedMenuViewSize.width, self.frostedViewController.calculatedMenuViewSize.height)];
-            [self setBackgroundViewsAlpha:0];
-        } completion:^(BOOL finished) {
-            self.frostedViewController.visible = NO;
-            [self.frostedViewController re_hideController:self];
-            completionHandlerBlock();
-        }];
-    }
+    NSTimeInterval animationDuration = MAX(distance/ABS(velocity), 0.05);
     
-    if (self.frostedViewController.direction == REFrostedViewControllerDirectionTop) {
-        [UIView animateWithDuration:self.frostedViewController.animationDuration animations:^{
-            [self setContainerFrame:CGRectMake(0, -self.frostedViewController.calculatedMenuViewSize.height, self.frostedViewController.calculatedMenuViewSize.width, self.frostedViewController.calculatedMenuViewSize.height)];
-            [self setBackgroundViewsAlpha:0];
-        } completion:^(BOOL finished) {
-            self.frostedViewController.visible = NO;
-            [self.frostedViewController re_hideController:self];
-            completionHandlerBlock();
-        }];
-    }
-    
-    if (self.frostedViewController.direction == REFrostedViewControllerDirectionBottom) {
-        [UIView animateWithDuration:self.frostedViewController.animationDuration animations:^{
-            [self setContainerFrame:CGRectMake(0, self.view.frame.size.height, self.frostedViewController.calculatedMenuViewSize.width, self.frostedViewController.calculatedMenuViewSize.height)];
-            [self setBackgroundViewsAlpha:0];
-        } completion:^(BOOL finished) {
-            self.frostedViewController.visible = NO;
-            [self.frostedViewController re_hideController:self];
-            completionHandlerBlock();
-        }];
-    }
+    [UIView animateWithDuration:animationDuration
+                          delay:0
+                        options:UIViewAnimationOptionCurveEaseOut
+                     animations:^{
+                         [self setContainerFrame:newFrame];
+                         [self setBackgroundViewsAlpha:0];
+                     } completion:^(BOOL finished) {
+                         self.frostedViewController.visible = NO;
+                         [self.frostedViewController re_hideController:self];
+                         completionHandlerBlock();
+                     }];
 }
 
 - (void)refreshBackgroundImage
@@ -299,123 +314,119 @@
     
     if (recognizer.state == UIGestureRecognizerStateBegan) {
         self.containerOrigin = self.containerView.frame.origin;
-    }
-    
-    if (recognizer.state == UIGestureRecognizerStateChanged) {
+    } else if (recognizer.state == UIGestureRecognizerStateChanged) {
         CGRect frame = self.containerView.frame;
-        if (self.frostedViewController.direction == REFrostedViewControllerDirectionLeft) {
-            frame.origin.x = self.containerOrigin.x + point.x;
-            if (frame.origin.x > 0) {
-                frame.origin.x = 0;
-                
-                if (!self.frostedViewController.limitMenuViewSize) {
-                    frame.size.width = self.frostedViewController.calculatedMenuViewSize.width + self.containerOrigin.x + point.x;
-                    if (frame.size.width > self.view.frame.size.width)
-                        frame.size.width = self.view.frame.size.width;
-                }
-            }
-        }
         
-        if (self.frostedViewController.direction == REFrostedViewControllerDirectionRight) {
-            frame.origin.x = self.containerOrigin.x + point.x;
-            if (frame.origin.x < self.view.frame.size.width - self.frostedViewController.calculatedMenuViewSize.width) {
-                frame.origin.x = self.view.frame.size.width - self.frostedViewController.calculatedMenuViewSize.width;
-            
-                if (!self.frostedViewController.limitMenuViewSize) {
-                    frame.origin.x = self.containerOrigin.x + point.x;
-                    if (frame.origin.x < 0)
-                        frame.origin.x = 0;
-                    frame.size.width = self.view.frame.size.width - frame.origin.x;
+        switch (self.frostedViewController.direction) {
+            case REFrostedViewControllerDirectionLeft: {
+                frame.origin.x = self.containerOrigin.x + point.x;
+                if (frame.origin.x > 0) {
+                    frame.origin.x = 0;
+                    
+                    if (!self.frostedViewController.limitMenuViewSize) {
+                        frame.size.width = self.frostedViewController.calculatedMenuViewSize.width + self.containerOrigin.x + point.x;
+                        if (frame.size.width > self.view.frame.size.width)
+                            frame.size.width = self.view.frame.size.width;
+                    }
                 }
             }
-        }
-        
-        if (self.frostedViewController.direction == REFrostedViewControllerDirectionTop) {
-            frame.origin.y = self.containerOrigin.y + point.y;
-            if (frame.origin.y > 0) {
-                frame.origin.y = 0;
-            
-                if (!self.frostedViewController.limitMenuViewSize) {
-                    frame.size.height = self.frostedViewController.calculatedMenuViewSize.height + self.containerOrigin.y + point.y;
-                    if (frame.size.height > self.view.frame.size.height)
-                        frame.size.height = self.view.frame.size.height;
+                break;
+            case REFrostedViewControllerDirectionRight: {
+                frame.origin.x = self.containerOrigin.x + point.x;
+                if (frame.origin.x < self.view.frame.size.width - self.frostedViewController.calculatedMenuViewSize.width) {
+                    frame.origin.x = self.view.frame.size.width - self.frostedViewController.calculatedMenuViewSize.width;
+                    
+                    if (!self.frostedViewController.limitMenuViewSize) {
+                        frame.origin.x = self.containerOrigin.x + point.x;
+                        if (frame.origin.x < 0)
+                            frame.origin.x = 0;
+                        frame.size.width = self.view.frame.size.width - frame.origin.x;
+                    }
                 }
             }
-        }
-        
-        if (self.frostedViewController.direction == REFrostedViewControllerDirectionBottom) {
-            frame.origin.y = self.containerOrigin.y + point.y;
-            if (frame.origin.y < self.view.frame.size.height - self.frostedViewController.calculatedMenuViewSize.height) {
-                frame.origin.y = self.view.frame.size.height - self.frostedViewController.calculatedMenuViewSize.height;
-            
-                if (!self.frostedViewController.limitMenuViewSize) {
-                    frame.origin.y = self.containerOrigin.y + point.y;
-                    if (frame.origin.y < 0)
-                        frame.origin.y = 0;
-                    frame.size.height = self.view.frame.size.height - frame.origin.y;
+                break;
+            case REFrostedViewControllerDirectionTop: {
+                frame.origin.y = self.containerOrigin.y + point.y;
+                if (frame.origin.y > 0) {
+                    frame.origin.y = 0;
+                    
+                    if (!self.frostedViewController.limitMenuViewSize) {
+                        frame.size.height = self.frostedViewController.calculatedMenuViewSize.height + self.containerOrigin.y + point.y;
+                        if (frame.size.height > self.view.frame.size.height)
+                            frame.size.height = self.view.frame.size.height;
+                    }
                 }
             }
+                break;
+            case REFrostedViewControllerDirectionBottom: {
+                frame.origin.y = self.containerOrigin.y + point.y;
+                if (frame.origin.y < self.view.frame.size.height - self.frostedViewController.calculatedMenuViewSize.height) {
+                    frame.origin.y = self.view.frame.size.height - self.frostedViewController.calculatedMenuViewSize.height;
+                    
+                    if (!self.frostedViewController.limitMenuViewSize) {
+                        frame.origin.y = self.containerOrigin.y + point.y;
+                        if (frame.origin.y < 0)
+                            frame.origin.y = 0;
+                        frame.size.height = self.view.frame.size.height - frame.origin.y;
+                    }
+                }
+            }
+                break;
+            default:
+                break;
         }
         
         [self setContainerFrame:frame];
-    }
-    
-    if (recognizer.state == UIGestureRecognizerStateEnded) {
-        if (self.frostedViewController.direction == REFrostedViewControllerDirectionLeft) {
-            if ([recognizer velocityInView:self.view].x < 0) {
-                [self hide];
-            } else {
-                [self show];
+    } else if (recognizer.state == UIGestureRecognizerStateEnded) {
+        CGPoint velocity = [recognizer velocityInView:self.view];
+        CGFloat gestureVelocityY = MAX(ABS(velocity.y), 400);
+        CGFloat gestureVelocityX = MAX(ABS(velocity.x), 400);
+        switch (self.frostedViewController.direction) {
+            case REFrostedViewControllerDirectionLeft:
+            case REFrostedViewControllerDirectionRight: {
+                if ([recognizer velocityInView:self.view].x < 0) {
+                    [self hideWithVelocity:gestureVelocityX];
+                } else {
+                    [self showWithVelocity:gestureVelocityX];
+                }
             }
-        }
-        
-        if (self.frostedViewController.direction == REFrostedViewControllerDirectionRight) {
-            if ([recognizer velocityInView:self.view].x < 0) {
-                [self show];
-            } else {
-                [self hide];
+                break;
+            case REFrostedViewControllerDirectionTop:
+            case REFrostedViewControllerDirectionBottom: {
+                if ([recognizer velocityInView:self.view].y < 0) {
+                    [self showWithVelocity:gestureVelocityY];
+                } else {
+                    [self hideWithVelocity:gestureVelocityY];
+                }
             }
-        }
-        
-        if (self.frostedViewController.direction == REFrostedViewControllerDirectionTop) {
-            if ([recognizer velocityInView:self.view].y < 0) {
-                [self hide];
-            } else {
-                [self show];
-            }
-        }
-        
-        if (self.frostedViewController.direction == REFrostedViewControllerDirectionBottom) {
-            if ([recognizer velocityInView:self.view].y < 0) {
-                [self show];
-            } else {
-                [self hide];
-            }
+                break;
+            default:
+                break;
         }
     }
 }
 
 - (void)fixLayoutWithDuration:(NSTimeInterval)duration
 {
-    if (self.frostedViewController.direction == REFrostedViewControllerDirectionLeft) {
-        [self setContainerFrame:CGRectMake(0, 0, self.frostedViewController.calculatedMenuViewSize.width, self.frostedViewController.calculatedMenuViewSize.height)];
-        [self setBackgroundViewsAlpha:self.frostedViewController.backgroundFadeAmount];
+    CGRect frame = CGRectZero;
+    switch (self.frostedViewController.direction) {
+        case REFrostedViewControllerDirectionLeft:
+            frame = CGRectMake(0, 0, self.frostedViewController.calculatedMenuViewSize.width, self.frostedViewController.calculatedMenuViewSize.height);
+            break;
+        case REFrostedViewControllerDirectionRight:
+            frame = CGRectMake(self.view.frame.size.width - self.frostedViewController.calculatedMenuViewSize.width, 0, self.frostedViewController.calculatedMenuViewSize.width, self.frostedViewController.calculatedMenuViewSize.height);
+            break;
+        case REFrostedViewControllerDirectionTop:
+            frame = CGRectMake(0, 0, self.frostedViewController.calculatedMenuViewSize.width, self.frostedViewController.calculatedMenuViewSize.height);
+            break;
+        case REFrostedViewControllerDirectionBottom:
+            frame = CGRectMake(0, self.view.frame.size.height - self.frostedViewController.calculatedMenuViewSize.height, self.frostedViewController.calculatedMenuViewSize.width, self.frostedViewController.calculatedMenuViewSize.height);
+            break;
+        default:
+            break;
     }
-    
-    if (self.frostedViewController.direction == REFrostedViewControllerDirectionRight) {
-        [self setContainerFrame:CGRectMake(self.view.frame.size.width - self.frostedViewController.calculatedMenuViewSize.width, 0, self.frostedViewController.calculatedMenuViewSize.width, self.frostedViewController.calculatedMenuViewSize.height)];
-        [self setBackgroundViewsAlpha:self.frostedViewController.backgroundFadeAmount];
-    }
-    
-    if (self.frostedViewController.direction == REFrostedViewControllerDirectionTop) {
-        [self setContainerFrame:CGRectMake(0, 0, self.frostedViewController.calculatedMenuViewSize.width, self.frostedViewController.calculatedMenuViewSize.height)];
-        [self setBackgroundViewsAlpha:self.frostedViewController.backgroundFadeAmount];
-    }
-    
-    if (self.frostedViewController.direction == REFrostedViewControllerDirectionBottom) {
-        [self setContainerFrame:CGRectMake(0, self.view.frame.size.height - self.frostedViewController.calculatedMenuViewSize.height, self.frostedViewController.calculatedMenuViewSize.width, self.frostedViewController.calculatedMenuViewSize.height)];
-        [self setBackgroundViewsAlpha:self.frostedViewController.backgroundFadeAmount];
-    }
+    [self setContainerFrame:frame];
+    [self setBackgroundViewsAlpha:self.frostedViewController.backgroundFadeAmount];
 }
 
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
