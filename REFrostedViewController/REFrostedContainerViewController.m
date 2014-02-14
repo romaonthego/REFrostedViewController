@@ -164,6 +164,8 @@
     }
     
     [UIView animateWithDuration:self.frostedViewController.animationDuration
+                          delay:0
+                        options:UIViewAnimationOptionCurveEaseOut
                      animations:^{
                          [self setContainerFrame:frame];
                          [self setBackgroundViewsAlpha:self.frostedViewController.backgroundFadeAmount];
@@ -190,19 +192,19 @@
     switch (self.frostedViewController.direction) {
         case REFrostedViewControllerDirectionLeft:
             newFrame = CGRectMake(0, 0, self.frostedViewController.calculatedMenuViewSize.width, self.frostedViewController.calculatedMenuViewSize.height);
-            distance = ABS(CGRectGetMinX(oldFrame)-newFrame.origin.x);
+            distance = ABS((CGRectGetMinX(oldFrame) - CGRectGetMinX(newFrame)) - (CGRectGetWidth(oldFrame) - CGRectGetWidth(newFrame)));
             break;
         case REFrostedViewControllerDirectionRight:
             newFrame = CGRectMake(self.view.frame.size.width - self.frostedViewController.calculatedMenuViewSize.width, 0, self.frostedViewController.calculatedMenuViewSize.width, self.frostedViewController.calculatedMenuViewSize.height);
-            distance = ABS(CGRectGetMinX(oldFrame)-newFrame.origin.x);
+            distance = ABS((CGRectGetMinX(oldFrame) - CGRectGetMinX(newFrame)) - (CGRectGetWidth(oldFrame) - CGRectGetWidth(newFrame)));
             break;
         case REFrostedViewControllerDirectionTop:
             newFrame = CGRectMake(0, 0, self.frostedViewController.calculatedMenuViewSize.width, self.frostedViewController.calculatedMenuViewSize.height);
-            distance = ABS(CGRectGetMinX(oldFrame)-newFrame.origin.y);
+            distance = ABS((CGRectGetMinY(oldFrame) - CGRectGetMinY(newFrame)) - (CGRectGetHeight(oldFrame) - CGRectGetHeight(newFrame)));
             break;
         case REFrostedViewControllerDirectionBottom:
             newFrame = CGRectMake(0, self.view.frame.size.height - self.frostedViewController.calculatedMenuViewSize.height, self.frostedViewController.calculatedMenuViewSize.width, self.frostedViewController.calculatedMenuViewSize.height);
-            distance = ABS(CGRectGetMinX(oldFrame)-newFrame.origin.y);
+            distance = ABS((CGRectGetMinY(oldFrame) - CGRectGetMinY(newFrame)) - (CGRectGetHeight(oldFrame) - CGRectGetHeight(newFrame)));
             break;
         default:
             break;
