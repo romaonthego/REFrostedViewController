@@ -96,27 +96,27 @@
     self.backgroundImageView.frame = self.view.bounds;
     self.frostedViewController.menuViewController.view.frame = self.containerView.bounds;
     
-    CGRect frame = CGRectZero;
-    switch (self.frostedViewController.direction) {
-        case REFrostedViewControllerDirectionLeft:
-            frame = CGRectMake(- self.frostedViewController.calculatedMenuViewSize.width, 0, self.frostedViewController.calculatedMenuViewSize.width, self.frostedViewController.calculatedMenuViewSize.height);
-            break;
-        case REFrostedViewControllerDirectionRight:
-            frame = CGRectMake(self.view.frame.size.width, 0, self.frostedViewController.calculatedMenuViewSize.width, self.frostedViewController.calculatedMenuViewSize.height);
-            break;
-        case REFrostedViewControllerDirectionTop:
-            frame = CGRectMake(0, -self.frostedViewController.calculatedMenuViewSize.height, self.frostedViewController.calculatedMenuViewSize.width, self.frostedViewController.calculatedMenuViewSize.height);
-            break;
-        case REFrostedViewControllerDirectionBottom:
-            frame = CGRectMake(0, self.view.frame.size.height, self.frostedViewController.calculatedMenuViewSize.width, self.frostedViewController.calculatedMenuViewSize.height);
-            break;
-        default:
-            break;
-    }
-    [self setContainerFrame:frame];
-
-    if (self.animateApperance)
+    if (self.animateApperance) {
+        CGRect frame = CGRectZero;
+        switch (self.frostedViewController.direction) {
+            case REFrostedViewControllerDirectionLeft:
+                frame = CGRectMake(- self.frostedViewController.calculatedMenuViewSize.width, 0, self.frostedViewController.calculatedMenuViewSize.width, self.frostedViewController.calculatedMenuViewSize.height);
+                break;
+            case REFrostedViewControllerDirectionRight:
+                frame = CGRectMake(self.view.frame.size.width, 0, self.frostedViewController.calculatedMenuViewSize.width, self.frostedViewController.calculatedMenuViewSize.height);
+                break;
+            case REFrostedViewControllerDirectionTop:
+                frame = CGRectMake(0, -self.frostedViewController.calculatedMenuViewSize.height, self.frostedViewController.calculatedMenuViewSize.width, self.frostedViewController.calculatedMenuViewSize.height);
+                break;
+            case REFrostedViewControllerDirectionBottom:
+                frame = CGRectMake(0, self.view.frame.size.height, self.frostedViewController.calculatedMenuViewSize.width, self.frostedViewController.calculatedMenuViewSize.height);
+                break;
+            default:
+                break;
+        }
+        [self setContainerFrame:frame];
         [self show];
+    }
 }
 
 - (void)setContainerFrame:(CGRect)frame
