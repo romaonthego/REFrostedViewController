@@ -43,6 +43,9 @@ typedef NS_ENUM(NSInteger, REFrostedViewControllerLiveBackgroundStyle) {
 @interface REFrostedViewController : UIViewController
 
 @property (strong, readonly, nonatomic) UIPanGestureRecognizer *panGestureRecognizer;
+@property (assign, readwrite, nonatomic) BOOL viewIsShowing;
+@property (assign, readwrite, nonatomic) BOOL viewIsHiding;
+@property (assign, readwrite, nonatomic) BOOL viewIsDragging;
 @property (assign, readwrite, nonatomic) BOOL panGestureEnabled;
 @property (assign, readwrite, nonatomic) REFrostedViewControllerDirection direction;
 

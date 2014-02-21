@@ -181,6 +181,7 @@
 - (void)showWithVelocity:(CGFloat)velocity
 {
     void (^completionHandler)(BOOL finished) = ^(BOOL finished) {
+        [self.frostedViewController setViewIsShowing:NO];
         if ([self.frostedViewController.delegate conformsToProtocol:@protocol(REFrostedViewControllerDelegate)] && [self.frostedViewController.delegate respondsToSelector:@selector(frostedViewController:didShowMenuViewController:)]) {
             [self.frostedViewController.delegate frostedViewController:self.frostedViewController didShowMenuViewController:self.frostedViewController.menuViewController];
         }
@@ -212,10 +213,12 @@
     
     NSTimeInterval animationDuration = MAX(distance/ABS(velocity), 0.05);
     
+    [self.frostedViewController setViewIsShowing:YES];
     [UIView animateWithDuration:animationDuration
                           delay:0
                         options:UIViewAnimationOptionCurveEaseOut
                      animations:^{
+                         [self.frostedViewController setNeedsStatusBarAppearanceUpdate];
                          [self setContainerFrame:newFrame];
                          [self setBackgroundViewsAlpha:self.frostedViewController.backgroundFadeAmount];
                      }
@@ -241,6 +244,7 @@
 - (void)hideWithVelocity:(CGFloat)velocity completionHandler:(void(^)(void))completionHandler
 {
     void (^completionHandlerBlock)(void) = ^{
+        [self.frostedViewController setViewIsHiding:NO];
         if ([self.frostedViewController.delegate conformsToProtocol:@protocol(REFrostedViewControllerDelegate)] && [self.frostedViewController.delegate respondsToSelector:@selector(frostedViewController:didHideMenuViewController:)]) {
             [self.frostedViewController.delegate frostedViewController:self.frostedViewController didHideMenuViewController:self.frostedViewController.menuViewController];
         }
@@ -278,10 +282,12 @@
     
     NSTimeInterval animationDuration = MAX(distance/ABS(velocity), 0.05);
     
+    [self.frostedViewController setViewIsHiding:YES];
     [UIView animateWithDuration:animationDuration
                           delay:0
                         options:UIViewAnimationOptionCurveEaseOut
                      animations:^{
+                         [self.frostedViewController setNeedsStatusBarAppearanceUpdate];
                          [self setContainerFrame:newFrame];
                          [self setBackgroundViewsAlpha:0];
                      } completion:^(BOOL finished) {
@@ -318,10 +324,12 @@
         self.containerOrigin = self.containerView.frame.origin;
     } else if (recognizer.state == UIGestureRecognizerStateChanged) {
         CGRect frame = self.containerView.frame;
+        CGFloat visibleProportion = 0.0f;
         
         switch (self.frostedViewController.direction) {
             case REFrostedViewControllerDirectionLeft: {
                 frame.origin.x = self.containerOrigin.x + point.x;
+                visibleProportion = (frame.origin.x + self.frostedViewController.calculatedMenuViewSize.width) / self.frostedViewController.calculatedMenuViewSize.width;
                 if (frame.origin.x > 0) {
                     frame.origin.x = 0;
                     
@@ -379,7 +387,13 @@
         }
         
         [self setContainerFrame:frame];
+        
+        // Only handling REFrostedViewControllerDirectionLeft
+        [self setBackgroundViewsAlpha:visibleProportion * self.frostedViewController.backgroundFadeAmount];
+        [self.frostedViewController setViewIsDragging:YES];
+        [self.frostedViewController setNeedsStatusBarAppearanceUpdate];
     } else if (recognizer.state == UIGestureRecognizerStateEnded) {
+        [self.frostedViewController setViewIsDragging:NO];
         CGPoint velocity = [recognizer velocityInView:self.view];
         CGFloat gestureVelocityY = MAX(ABS(velocity.y), 400);
         CGFloat gestureVelocityX = MAX(ABS(velocity.x), 400);
