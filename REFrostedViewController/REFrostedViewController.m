@@ -120,7 +120,7 @@
             return UIStatusBarStyleDefault;
         }
     } else if ([self viewIsShowing]) {
-        if (self.containerViewController.containerView.frame.origin.x >= 0) {
+        if (self.containerViewController.containerView.frame.origin.x >= 0 && self.containerViewController.containerView.frame.size.width == self.calculatedMenuViewSize.width) {
             return UIStatusBarStyleDefault;
         } else {
             return UIStatusBarStyleLightContent;
