@@ -115,9 +115,8 @@
     }
     [self setContainerFrame:frame];
     
-    if (self.animateApperance) {
+    if (self.animateApperance)
         [self show];
-    }
 }
 
 - (void)setContainerFrame:(CGRect)frame
