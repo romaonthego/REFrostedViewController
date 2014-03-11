@@ -29,4 +29,4 @@
 #define REUIKitIsFlatMode() REFrostedViewControllerUIKitIsFlatMode()
 #endif
 
-BOOL REFrostedViewControllerUIKitIsFlatMode();
+BOOL REFrostedViewControllerUIKitIsFlatMode(void);
