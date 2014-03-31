@@ -71,10 +71,7 @@
         UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:self.view.bounds];
         toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         toolbar.barStyle = (UIBarStyle)self.frostedViewController.liveBlurBackgroundStyle;
-        if ([toolbar respondsToSelector:@selector(setBarTintColor:)])
-            [toolbar performSelector:@selector(setBarTintColor:) withObject:self.frostedViewController.blurTintColor];
         [self.containerView addSubview:toolbar];
-
     } else {
         self.backgroundImageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
         [self.containerView addSubview:self.backgroundImageView];

@@ -41,7 +41,7 @@ Edit your Podfile and add REFrostedViewController:
 
 ``` bash
 platform :ios, '6.0'
-pod 'REFrostedViewController', '~> 2.4.4'
+pod 'REFrostedViewController', '~> 2.4.5'
 ```
 
 Install into your Xcode project:
@@ -130,7 +130,8 @@ You can customize the following properties of `REFrostedViewController`:
 @property (strong, readonly, nonatomic) UIPanGestureRecognizer *panGestureRecognizer;
 @property (assign, readwrite, nonatomic) BOOL panGestureEnabled;
 @property (assign, readwrite, nonatomic) REFrostedViewControllerDirection direction;
-@property (strong, readwrite, nonatomic) UIColor *blurTintColor;
+@property (assign, readwrite, nonatomic) CGFloat backgroundFadeAmount;
+@property (strong, readwrite, nonatomic) UIColor *blurTintColor; // Used only when live blur is off
 @property (assign, readwrite, nonatomic) CGFloat blurRadius; // Used only when live blur is off
 @property (assign, readwrite, nonatomic) CGFloat blurSaturationDeltaFactor; // Used only when live blur is off
 @property (assign, readwrite, nonatomic) NSTimeInterval animationDuration;
