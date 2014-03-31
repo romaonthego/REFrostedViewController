@@ -120,11 +120,11 @@
             return UIStatusBarStyleDefault;
         }
     } else if ([self viewIsShowing]) {
-        if (self.containerViewController.containerView.frame.origin.x >= 0 && self.containerViewController.containerView.frame.size.width == self.calculatedMenuViewSize.width) {
-            return UIStatusBarStyleDefault;
-        } else {
+//        if (self.containerViewController.containerView.frame.origin.x >= 0 && self.containerViewController.containerView.frame.size.width == self.calculatedMenuViewSize.width) {
+//            return UIStatusBarStyleDefault;
+//        } else {
             return UIStatusBarStyleLightContent;
-        }
+//        }
     } else if ([self viewIsHiding]) {
         if (self.visible) {
             return UIStatusBarStyleDefault;
