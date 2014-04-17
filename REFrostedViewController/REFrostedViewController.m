@@ -110,41 +110,6 @@
     return self.contentViewController;
 }
 
-- (UIStatusBarStyle)preferredStatusBarStyle
-{
-    // Only handling REFrostedViewControllerDirectionLeft
-    if ([self viewIsDragging]) {
-        if ((self.containerViewController.containerView.frame.origin.x + self.calculatedMenuViewSize.width) / CGRectGetWidth(self.contentViewController.view.frame) > 0.5) {
-            return UIStatusBarStyleLightContent;
-        } else {
-            return UIStatusBarStyleDefault;
-        }
-    } else if ([self viewIsShowing]) {
-//        if (self.containerViewController.containerView.frame.origin.x >= 0 && self.containerViewController.containerView.frame.size.width == self.calculatedMenuViewSize.width) {
-//            return UIStatusBarStyleDefault;
-//        } else {
-            return UIStatusBarStyleLightContent;
-//        }
-    } else if ([self viewIsHiding]) {
-        if (self.visible) {
-            return UIStatusBarStyleDefault;
-        } else {
-            return UIStatusBarStyleLightContent;
-        }
-    } else {
-        if (self.visible) {
-            return UIStatusBarStyleLightContent;
-        } else {
-            return UIStatusBarStyleDefault;
-        }
-    }
-}
-
-- (UIStatusBarAnimation)preferredStatusBarUpdateAnimation
-{
-    return UIStatusBarAnimationFade;
-}
-
 #pragma mark -
 #pragma mark Setters
 
