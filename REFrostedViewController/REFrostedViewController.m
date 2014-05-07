@@ -161,7 +161,7 @@
     self.automaticSize = NO;
 }
 
-- (void) setBlurTintColor:(UIColor *)blurTintColor {
+- (void)setBlurTintColor:(UIColor *)blurTintColor {
     _blurTintColor = blurTintColor;
     if (self.liveBlur) {
         if ([self.containerViewController isKindOfClass:[REFrostedContainerViewController class]]) {
