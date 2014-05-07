@@ -36,6 +36,7 @@
 @property (strong, readwrite, nonatomic) NSMutableArray *backgroundViews;
 @property (strong, readwrite, nonatomic) UIView *containerView;
 @property (assign, readwrite, nonatomic) CGPoint containerOrigin;
+@property (strong, readwrite, nonatomic) UIToolbar *backgroundToolbar;
 
 @end
 
@@ -68,10 +69,10 @@
     [self.view addSubview:self.containerView];
     
     if (self.frostedViewController.liveBlur) {
-        UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:self.view.bounds];
-        toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        toolbar.barStyle = (UIBarStyle)self.frostedViewController.liveBlurBackgroundStyle;
-        [self.containerView addSubview:toolbar];
+        self.backgroundToolbar = [[UIToolbar alloc] initWithFrame:self.view.bounds];
+        self.backgroundToolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        self.backgroundToolbar.barStyle = (UIBarStyle)self.frostedViewController.liveBlurBackgroundStyle;
+        [self.containerView addSubview:self.backgroundToolbar];
     } else {
         self.backgroundImageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
         [self.containerView addSubview:self.backgroundImageView];
@@ -112,6 +113,10 @@
         
         if (self.animateApperance)
             [self show];
+        
+        if (self.liveBlurBackgroundColor) {
+            self.backgroundToolbar.barTintColor = self.liveBlurBackgroundColor;
+        }
     }
 }
 

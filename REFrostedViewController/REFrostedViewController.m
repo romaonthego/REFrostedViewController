@@ -161,6 +161,16 @@
     self.automaticSize = NO;
 }
 
+- (void) setBlurTintColor:(UIColor *)blurTintColor {
+    _blurTintColor = blurTintColor;
+    if (self.liveBlur) {
+        if ([self.containerViewController isKindOfClass:[REFrostedContainerViewController class]]) {
+            REFrostedContainerViewController *containerViewController = (REFrostedContainerViewController*)self.containerViewController;
+            containerViewController.liveBlurBackgroundColor = blurTintColor;
+        }
+    }
+}
+
 #pragma mark -
 
 - (void)presentMenuViewController
