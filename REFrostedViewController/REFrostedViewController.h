@@ -43,6 +43,9 @@ typedef NS_ENUM(NSInteger, REFrostedViewControllerLiveBackgroundStyle) {
 @interface REFrostedViewController : UIViewController
 
 @property (strong, readonly, nonatomic) UIPanGestureRecognizer *panGestureRecognizer;
+@property (assign, readwrite, nonatomic) BOOL viewIsShowing;
+@property (assign, readwrite, nonatomic) BOOL viewIsHiding;
+@property (assign, readwrite, nonatomic) BOOL viewIsDragging;
 @property (assign, readwrite, nonatomic) BOOL panGestureEnabled;
 @property (assign, readwrite, nonatomic) REFrostedViewControllerDirection direction;
 
@@ -60,6 +63,7 @@ typedef NS_ENUM(NSInteger, REFrostedViewControllerLiveBackgroundStyle) {
 @property (assign, readwrite, nonatomic) NSTimeInterval animationDuration;
 @property (assign, readwrite, nonatomic) BOOL limitMenuViewSize;
 @property (assign, readwrite, nonatomic) CGSize menuViewSize;
+@property (assign, readwrite, nonatomic) CGFloat menuVelocity;
 @property (assign, readwrite, nonatomic) BOOL liveBlur; // iOS 7 only
 @property (assign, readwrite, nonatomic) REFrostedViewControllerLiveBackgroundStyle liveBlurBackgroundStyle; // iOS 7 only
 
