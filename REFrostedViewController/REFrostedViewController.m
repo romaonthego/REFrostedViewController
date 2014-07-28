@@ -137,10 +137,13 @@
 
 - (void)setMenuViewController:(UIViewController *)menuViewController
 {
-    if (!_menuViewController) {
-        _menuViewController = menuViewController;
-        return;
+    if (_menuViewController) {
+        [_menuViewController.view removeFromSuperview];
+        [_menuViewController removeFromParentViewController];
     }
+    
+    _menuViewController = menuViewController;
+
     CGRect frame = _menuViewController.view.frame;
     [_menuViewController willMoveToParentViewController:nil];
     [_menuViewController removeFromParentViewController];
