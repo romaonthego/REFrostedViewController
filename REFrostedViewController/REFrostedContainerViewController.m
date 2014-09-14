@@ -89,6 +89,8 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
+    
     if(!self.frostedViewController.visible) {
         self.backgroundImageView.image = self.screenshotImage;
         self.backgroundImageView.frame = self.view.bounds;
