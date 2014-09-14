@@ -1,12 +1,12 @@
 # REFrostedViewController
 
-iOS 7 style blurred view controller that appears on top of your view controller.
+iOS 7/8 style blurred view controller that appears on top of your view controller.
 
 <img src="https://github.com/romaonthego/REFrostedViewController/raw/master/Screenshot.png" alt="REFrostedViewController Screenshot" width="400" height="568" />
 <img src="https://github.com/romaonthego/REFrostedViewController/raw/master/Demo.gif" alt="REFrostedViewController Screenshot" width="320" height="568" />
 
 ## Requirements
-* Xcode 5 or higher
+* Xcode 6 or higher
 * Apple LLVM compiler
 * iOS 6.0 or higher
 * ARC
@@ -41,7 +41,7 @@ Edit your Podfile and add REFrostedViewController:
 
 ``` bash
 platform :ios, '6.0'
-pod 'REFrostedViewController', '~> 2.4.6'
+pod 'REFrostedViewController', '~> 2.4.7'
 ```
 
 Install into your Xcode project:
