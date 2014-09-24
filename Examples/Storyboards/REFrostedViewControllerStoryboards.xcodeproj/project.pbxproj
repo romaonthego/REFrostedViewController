@@ -16,11 +16,6 @@
 		3032B8A61805A10100064F85 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3032B8A41805A10100064F85 /* Main.storyboard */; };
 		3032B8A91805A10100064F85 /* DEMORootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3032B8A81805A10100064F85 /* DEMORootViewController.m */; };
 		3032B8AB1805A10100064F85 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3032B8AA1805A10100064F85 /* Images.xcassets */; };
-		3032B8B21805A10100064F85 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3032B8B11805A10100064F85 /* XCTest.framework */; };
-		3032B8B31805A10100064F85 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3032B8921805A10100064F85 /* Foundation.framework */; };
-		3032B8B41805A10100064F85 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3032B8961805A10100064F85 /* UIKit.framework */; };
-		3032B8BC1805A10100064F85 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3032B8BA1805A10100064F85 /* InfoPlist.strings */; };
-		3032B8BE1805A10100064F85 /* REFrostedViewControllerStoryboardsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3032B8BD1805A10100064F85 /* REFrostedViewControllerStoryboardsTests.m */; };
 		3032B8CE1805A1BC00064F85 /* DEMOHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3032B8CD1805A1BC00064F85 /* DEMOHomeViewController.m */; };
 		3032B8D11805A1D200064F85 /* DEMOMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3032B8D01805A1D200064F85 /* DEMOMenuViewController.m */; };
 		3032B8E01805A21600064F85 /* REFrostedContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3032B8D71805A21600064F85 /* REFrostedContainerViewController.m */; };
@@ -34,16 +29,6 @@
 		3032B9001805BC8E00064F85 /* RECommonFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3032B8FF1805BC8E00064F85 /* RECommonFunctions.m */; };
 		309F5CD61817201B00502935 /* Main-iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 309F5CD41817201B00502935 /* Main-iPad.storyboard */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		3032B8B51805A10100064F85 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3032B8871805A10100064F85 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 3032B88E1805A10100064F85;
-			remoteInfo = REFrostedViewControllerStoryboards;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		3032B88F1805A10100064F85 /* REFrostedViewControllerStoryboards.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = REFrostedViewControllerStoryboards.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -60,7 +45,6 @@
 		3032B8A71805A10100064F85 /* DEMORootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DEMORootViewController.h; sourceTree = "<group>"; };
 		3032B8A81805A10100064F85 /* DEMORootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DEMORootViewController.m; sourceTree = "<group>"; };
 		3032B8AA1805A10100064F85 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		3032B8B01805A10100064F85 /* REFrostedViewControllerStoryboardsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = REFrostedViewControllerStoryboardsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3032B8B11805A10100064F85 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		3032B8B91805A10100064F85 /* REFrostedViewControllerStoryboardsTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "REFrostedViewControllerStoryboardsTests-Info.plist"; sourceTree = "<group>"; };
 		3032B8BB1805A10100064F85 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -100,16 +84,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3032B8AD1805A10100064F85 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3032B8B21805A10100064F85 /* XCTest.framework in Frameworks */,
-				3032B8B41805A10100064F85 /* UIKit.framework in Frameworks */,
-				3032B8B31805A10100064F85 /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -128,7 +102,6 @@
 			isa = PBXGroup;
 			children = (
 				3032B88F1805A10100064F85 /* REFrostedViewControllerStoryboards.app */,
-				3032B8B01805A10100064F85 /* REFrostedViewControllerStoryboardsTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -245,24 +218,6 @@
 			productReference = 3032B88F1805A10100064F85 /* REFrostedViewControllerStoryboards.app */;
 			productType = "com.apple.product-type.application";
 		};
-		3032B8AF1805A10100064F85 /* REFrostedViewControllerStoryboardsTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 3032B8C41805A10100064F85 /* Build configuration list for PBXNativeTarget "REFrostedViewControllerStoryboardsTests" */;
-			buildPhases = (
-				3032B8AC1805A10100064F85 /* Sources */,
-				3032B8AD1805A10100064F85 /* Frameworks */,
-				3032B8AE1805A10100064F85 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				3032B8B61805A10100064F85 /* PBXTargetDependency */,
-			);
-			name = REFrostedViewControllerStoryboardsTests;
-			productName = REFrostedViewControllerStoryboardsTests;
-			productReference = 3032B8B01805A10100064F85 /* REFrostedViewControllerStoryboardsTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -272,11 +227,6 @@
 				CLASSPREFIX = DEMO;
 				LastUpgradeCheck = 0600;
 				ORGANIZATIONNAME = "Roman Efimov";
-				TargetAttributes = {
-					3032B8AF1805A10100064F85 = {
-						TestTargetID = 3032B88E1805A10100064F85;
-					};
-				};
 			};
 			buildConfigurationList = 3032B88A1805A10100064F85 /* Build configuration list for PBXProject "REFrostedViewControllerStoryboards" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -292,7 +242,6 @@
 			projectRoot = "";
 			targets = (
 				3032B88E1805A10100064F85 /* REFrostedViewControllerStoryboards */,
-				3032B8AF1805A10100064F85 /* REFrostedViewControllerStoryboardsTests */,
 			);
 		};
 /* End PBXProject section */
@@ -307,14 +256,6 @@
 				309F5CD61817201B00502935 /* Main-iPad.storyboard in Resources */,
 				3032B89D1805A10100064F85 /* InfoPlist.strings in Resources */,
 				3032B8A61805A10100064F85 /* Main.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3032B8AE1805A10100064F85 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3032B8BC1805A10100064F85 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -341,23 +282,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3032B8AC1805A10100064F85 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3032B8BE1805A10100064F85 /* REFrostedViewControllerStoryboardsTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		3032B8B61805A10100064F85 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 3032B88E1805A10100064F85 /* REFrostedViewControllerStoryboards */;
-			targetProxy = 3032B8B51805A10100064F85 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		3032B89B1805A10100064F85 /* InfoPlist.strings */ = {
@@ -495,46 +420,6 @@
 			};
 			name = Release;
 		};
-		3032B8C51805A10100064F85 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/REFrostedViewControllerStoryboards.app/REFrostedViewControllerStoryboards";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "REFrostedViewControllerStoryboards/REFrostedViewControllerStoryboards-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "REFrostedViewControllerStoryboardsTests/REFrostedViewControllerStoryboardsTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Debug;
-		};
-		3032B8C61805A10100064F85 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/REFrostedViewControllerStoryboards.app/REFrostedViewControllerStoryboards";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "REFrostedViewControllerStoryboards/REFrostedViewControllerStoryboards-Prefix.pch";
-				INFOPLIST_FILE = "REFrostedViewControllerStoryboardsTests/REFrostedViewControllerStoryboardsTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -552,15 +437,6 @@
 			buildConfigurations = (
 				3032B8C21805A10100064F85 /* Debug */,
 				3032B8C31805A10100064F85 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		3032B8C41805A10100064F85 /* Build configuration list for PBXNativeTarget "REFrostedViewControllerStoryboardsTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				3032B8C51805A10100064F85 /* Debug */,
-				3032B8C61805A10100064F85 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -14,9 +14,6 @@
 		3010B54917E9FA67006791FB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3010B54817E9FA67006791FB /* main.m */; };
 		3010B54D17E9FA67006791FB /* DEMOAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3010B54C17E9FA67006791FB /* DEMOAppDelegate.m */; };
 		3010B54F17E9FA67006791FB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3010B54E17E9FA67006791FB /* Images.xcassets */; };
-		3010B55617E9FA67006791FB /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3010B55517E9FA67006791FB /* XCTest.framework */; };
-		3010B55717E9FA67006791FB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3010B53C17E9FA67006791FB /* Foundation.framework */; };
-		3010B55817E9FA67006791FB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3010B54017E9FA67006791FB /* UIKit.framework */; };
 		3010B56D17E9FA7C006791FB /* DEMOMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3010B56C17E9FA7C006791FB /* DEMOMenuViewController.m */; };
 		3010B57017E9FA8C006791FB /* DEMOHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3010B56F17E9FA8C006791FB /* DEMOHomeViewController.m */; };
 		3010B57317E9FA96006791FB /* DEMOSecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3010B57217E9FA96006791FB /* DEMOSecondViewController.m */; };
@@ -32,16 +29,6 @@
 		307EEC5E17EB27F50050EE33 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 307EEC5D17EB27F50050EE33 /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		3010B55917E9FA67006791FB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3010B53117E9FA67006791FB /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 3010B53817E9FA67006791FB;
-			remoteInfo = REFrostedViewControllerExample;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		3010B53917E9FA67006791FB /* REFrostedViewControllerExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = REFrostedViewControllerExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3010B53C17E9FA67006791FB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -54,7 +41,6 @@
 		3010B54B17E9FA67006791FB /* DEMOAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DEMOAppDelegate.h; sourceTree = "<group>"; };
 		3010B54C17E9FA67006791FB /* DEMOAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DEMOAppDelegate.m; sourceTree = "<group>"; };
 		3010B54E17E9FA67006791FB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		3010B55417E9FA67006791FB /* REFrostedViewControllerExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = REFrostedViewControllerExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3010B55517E9FA67006791FB /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		3010B56B17E9FA7C006791FB /* DEMOMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEMOMenuViewController.h; sourceTree = "<group>"; };
 		3010B56C17E9FA7C006791FB /* DEMOMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEMOMenuViewController.m; sourceTree = "<group>"; };
@@ -94,16 +80,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3010B55117E9FA67006791FB /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3010B55617E9FA67006791FB /* XCTest.framework in Frameworks */,
-				3010B55817E9FA67006791FB /* UIKit.framework in Frameworks */,
-				3010B55717E9FA67006791FB /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -121,7 +97,6 @@
 			isa = PBXGroup;
 			children = (
 				3010B53917E9FA67006791FB /* REFrostedViewControllerExample.app */,
-				3010B55417E9FA67006791FB /* REFrostedViewControllerExampleTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -218,24 +193,6 @@
 			productReference = 3010B53917E9FA67006791FB /* REFrostedViewControllerExample.app */;
 			productType = "com.apple.product-type.application";
 		};
-		3010B55317E9FA67006791FB /* REFrostedViewControllerExampleTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 3010B56817E9FA67006791FB /* Build configuration list for PBXNativeTarget "REFrostedViewControllerExampleTests" */;
-			buildPhases = (
-				3010B55017E9FA67006791FB /* Sources */,
-				3010B55117E9FA67006791FB /* Frameworks */,
-				3010B55217E9FA67006791FB /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				3010B55A17E9FA67006791FB /* PBXTargetDependency */,
-			);
-			name = REFrostedViewControllerExampleTests;
-			productName = REFrostedViewControllerExampleTests;
-			productReference = 3010B55417E9FA67006791FB /* REFrostedViewControllerExampleTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -245,11 +202,6 @@
 				CLASSPREFIX = DEMO;
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Roman Efimov";
-				TargetAttributes = {
-					3010B55317E9FA67006791FB = {
-						TestTargetID = 3010B53817E9FA67006791FB;
-					};
-				};
 			};
 			buildConfigurationList = 3010B53417E9FA67006791FB /* Build configuration list for PBXProject "REFrostedViewControllerExample" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -264,7 +216,6 @@
 			projectRoot = "";
 			targets = (
 				3010B53817E9FA67006791FB /* REFrostedViewControllerExample */,
-				3010B55317E9FA67006791FB /* REFrostedViewControllerExampleTests */,
 			);
 		};
 /* End PBXProject section */
@@ -277,13 +228,6 @@
 				3010B57917E9FAFA006791FB /* avatar@2x.jpg in Resources */,
 				3010B54717E9FA67006791FB /* InfoPlist.strings in Resources */,
 				3010B54F17E9FA67006791FB /* Images.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3010B55217E9FA67006791FB /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -309,22 +253,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3010B55017E9FA67006791FB /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		3010B55A17E9FA67006791FB /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 3010B53817E9FA67006791FB /* REFrostedViewControllerExample */;
-			targetProxy = 3010B55917E9FA67006791FB /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		3010B54517E9FA67006791FB /* InfoPlist.strings */ = {
@@ -438,46 +367,6 @@
 			};
 			name = Release;
 		};
-		3010B56917E9FA67006791FB /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/REFrostedViewControllerExample.app/REFrostedViewControllerExample";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "REFrostedViewControllerExample/REFrostedViewControllerExample-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "REFrostedViewControllerExampleTests/REFrostedViewControllerExampleTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Debug;
-		};
-		3010B56A17E9FA67006791FB /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/REFrostedViewControllerExample.app/REFrostedViewControllerExample";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "REFrostedViewControllerExample/REFrostedViewControllerExample-Prefix.pch";
-				INFOPLIST_FILE = "REFrostedViewControllerExampleTests/REFrostedViewControllerExampleTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -495,15 +384,6 @@
 			buildConfigurations = (
 				3010B56617E9FA67006791FB /* Debug */,
 				3010B56717E9FA67006791FB /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		3010B56817E9FA67006791FB /* Build configuration list for PBXNativeTarget "REFrostedViewControllerExampleTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				3010B56917E9FA67006791FB /* Debug */,
-				3010B56A17E9FA67006791FB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
