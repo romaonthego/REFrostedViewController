@@ -177,7 +177,7 @@
 {
     REFrostedViewController *strongFrostedViewController = self.frostedViewController;
     id<REFrostedViewControllerDelegate> strongDelegate = strongFrostedViewController.delegate;
-    void (^completionHandler)(BOOL finished) = ^(BOOL finished) {
+    void (^completionHandler)(BOOL finished) = ^(__unused BOOL finished) {
         if ([strongDelegate conformsToProtocol:@protocol(REFrostedViewControllerDelegate)] && [strongDelegate respondsToSelector:@selector(frostedViewController:didShowMenuViewController:)]) {
             [strongDelegate frostedViewController:strongFrostedViewController didShowMenuViewController:strongFrostedViewController.menuViewController];
         }
@@ -238,7 +238,7 @@
         [UIView animateWithDuration:strongFrostedViewController.animationDuration animations:^{
             [self setContainerFrame:CGRectMake(- strongFrostedViewController.calculatedMenuViewSize.width, 0, strongFrostedViewController.calculatedMenuViewSize.width, strongFrostedViewController.calculatedMenuViewSize.height)];
             [self setBackgroundViewsAlpha:0];
-        } completion:^(BOOL finished) {
+        } completion:^(__unused BOOL finished) {
             strongFrostedViewController.visible = NO;
             [strongFrostedViewController re_hideController:self];
             completionHandlerBlock();
@@ -249,7 +249,7 @@
         [UIView animateWithDuration:strongFrostedViewController.animationDuration animations:^{
             [self setContainerFrame:CGRectMake(self.view.frame.size.width, 0, strongFrostedViewController.calculatedMenuViewSize.width, strongFrostedViewController.calculatedMenuViewSize.height)];
             [self setBackgroundViewsAlpha:0];
-        } completion:^(BOOL finished) {
+        } completion:^(__unused BOOL finished) {
             strongFrostedViewController.visible = NO;
             [strongFrostedViewController re_hideController:self];
             completionHandlerBlock();
@@ -260,7 +260,7 @@
         [UIView animateWithDuration:strongFrostedViewController.animationDuration animations:^{
             [self setContainerFrame:CGRectMake(0, -strongFrostedViewController.calculatedMenuViewSize.height, strongFrostedViewController.calculatedMenuViewSize.width, strongFrostedViewController.calculatedMenuViewSize.height)];
             [self setBackgroundViewsAlpha:0];
-        } completion:^(BOOL finished) {
+        } completion:^(__unused BOOL finished) {
             strongFrostedViewController.visible = NO;
             [strongFrostedViewController re_hideController:self];
             completionHandlerBlock();
@@ -271,7 +271,7 @@
         [UIView animateWithDuration:strongFrostedViewController.animationDuration animations:^{
             [self setContainerFrame:CGRectMake(0, self.view.frame.size.height, strongFrostedViewController.calculatedMenuViewSize.width, strongFrostedViewController.calculatedMenuViewSize.height)];
             [self setBackgroundViewsAlpha:0];
-        } completion:^(BOOL finished) {
+        } completion:^(__unused BOOL finished) {
             strongFrostedViewController.visible = NO;
             [strongFrostedViewController re_hideController:self];
             completionHandlerBlock();
@@ -287,7 +287,7 @@
 #pragma mark -
 #pragma mark Gesture recognizer
 
-- (void)tapGestureRecognized:(UITapGestureRecognizer *)recognizer
+- (void)tapGestureRecognized:(__unused UITapGestureRecognizer *)recognizer
 {
     [self hide];
 }
@@ -402,7 +402,7 @@
     }
 }
 
-- (void)fixLayoutWithDuration:(NSTimeInterval)duration
+- (void)fixLayoutWithDuration:(__unused NSTimeInterval)duration
 {
     REFrostedViewController *strongFrostedViewController = self.frostedViewController;
     if (strongFrostedViewController.direction == REFrostedViewControllerDirectionLeft) {
