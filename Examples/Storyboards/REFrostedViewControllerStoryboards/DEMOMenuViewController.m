@@ -141,10 +141,10 @@
     
     if (indexPath.section == 0) {
         NSArray *titles = @[@"Home", @"Profile", @"Chats"];
-        cell.textLabel.text = titles[indexPath.row];
+        cell.textLabel.text = titles[(NSUInteger)indexPath.row];
     } else {
         NSArray *titles = @[@"John Appleseed", @"John Doe", @"Test User"];
-        cell.textLabel.text = titles[indexPath.row];
+        cell.textLabel.text = titles[(NSUInteger)indexPath.row];
     }
     
     return cell;
