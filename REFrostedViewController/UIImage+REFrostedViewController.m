@@ -153,7 +153,7 @@
             // ... if d is odd, use three box-blurs of size 'd', centered on the output pixel.
             //
             CGFloat inputRadius = blurRadius * [[UIScreen mainScreen] scale];
-            uint32_t radius = floor(inputRadius * 3. * sqrt(2 * M_PI) / 4 + 0.5);
+            uint32_t radius = (uint32_t)floor(inputRadius * 3. * sqrt(2 * M_PI) / 4 + 0.5);
             if (radius % 2 != 1) {
                 radius += 1; // force radius to be odd so that the three box-blur methodology works.
             }
@@ -174,7 +174,7 @@
             NSUInteger matrixSize = sizeof(floatingPointSaturationMatrix)/sizeof(floatingPointSaturationMatrix[0]);
             int16_t saturationMatrix[matrixSize];
             for (NSUInteger i = 0; i < matrixSize; ++i) {
-                saturationMatrix[i] = (int16_t)roundf(floatingPointSaturationMatrix[i] * divisor);
+                saturationMatrix[i] = (int16_t)round(floatingPointSaturationMatrix[i] * divisor);
             }
             if (hasBlur) {
                 vImageMatrixMultiply_ARGB8888(&effectOutBuffer, &effectInBuffer, saturationMatrix, divisor, NULL, NULL, kvImageNoFlags);
