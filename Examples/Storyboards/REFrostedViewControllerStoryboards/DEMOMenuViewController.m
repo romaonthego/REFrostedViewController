@@ -18,6 +18,8 @@
 
 @implementation DEMOMenuViewController
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wgnu"
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -53,6 +55,7 @@
         view;
     });
 }
+#pragma clang diagnostic pop
 
 #pragma mark -
 #pragma mark UITableView Delegate
