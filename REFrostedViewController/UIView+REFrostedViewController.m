@@ -27,6 +27,8 @@
 
 @implementation UIView (REFrostedViewController)
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wselector"
 - (UIImage *)re_screenshot
 {
     UIGraphicsBeginImageContextWithOptions(self.bounds.size, NO, [UIScreen mainScreen].scale);
@@ -51,5 +53,5 @@
     UIGraphicsEndImageContext();
     return image;
 }
-
+#pragma clang diagnostic pop
 @end

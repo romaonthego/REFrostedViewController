@@ -112,6 +112,8 @@
 #pragma mark -
 #pragma mark Setters
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wselector"
 - (void)setContentViewController:(UIViewController *)contentViewController
 {
     if (!_contentViewController) {
@@ -134,6 +136,7 @@
         [self performSelector:@selector(setNeedsStatusBarAppearanceUpdate)];
     }
 }
+#pragma clang diagnostic pop
 
 - (void)setMenuViewController:(UIViewController *)menuViewController
 {
