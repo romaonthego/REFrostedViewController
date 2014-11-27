@@ -254,6 +254,8 @@
     return self.contentViewController.shouldAutorotate;
 }
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-implementations"
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
     [super willAnimateRotationToInterfaceOrientation:toInterfaceOrientation duration:duration];
@@ -282,5 +284,6 @@
         self.calculatedMenuViewSize = CGSizeZero;
     }
 }
+#pragma clang diagnostic pop
 
 @end
