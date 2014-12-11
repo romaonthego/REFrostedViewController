@@ -249,6 +249,16 @@
     return self.contentViewController.shouldAutorotate;
 }
 
+- (NSUInteger)supportedInterfaceOrientations
+{
+    return self.contentViewController.supportedInterfaceOrientations;
+}
+
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation
+{
+    return self.contentViewController.preferredInterfaceOrientationForPresentation;
+}
+
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
     [super willAnimateRotationToInterfaceOrientation:toInterfaceOrientation duration:duration];
