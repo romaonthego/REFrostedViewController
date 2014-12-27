@@ -1,0 +1,20 @@
+{
+    "settings": {
+        "backgroundFadeAmount": 0.3,
+        "blurTintColor": {
+            "hexColor": "#ffffdd",
+            "alpha": 0.75
+        },
+        "blurRadius": 10,
+        "blurSaturationDeltaFactor": 1.8,
+        "animationDuration": 0.35,
+        "limitMenuViewSize": false,
+        "menuViewSize": {
+            "width": 0,
+            "height": 0
+        },
+        "liveBlur": true,
+        "liveBlurBackgroundStyle": "light",
+        "frostedViewControllerDirection": "directionLeft"
+    }
+}
