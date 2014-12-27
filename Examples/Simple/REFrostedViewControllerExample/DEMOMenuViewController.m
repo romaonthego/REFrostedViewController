@@ -50,11 +50,6 @@
     });
 }
 
-- (void)updateViewConstraints
-{
-    
-}
-
 #pragma mark -
 #pragma mark UITableView Delegate
 
