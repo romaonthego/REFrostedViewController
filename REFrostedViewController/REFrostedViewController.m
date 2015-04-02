@@ -29,8 +29,11 @@
 #import "UIView+REFrostedViewController.h"
 #import "UIViewController+REFrostedViewController.h"
 #import "RECommonFunctions.h"
+#import "REConfigurationsManager.h"
 
 @interface REFrostedViewController ()
+
+@property (strong, readwrite, nonatomic) REConfigurationsManager *configurationsManager;
 
 @property (assign, readwrite, nonatomic) CGFloat imageViewWidth;
 @property (strong, readwrite, nonatomic) UIImage *image;
@@ -65,22 +68,28 @@
 
 - (void)commonInit
 {
+    _configurationsManager = [REConfigurationsManager sharedManager];
+    
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
     self.wantsFullScreenLayout = YES;
 #pragma clang diagnostic pop
     _panGestureEnabled = YES;
-    _animationDuration = 0.35f;
-    _backgroundFadeAmount = 0.3f;
-    _blurTintColor = REUIKitIsFlatMode() ? nil : [UIColor colorWithWhite:1 alpha:0.75f];
-    _blurSaturationDeltaFactor = 1.8f;
-    _blurRadius = 10.0f;
     _containerViewController = [[REFrostedContainerViewController alloc] init];
     _containerViewController.frostedViewController = self;
-    _menuViewSize = CGSizeZero;
-    _liveBlur = REUIKitIsFlatMode();
     _panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:_containerViewController action:@selector(panGestureRecognized:)];
     _automaticSize = YES;
+    
+    _backgroundFadeAmount = [self.configurationsManager backgroundFadeAmount];
+    _liveBlur = [self.configurationsManager liveBlur] && REUIKitIsFlatMode();
+    _blurRadius = [self.configurationsManager blurRadius];
+    _blurSaturationDeltaFactor = [self.configurationsManager blurSaturationDeltaFactor];
+    _blurTintColor = REUIKitIsFlatMode() ? nil : [self.configurationsManager blurTintColor];
+    _animationDuration = [self.configurationsManager animationDuration];
+    _limitMenuViewSize = [self.configurationsManager limitMenuViewSize];
+    _menuViewSize = [self.configurationsManager menuViewSize];
+    _liveBlurBackgroundStyle = [self.configurationsManager liveBlurBackgroundStyle];
+    _direction = [self.configurationsManager direction];
 }
 
 - (id)initWithContentViewController:(UIViewController *)contentViewController menuViewController:(UIViewController *)menuViewController

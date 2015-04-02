@@ -34,8 +34,9 @@ typedef NS_ENUM(NSInteger, REFrostedViewControllerDirection) {
 };
 
 typedef NS_ENUM(NSInteger, REFrostedViewControllerLiveBackgroundStyle) {
-    REFrostedViewControllerLiveBackgroundStyleLight,
+    REFrostedViewControllerLiveBackgroundStyleLight=0,
     REFrostedViewControllerLiveBackgroundStyleDark
+    
 };
 
 @protocol REFrostedViewControllerDelegate;

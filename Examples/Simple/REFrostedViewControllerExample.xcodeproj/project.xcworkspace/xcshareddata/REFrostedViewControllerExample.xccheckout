@@ -11,17 +11,17 @@
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>846BE617AA9E74C124CCAACA9AE4C37BCADD90D2</key>
-		<string>ssh://github.com/romaonthego/REFrostedViewController.git</string>
+		<string>https://github.com/alexissan/REFrostedViewController.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>Examples/Simple/REFrostedViewControllerExample.xcodeproj/project.xcworkspace</string>
+	<string>Examples/Simple/REFrostedViewControllerExample.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>846BE617AA9E74C124CCAACA9AE4C37BCADD90D2</key>
 		<string>../../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>ssh://github.com/romaonthego/REFrostedViewController.git</string>
+	<string>https://github.com/alexissan/REFrostedViewController.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
