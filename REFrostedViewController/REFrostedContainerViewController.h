@@ -33,6 +33,7 @@
 @property (weak, readwrite, nonatomic) REFrostedViewController *frostedViewController;
 @property (assign, readwrite, nonatomic) BOOL animateApperance;
 @property (strong, readonly, nonatomic) UIView *containerView;
+@property (strong, readwrite, nonatomic) UIColor *liveBlurBackgroundColor;
 
 - (void)panGestureRecognized:(UIPanGestureRecognizer *)recognizer;
 - (void)hide;
