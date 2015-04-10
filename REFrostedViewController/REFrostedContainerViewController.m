@@ -74,6 +74,7 @@
         [self.containerView addSubview:toolbar];
     } else {
         self.backgroundImageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
+        self.containerView.backgroundColor = self.frostedViewController.backgroundContainerColor;
         [self.containerView addSubview:self.backgroundImageView];
     }
     
