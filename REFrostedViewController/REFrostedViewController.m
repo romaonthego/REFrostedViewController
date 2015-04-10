@@ -78,7 +78,7 @@
     _containerViewController = [[REFrostedContainerViewController alloc] init];
     _containerViewController.frostedViewController = self;
     _menuViewSize = CGSizeZero;
-    _liveBlur = REUIKitIsFlatMode();
+    _liveBlur = NO;
     _panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:_containerViewController action:@selector(panGestureRecognized:)];
     _automaticSize = YES;
 }
@@ -189,7 +189,7 @@
                                                  _menuViewSize.height > 0 ? _menuViewSize.height : self.contentViewController.view.frame.size.height);
     }
     
-    if (!self.liveBlur) {
+    if (self.liveBlur && !self.backgroundContainerColor) {
         if (REUIKitIsFlatMode() && !self.blurTintColor) {
             self.blurTintColor = [UIColor colorWithWhite:1 alpha:0.75f];
         }
@@ -205,7 +205,7 @@
     if (!self.visible) {//when call hide menu before menuViewController added to containerViewController, the menuViewController will never added to containerViewController
         return;
     }
-    if (!self.liveBlur) {
+    if (self.liveBlur && !self.frostedViewController.backgroundContainerColor) {
         self.containerViewController.screenshotImage = [[self.contentViewController.view re_screenshot] re_applyBlurWithRadius:self.blurRadius tintColor:self.blurTintColor saturationDeltaFactor:self.blurSaturationDeltaFactor maskImage:nil];
         [self.containerViewController refreshBackgroundImage];
     }
@@ -214,7 +214,7 @@
 
 - (void)resizeMenuViewControllerToSize:(CGSize)size
 {
-    if (!self.liveBlur) {
+    if (self.liveBlur && !self.frostedViewController.backgroundContainerColor) {
         self.containerViewController.screenshotImage = [[self.contentViewController.view re_screenshot] re_applyBlurWithRadius:self.blurRadius tintColor:self.blurTintColor saturationDeltaFactor:self.blurSaturationDeltaFactor maskImage:nil];
         [self.containerViewController refreshBackgroundImage];
     }
