@@ -196,7 +196,29 @@
         self.containerViewController.screenshotImage = [[self.contentViewController.view re_screenshot] re_applyBlurWithRadius:self.blurRadius tintColor:self.blurTintColor saturationDeltaFactor:self.blurSaturationDeltaFactor maskImage:nil];
     }
         
-    [self re_displayController:self.containerViewController frame:self.contentViewController.view.frame];
+    
+    if (self.interactionWhileMenuIsPresentedShouldBeEnabled) {
+        if (self.direction == REFrostedViewControllerDirectionLeft) {
+            [self re_displayController:self.containerViewController frame:CGRectMake(self.contentViewController.view.frame.origin.x, self.contentViewController.view.frame.origin.y, self.menuViewSize.width, self.menuViewSize.height)];
+        }
+        
+        if (self.direction == REFrostedViewControllerDirectionRight) {
+            [self re_displayController:self.containerViewController frame:CGRectMake(self.contentViewController.view.frame.size.width - self.menuViewSize.width, self.contentViewController.view.frame.origin.y, self.menuViewSize.width, self.menuViewSize.height)];
+        }
+        
+        if (self.direction == REFrostedViewControllerDirectionTop) {
+            [self re_displayController:self.containerViewController frame:CGRectMake(self.contentViewController.view.frame.origin.x, self.contentViewController.view.frame.origin.y, self.menuViewSize.width, self.menuViewSize.height)];
+        }
+        
+        if (self.direction == REFrostedViewControllerDirectionBottom) {
+            [self re_displayController:self.containerViewController frame:CGRectMake(self.contentViewController.view.frame.origin.x, self.contentViewController.view.frame.size.height - self.menuViewSize.height, self.menuViewSize.width, self.menuViewSize.height)];
+        }
+    } else {
+        [self re_displayController:self.containerViewController frame:self.contentViewController.view.frame];
+    }
+
+    
+    
     self.visible = YES;
 }
 
