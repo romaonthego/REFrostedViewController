@@ -55,7 +55,7 @@
     for (NSInteger i = 0; i < 4; i++) {
         UIView *backgroundView = [[UIView alloc] initWithFrame:CGRectNull];
         
-        if (self.frostedViewController.interactionWhenMenuIsPresentedShouldBeEnabled) {
+        if (self.frostedViewController.interactionWhileMenuIsPresentedShouldBeEnabled) {
             backgroundView.backgroundColor = [UIColor clearColor];
         } else {
             backgroundView.backgroundColor = [UIColor blackColor];
