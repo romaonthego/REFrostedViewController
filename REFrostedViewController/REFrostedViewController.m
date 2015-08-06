@@ -123,12 +123,13 @@
     [_contentViewController.view removeFromSuperview];
     
     if (contentViewController) {
+        _contentViewController = contentViewController;
         [self addChildViewController:contentViewController];
         contentViewController.view.frame = self.containerViewController.view.frame;
         [self.view insertSubview:contentViewController.view atIndex:0];
         [contentViewController didMoveToParentViewController:self];
     }
-    _contentViewController = contentViewController;
+    
     
     if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]) {
         [self performSelector:@selector(setNeedsStatusBarAppearanceUpdate)];
