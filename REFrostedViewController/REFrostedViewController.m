@@ -81,6 +81,7 @@
     _liveBlur = REUIKitIsFlatMode();
     _panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:_containerViewController action:@selector(panGestureRecognized:)];
     _automaticSize = YES;
+    _limitMenuViewSize = YES;
 }
 
 - (id)initWithContentViewController:(UIViewController *)contentViewController menuViewController:(UIViewController *)menuViewController
