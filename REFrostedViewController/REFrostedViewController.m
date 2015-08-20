@@ -97,7 +97,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self re_displayController:self.contentViewController frame:self.view.bounds];
+    if (self.contentViewController) {
+        [self re_displayController:self.contentViewController frame:self.view.bounds];
+    } else if (self.storyboard) {
+        [self performSegueWithIdentifier:@"re_front" sender:nil];
+        [self performSegueWithIdentifier:@"re_left" sender:nil];
+    }
 }
 
 - (UIViewController *)childViewControllerForStatusBarStyle
