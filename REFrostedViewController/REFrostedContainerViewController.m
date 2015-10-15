@@ -280,6 +280,13 @@
     self.backgroundImageView.image = self.screenshotImage;
 }
 
+- (void)changeBackgroundViewsAlphaForPanGestureWithValue:(CGFloat)value
+{
+    CGFloat targetValue = self.containerView.frame.size.width;
+    CGFloat progress = (targetValue - ABS(value)) / targetValue;
+    [self setBackgroundViewsAlpha:(progress * self.frostedViewController.backgroundFadeAmount)];
+}
+
 #pragma mark -
 #pragma mark Gesture recognizer
 
@@ -315,6 +322,8 @@
                         frame.size.width = self.view.frame.size.width;
                 }
             }
+            
+            [self changeBackgroundViewsAlphaForPanGestureWithValue:self.containerView.frame.origin.x];
         }
         
         if (self.frostedViewController.direction == REFrostedViewControllerDirectionRight) {
@@ -329,6 +338,8 @@
                     frame.size.width = self.view.frame.size.width - frame.origin.x;
                 }
             }
+            
+            [self changeBackgroundViewsAlphaForPanGestureWithValue:self.containerView.frame.origin.x];
         }
         
         if (self.frostedViewController.direction == REFrostedViewControllerDirectionTop) {
@@ -342,6 +353,8 @@
                         frame.size.height = self.view.frame.size.height;
                 }
             }
+            
+            [self changeBackgroundViewsAlphaForPanGestureWithValue:self.containerView.frame.origin.y];
         }
         
         if (self.frostedViewController.direction == REFrostedViewControllerDirectionBottom) {
@@ -356,6 +369,8 @@
                     frame.size.height = self.view.frame.size.height - frame.origin.y;
                 }
             }
+            
+            [self changeBackgroundViewsAlphaForPanGestureWithValue:self.containerView.frame.origin.y];
         }
         
         [self setContainerFrame:frame];
