@@ -112,9 +112,10 @@
 #pragma mark -
 #pragma mark Setters
 
+
 - (void)setContentViewController:(UIViewController *)contentViewController
 {
-    if (!_contentViewController) {
+    if (!_contentViewController || !self.isViewLoaded) {
         _contentViewController = contentViewController;
         return;
     }
@@ -143,7 +144,7 @@
     }
     
     _menuViewController = menuViewController;
-
+    
     CGRect frame = _menuViewController.view.frame;
     [_menuViewController willMoveToParentViewController:nil];
     [_menuViewController removeFromParentViewController];
@@ -195,7 +196,7 @@
         }
         self.containerViewController.screenshotImage = [[self.contentViewController.view re_screenshot] re_applyBlurWithRadius:self.blurRadius tintColor:self.blurTintColor saturationDeltaFactor:self.blurSaturationDeltaFactor maskImage:nil];
     }
-        
+    
     [self re_displayController:self.containerViewController frame:self.contentViewController.view.frame];
     self.visible = YES;
 }
@@ -223,7 +224,7 @@
 
 - (void)hideMenuViewController
 {
-	[self hideMenuViewControllerWithCompletionHandler:nil];
+    [self hideMenuViewControllerWithCompletionHandler:nil];
 }
 
 - (void)panGestureRecognized:(UIPanGestureRecognizer *)recognizer
