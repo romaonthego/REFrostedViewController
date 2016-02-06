@@ -179,6 +179,10 @@
         if ([self.frostedViewController.delegate conformsToProtocol:@protocol(REFrostedViewControllerDelegate)] && [self.frostedViewController.delegate respondsToSelector:@selector(frostedViewController:didShowMenuViewController:)]) {
             [self.frostedViewController.delegate frostedViewController:self.frostedViewController didShowMenuViewController:self.frostedViewController.menuViewController];
         }
+        
+        if ([self.frostedViewController respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]) {
+            [self.frostedViewController performSelector:@selector(setNeedsStatusBarAppearanceUpdate)];
+        }
     };
     
     if (self.frostedViewController.direction == REFrostedViewControllerDirectionLeft) {
@@ -222,6 +226,11 @@
         if ([self.frostedViewController.delegate conformsToProtocol:@protocol(REFrostedViewControllerDelegate)] && [self.frostedViewController.delegate respondsToSelector:@selector(frostedViewController:didHideMenuViewController:)]) {
             [self.frostedViewController.delegate frostedViewController:self.frostedViewController didHideMenuViewController:self.frostedViewController.menuViewController];
         }
+        
+        if ([self.frostedViewController respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]) {
+            [self.frostedViewController performSelector:@selector(setNeedsStatusBarAppearanceUpdate)];
+        }
+        
         if (completionHandler)
             completionHandler();
     };

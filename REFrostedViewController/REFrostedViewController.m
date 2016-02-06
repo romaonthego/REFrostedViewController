@@ -101,12 +101,12 @@
 
 - (UIViewController *)childViewControllerForStatusBarStyle
 {
-    return self.contentViewController;
+    return self.visible ? self.menuViewController : self.contentViewController;
 }
 
 - (UIViewController *)childViewControllerForStatusBarHidden
 {
-    return self.contentViewController;
+    return self.visible ? self.menuViewController : self.contentViewController;
 }
 
 #pragma mark -
@@ -156,6 +156,10 @@
     menuViewController.view.frame = frame;
     [self.containerViewController.containerView addSubview:menuViewController.view];
     [menuViewController didMoveToParentViewController:self];
+    
+    if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]) {
+        [self performSelector:@selector(setNeedsStatusBarAppearanceUpdate)];
+    }
 }
 
 - (void)setMenuViewSize:(CGSize)menuViewSize
