@@ -165,6 +165,14 @@
 }
 
 #pragma mark -
+#pragma mark Getters
+
+- (BOOL)isMenuOpen
+{
+    return _visible;
+}
+
+#pragma mark -
 
 - (void)presentMenuViewController
 {
