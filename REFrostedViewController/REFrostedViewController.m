@@ -211,6 +211,9 @@
 - (void)hideMenuViewControllerWithCompletionHandler:(void(^)(void))completionHandler
 {
     if (!self.visible) {//when call hide menu before menuViewController added to containerViewController, the menuViewController will never added to containerViewController
+        if (completionHandler) {
+            completionHandler();
+        }
         return;
     }
     if (!self.liveBlur) {
