@@ -165,6 +165,14 @@
 }
 
 #pragma mark -
+#pragma mark Getters
+
+- (BOOL)isMenuOpen
+{
+    return _visible;
+}
+
+#pragma mark -
 
 - (void)presentMenuViewController
 {
@@ -203,6 +211,9 @@
 - (void)hideMenuViewControllerWithCompletionHandler:(void(^)(void))completionHandler
 {
     if (!self.visible) {//when call hide menu before menuViewController added to containerViewController, the menuViewController will never added to containerViewController
+        if (completionHandler) {
+            completionHandler();
+        }
         return;
     }
     if (!self.liveBlur) {
