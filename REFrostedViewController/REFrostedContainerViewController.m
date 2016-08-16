@@ -173,41 +173,48 @@
     }
 }
 
-- (void)show
+- (void)showWithSpeed:(double)speed
 {
     void (^completionHandler)(BOOL finished) = ^(BOOL finished) {
         if ([self.frostedViewController.delegate conformsToProtocol:@protocol(REFrostedViewControllerDelegate)] && [self.frostedViewController.delegate respondsToSelector:@selector(frostedViewController:didShowMenuViewController:)]) {
             [self.frostedViewController.delegate frostedViewController:self.frostedViewController didShowMenuViewController:self.frostedViewController.menuViewController];
         }
     };
-    
+
+    NSTimeInterval dur = self.frostedViewController.animationDuration - speed;
+
     if (self.frostedViewController.direction == REFrostedViewControllerDirectionLeft) {
-        [UIView animateWithDuration:self.frostedViewController.animationDuration animations:^{
+        [UIView animateWithDuration:dur animations:^{
             [self setContainerFrame:CGRectMake(0, 0, self.frostedViewController.calculatedMenuViewSize.width, self.frostedViewController.calculatedMenuViewSize.height)];
             [self setBackgroundViewsAlpha:self.frostedViewController.backgroundFadeAmount];
         } completion:completionHandler];
     }
-    
+
     if (self.frostedViewController.direction == REFrostedViewControllerDirectionRight) {
-        [UIView animateWithDuration:self.frostedViewController.animationDuration animations:^{
+        [UIView animateWithDuration:dur animations:^{
             [self setContainerFrame:CGRectMake(self.view.frame.size.width - self.frostedViewController.calculatedMenuViewSize.width, 0, self.frostedViewController.calculatedMenuViewSize.width, self.frostedViewController.calculatedMenuViewSize.height)];
             [self setBackgroundViewsAlpha:self.frostedViewController.backgroundFadeAmount];
         } completion:completionHandler];
     }
-    
+
     if (self.frostedViewController.direction == REFrostedViewControllerDirectionTop) {
-        [UIView animateWithDuration:self.frostedViewController.animationDuration animations:^{
+        [UIView animateWithDuration:dur animations:^{
             [self setContainerFrame:CGRectMake(0, 0, self.frostedViewController.calculatedMenuViewSize.width, self.frostedViewController.calculatedMenuViewSize.height)];
             [self setBackgroundViewsAlpha:self.frostedViewController.backgroundFadeAmount];
         } completion:completionHandler];
     }
-    
+
     if (self.frostedViewController.direction == REFrostedViewControllerDirectionBottom) {
-        [UIView animateWithDuration:self.frostedViewController.animationDuration animations:^{
+        [UIView animateWithDuration:dur animations:^{
             [self setContainerFrame:CGRectMake(0, self.view.frame.size.height - self.frostedViewController.calculatedMenuViewSize.height, self.frostedViewController.calculatedMenuViewSize.width, self.frostedViewController.calculatedMenuViewSize.height)];
             [self setBackgroundViewsAlpha:self.frostedViewController.backgroundFadeAmount];
         } completion:completionHandler];
     }
+}
+
+- (void)show
+{
+    [self showWithSpeed:0];
 }
 
 
@@ -362,36 +369,13 @@
     }
     
     if (recognizer.state == UIGestureRecognizerStateEnded) {
-        if (self.frostedViewController.direction == REFrostedViewControllerDirectionLeft) {
-            if ([recognizer velocityInView:self.view].x < 0) {
-                [self hide];
-            } else {
-                [self show];
-            }
-        }
-        
-        if (self.frostedViewController.direction == REFrostedViewControllerDirectionRight) {
-            if ([recognizer velocityInView:self.view].x < 0) {
-                [self show];
-            } else {
-                [self hide];
-            }
-        }
-        
-        if (self.frostedViewController.direction == REFrostedViewControllerDirectionTop) {
-            if ([recognizer velocityInView:self.view].y < 0) {
-                [self hide];
-            } else {
-                [self show];
-            }
-        }
-        
-        if (self.frostedViewController.direction == REFrostedViewControllerDirectionBottom) {
-            if ([recognizer velocityInView:self.view].y < 0) {
-                [self show];
-            } else {
-                [self hide];
-            }
+
+        CGFloat velX = [recognizer velocityInView:self.view].x;
+
+        if (velX > 0) {
+            [self showWithSpeed:velX / 10000];
+        } else {
+            [self hide];
         }
     }
 }
