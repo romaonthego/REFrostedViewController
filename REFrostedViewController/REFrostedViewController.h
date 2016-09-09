@@ -26,13 +26,6 @@
 #import <UIKit/UIKit.h>
 #import "UIViewController+REFrostedViewController.h"
 
-typedef NS_ENUM(NSInteger, REFrostedViewControllerDirection) {
-    REFrostedViewControllerDirectionLeft,
-    REFrostedViewControllerDirectionRight,
-    REFrostedViewControllerDirectionTop,
-    REFrostedViewControllerDirectionBottom
-};
-
 typedef NS_ENUM(NSInteger, REFrostedViewControllerLiveBackgroundStyle) {
     REFrostedViewControllerLiveBackgroundStyleLight,
     REFrostedViewControllerLiveBackgroundStyleDark
@@ -44,7 +37,6 @@ typedef NS_ENUM(NSInteger, REFrostedViewControllerLiveBackgroundStyle) {
 
 @property (strong, readonly, nonatomic) UIPanGestureRecognizer *panGestureRecognizer;
 @property (assign, readwrite, nonatomic) BOOL panGestureEnabled;
-@property (assign, readwrite, nonatomic) REFrostedViewControllerDirection direction;
 
 /**
  * The backgroundFadeAmount is how much the backgound view fades when the menu
