@@ -45,6 +45,7 @@ typedef NS_ENUM(NSInteger, REFrostedViewControllerLiveBackgroundStyle) {
  * 1.0 is completely black. 0.0 means the background does not dim at all.
  * The default value is 0.3.
  */
+@property (assign, readwrite, nonatomic) CGFloat menuyposition;
 @property (assign, readwrite, nonatomic) CGFloat backgroundFadeAmount;
 @property (strong, readwrite, nonatomic) UIColor *blurTintColor; // Used only when live blur is off
 @property (assign, readwrite, nonatomic) CGFloat blurRadius; // Used only when live blur is off
@@ -63,6 +64,7 @@ typedef NS_ENUM(NSInteger, REFrostedViewControllerLiveBackgroundStyle) {
 - (void)presentMenuViewController;
 - (void)hideMenuViewController;
 - (void)resizeMenuViewControllerToSize:(CGSize)size;
+- (void)setMenuYposition:(CGFloat)menuViewSize;
 - (void)hideMenuViewControllerWithCompletionHandler:(void(^)(void))completionHandler;
 - (void)panGestureRecognized:(UIPanGestureRecognizer *)recognizer;
 
@@ -77,5 +79,4 @@ typedef NS_ENUM(NSInteger, REFrostedViewControllerLiveBackgroundStyle) {
 - (void)frostedViewController:(REFrostedViewController *)frostedViewController didShowMenuViewController:(UIViewController *)menuViewController;
 - (void)frostedViewController:(REFrostedViewController *)frostedViewController willHideMenuViewController:(UIViewController *)menuViewController;
 - (void)frostedViewController:(REFrostedViewController *)frostedViewController didHideMenuViewController:(UIViewController *)menuViewController;
-
 @end

@@ -32,6 +32,7 @@
 @property (strong, readwrite, nonatomic) UIImage *screenshotImage;
 @property (weak, readwrite, nonatomic) REFrostedViewController *frostedViewController;
 @property (assign, readwrite, nonatomic) BOOL animateApperance;
+@property (assign, readwrite, nonatomic) CGFloat yposition;
 @property (strong, readonly, nonatomic) UIView *containerView;
 
 - (void)panGestureRecognized:(UIPanGestureRecognizer *)recognizer;

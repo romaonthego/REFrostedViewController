@@ -81,6 +81,7 @@
     _liveBlur = REUIKitIsFlatMode();
     _panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:_containerViewController action:@selector(panGestureRecognized:)];
     _automaticSize = YES;
+    _menuyposition = 0;
 }
 
 - (id)initWithContentViewController:(UIViewController *)contentViewController menuViewController:(UIViewController *)menuViewController
@@ -144,6 +145,7 @@
     _menuViewController = menuViewController;
 
     CGRect frame = _menuViewController.view.frame;
+
     [_menuViewController willMoveToParentViewController:nil];
     [_menuViewController removeFromParentViewController];
     [_menuViewController.view removeFromSuperview];
@@ -153,6 +155,7 @@
     
     [self.containerViewController addChildViewController:menuViewController];
     menuViewController.view.frame = frame;
+
     [self.containerViewController.containerView addSubview:menuViewController.view];
     [menuViewController didMoveToParentViewController:self];
 }
@@ -161,6 +164,13 @@
 {
     _menuViewSize = menuViewSize;
     self.automaticSize = NO;
+}
+
+- (void)setMenuYposition:(CGFloat)menuViewSize
+{
+    CGRect siz = CGRectMake(0, menuViewSize, self.view.frame.size.width, self.view.frame.size.height);
+    self.view.frame = siz;
+    self.containerViewController.yposition = (CGFloat) menuViewSize;
 }
 
 #pragma mark -

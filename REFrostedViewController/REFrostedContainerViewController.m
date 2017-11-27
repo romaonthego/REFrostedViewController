@@ -52,7 +52,7 @@
 {
     [super viewDidLoad];
     self.backgroundViews = [NSMutableArray array];
-
+    //self.yposition = 0;
     for (NSInteger i = 0; i < 4; i++) {
         UIView *backgroundView = [[UIView alloc] initWithFrame:CGRectNull];
         backgroundView.backgroundColor = [UIColor blackColor];
@@ -64,8 +64,8 @@
         [backgroundView addGestureRecognizer:tapRecognizer];
     }
     
-    self.containerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
-    self.containerView.clipsToBounds = YES;
+    self.containerView = [[UIView alloc] initWithFrame:CGRectMake(0, _yposition, self.view.frame.size.width, self.view.frame.size.height)];
+    self.containerView.clipsToBounds = NO;
     [self.view addSubview:self.containerView];
     
     if (self.frostedViewController.liveBlur) {
@@ -99,7 +99,7 @@
         self.frostedViewController.menuViewController.view.frame = self.containerView.bounds;
 
         CGRect frame = CGRectMake(-self.frostedViewController.calculatedMenuViewSize.width,
-                                   0,
+                                   _yposition,
                                    self.frostedViewController.calculatedMenuViewSize.width,
                                    self.frostedViewController.calculatedMenuViewSize.height);
 
@@ -159,11 +159,12 @@
 
     [UIView animateWithDuration:dur animations:^{
         CGRect frame = CGRectMake(0,
-                                  0,
+                                  self.yposition,
                                   self.frostedViewController.calculatedMenuViewSize.width,
                                   self.frostedViewController.calculatedMenuViewSize.height);
         [self setContainerFrame:frame];
         [self setBackgroundViewsAlpha:self.frostedViewController.backgroundFadeAmount];
+
     } completion:^(BOOL finished) {
 
         __weak id<REFrostedViewControllerDelegate> delegate = self.frostedViewController.delegate;
@@ -200,12 +201,12 @@
 
     [UIView animateWithDuration:self.frostedViewController.animationDuration animations:^{
         CGRect frame = CGRectMake(-self.frostedViewController.calculatedMenuViewSize.width,
-                                  0,
+                                  self.yposition,
                                   self.frostedViewController.calculatedMenuViewSize.width,
                                   self.frostedViewController.calculatedMenuViewSize.height);
         [self setContainerFrame:frame];
-        [self setBackgroundViewsAlpha:0];
     } completion:^(BOOL finished) {
+         [self setBackgroundViewsAlpha:0];
         self.frostedViewController.visible = NO;
         [self.frostedViewController re_hideController:self];
 
@@ -254,7 +255,8 @@
     
     if (recognizer.state == UIGestureRecognizerStateChanged)
     {
-        CGRect frame = self.containerView.frame;
+        CGRect frame =  CGRectMake(self.containerView.frame.origin.x, self.yposition
+                                   , self.containerView.frame.size.width, self.containerView.frame.size.height);
 
         frame.origin.x = self.containerOrigin.x + point.x;
 
@@ -268,7 +270,32 @@
                     frame.size.width = self.view.frame.size.width;
             }
         }
-        
+
+        for ( UIView *bgView in self.backgroundViews ) {
+            //Limit for shadow is 50/255
+            //pointX = 0 - calculatedMenuSize (50)
+            //alpha = 0 - self.frostedViewController.backgroundFadeAmount (X)
+            CGFloat pCentPointX;
+            CGFloat pCentAlpha;
+            if(point.x > 0) {
+                if (frame.origin.x >= 0) {
+                    pCentAlpha = self.frostedViewController.backgroundFadeAmount;
+                } else {
+                    pCentPointX = point.x / (self.frostedViewController.calculatedMenuViewSize.width);
+                    pCentAlpha = pCentPointX * (self.frostedViewController.backgroundFadeAmount);//30;
+                }
+            } else {
+                pCentPointX = (point.x * -1) / (self.frostedViewController.calculatedMenuViewSize.width);
+                pCentAlpha = self.frostedViewController.backgroundFadeAmount -
+                (self.frostedViewController.backgroundFadeAmount * pCentPointX);
+            }
+
+            bgView.alpha = pCentAlpha;
+            if(bgView.alpha > self.frostedViewController.backgroundFadeAmount) {
+                bgView.alpha = self.frostedViewController.backgroundFadeAmount;
+            }
+        }
+
         [self setContainerFrame:frame];
     }
     else if (recognizer.state == UIGestureRecognizerStateEnded)
