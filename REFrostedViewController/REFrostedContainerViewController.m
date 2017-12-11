@@ -68,16 +68,16 @@
     self.containerView.clipsToBounds = NO;
     [self.view addSubview:self.containerView];
     
-    if (self.frostedViewController.liveBlur) {
-        UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:self.view.bounds];
-        toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        toolbar.barStyle = (UIBarStyle)self.frostedViewController.liveBlurBackgroundStyle;
-        [self.containerView addSubview:toolbar];
-    } else {
-        self.backgroundImageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
-        [self.containerView addSubview:self.backgroundImageView];
-    }
-    
+//    if (self.frostedViewController.liveBlur) {
+//        UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:self.view.bounds];
+//        toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+//        toolbar.barStyle = (UIBarStyle)self.frostedViewController.liveBlurBackgroundStyle;
+//        [self.containerView addSubview:toolbar];
+//    } else {
+//        self.backgroundImageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
+//        [self.containerView addSubview:self.backgroundImageView];
+//    }
+
     if (self.frostedViewController.menuViewController) {
         [self addChildViewController:self.frostedViewController.menuViewController];
         self.frostedViewController.menuViewController.view.frame = self.containerView.bounds;
@@ -277,7 +277,7 @@
             //alpha = 0 - self.frostedViewController.backgroundFadeAmount (X)
             CGFloat pCentPointX;
             CGFloat pCentAlpha;
-            if(point.x > 0) {
+            if(point.x >= 0) {
                 if (frame.origin.x >= 0) {
                     pCentAlpha = self.frostedViewController.backgroundFadeAmount;
                 } else {
@@ -288,6 +288,10 @@
                 pCentPointX = (point.x * -1) / (self.frostedViewController.calculatedMenuViewSize.width);
                 pCentAlpha = self.frostedViewController.backgroundFadeAmount -
                 (self.frostedViewController.backgroundFadeAmount * pCentPointX);
+            }
+
+            if(frame.origin.x + frame.size.width < 0 ) {
+                pCentAlpha = 0;
             }
 
             bgView.alpha = pCentAlpha;
